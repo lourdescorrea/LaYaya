@@ -2,6 +2,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MouseEvent } from "react";
 
+import { useSession } from "next-auth/react";
 import { routes } from "../../../configs";
 import { cn } from "../../../utils";
 import { DashIcon } from "../../icons/DashIcon";
@@ -12,6 +13,7 @@ interface LinksProps {
 
 export function Links({ onClickRoute }: LinksProps) {
   const pathname = usePathname();
+  const { data } = useSession();
 
   const activeRoute = (routeName: string) => {
     return pathname.includes(routeName);
@@ -21,6 +23,8 @@ export function Links({ onClickRoute }: LinksProps) {
     <ul className="mb-auto pt-1">
       {routes.map((route, index: number) => {
         const isActive = activeRoute(route.path);
+
+        if (!route.allowedRoles.includes(data?.user?.role ?? "")) return null;
 
         return (
           <Link key={index} href={route.path} onClick={onClickRoute}>

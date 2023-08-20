@@ -4,24 +4,28 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import type { DefaultJWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authPaths } from "yaya/core";
+import { USERS_ARRAY } from "yaya/shared/constants";
 
-/**
- * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
- * object and keep type safety.
- *
- * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
- */
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: string;
+  }
+}
+
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
       role: string;
+      shops: string[];
     };
   }
 
   interface User {
     role: string;
+    shops: string[];
   }
 }
 
@@ -39,16 +43,18 @@ export const authOptions: NextAuthOptions = {
           name: user?.name,
           email: user?.email,
           role: user?.role,
+          shops: user?.shops,
         };
       }
 
       return token;
     },
-    session: ({ session, user }) => ({
+    session: ({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
-        role: user?.role,
+        role: token?.role,
+        shops: token?.shops,
       },
     }),
   },
@@ -60,16 +66,19 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       authorize(data) {
-        // TODO: Add real logic for users
-        const user = "admin";
-        const password = "123456";
+        const user = USERS_ARRAY.find((user) => user.email === data?.email);
 
-        if (data?.email === user && data?.password === password) {
+        if (
+          user &&
+          data?.email === user.email &&
+          data?.password === user.password
+        ) {
           return {
-            id: "1",
-            name: "Admin",
-            email: "admin",
-            role: "admin",
+            id: user.id,
+            shops: user.shops,
+            role: user.role,
+            name: user.name,
+            email: user.email,
           };
         }
 

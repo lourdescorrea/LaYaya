@@ -1,7 +1,7 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
-import { authPaths, paths } from "yaya/core";
+import { authPaths, paths, routes } from "yaya/core";
 import { env } from "yaya/env.mjs";
 
 const corsHeaders = {
@@ -26,7 +26,7 @@ export default withAuth(
     const { isApi, isAuth, isAuthApi } = checkAuthPath(pathname);
 
     // Redirect / to page
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === "/admin") {
       return NextResponse.redirect(new URL(paths.example.root, req.url));
     }
 
@@ -38,6 +38,15 @@ export default withAuth(
     // Return 401 for API routes if user is not logged in
     if (isApi && !isAuthApi && !token) {
       return NextResponse.json({ mesaage: "unauthenticated" }, { status: 401 });
+    }
+
+    if (!isApi && !isAuth && !isAuthApi && token) {
+      const route = routes.find((route) => route.path === pathname);
+      if (route && !route.allowedRoles.includes(token.role)) {
+        return NextResponse.redirect(
+          new URL(paths.notAuthorized.root, req.url)
+        );
+      }
     }
 
     // Return with cors headers
@@ -54,5 +63,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|img|favicon.ico|api/trpc).*)"],
+  matcher: ["/((?!_next/static|_next/image|img|favicon.ico|api/trpc).*)", "/"],
 };

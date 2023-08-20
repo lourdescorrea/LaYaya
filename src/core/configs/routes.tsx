@@ -1,15 +1,19 @@
 import { RxDashboard } from "react-icons/rx";
-import { en } from "yaya/shared";
+import { en, PERMISSIONS } from "yaya/shared";
 
 export interface Route {
   name: string;
   path: string;
   icon: JSX.Element;
+  allowedRoles: string[];
 }
 
 export const paths = {
   example: {
     root: "/admin/example",
+  },
+  notAuthorized: {
+    root: "/admin/notAuthorized",
   },
 };
 
@@ -23,5 +27,6 @@ export const routes: Route[] = [
     name: en.navigation.example,
     path: paths.example.root,
     icon: <RxDashboard className="h-6 w-6" />,
+    allowedRoles: PERMISSIONS.SUPER,
   },
 ];

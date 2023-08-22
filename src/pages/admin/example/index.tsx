@@ -1,13 +1,20 @@
 import { api } from "../../../core/trpc/index";
-export default function Page() {
-  const createNewBrand = () => {
-    try {
-      const response = api.brands.addBrand.useMutation({});
 
-      if (response.isSuccess) {
-        console.log("Brand created successfully:");
+export default function Page() {
+  const addBrandMutation = api.brands.addBrand.useMutation({});
+
+  const createNewBrand = async () => {
+    try {
+      const data = {
+        text: "master",
+      };
+
+      const response = await addBrandMutation.mutateAsync(data);
+
+      if (response.success) {
+        console.log("Brand created successfully:", response.brand?.name);
       } else {
-        console.error("Failed to create brand:");
+        console.error("Failed to create brand:", response.message);
       }
     } catch (error) {
       console.error("Error creating brand:", error);

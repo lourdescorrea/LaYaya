@@ -1,6 +1,6 @@
 import { createTRPCRouter } from "../../configs";
 import * as brands from "./brands.handler";
 
-export const exampleRouter = createTRPCRouter({
-  createBrand: brands.createBrand,
+export const brandRouter = createTRPCRouter({
+  addBrand: brands.createBrand,
 });

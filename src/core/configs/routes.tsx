@@ -12,6 +12,9 @@ export const paths = {
   example: {
     root: "/admin/example",
   },
+  brand: {
+    root: "/admin/brand",
+  },
   notAuthorized: {
     root: "/admin/notAuthorized",
   },
@@ -26,6 +29,12 @@ export const routes: Route[] = [
   {
     name: en.navigation.example,
     path: paths.example.root,
+    icon: <RxDashboard className="h-6 w-6" />,
+    allowedRoles: PERMISSIONS.SUPER,
+  },
+  {
+    name: "Brand",
+    path: paths.brand.root,
     icon: <RxDashboard className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.SUPER,
   },

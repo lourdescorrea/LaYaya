@@ -6,4 +6,5 @@ export const brandRouter = createTRPCRouter({
   getAll: brands.getAllBrand,
   delete: brands.deleteBrand,
   edit: brands.editBrand,
+  getById: brands.getByIdBrand,
 });

@@ -25,6 +25,15 @@ export const getAllBrand = superAdminProcedure.query(({ ctx }) => {
   return ctx.prisma.brand.findMany();
 });
 
+export const getByIdBrand = superAdminProcedure
+  .input(idSchema)
+  .query(({ ctx, input }) => {
+    const { id } = input;
+    return ctx.prisma.brand.findUnique({
+      where: { id },
+    });
+  });
+
 export const deleteBrand = superAdminProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {

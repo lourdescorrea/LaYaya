@@ -1,8 +1,8 @@
 import { createNextApiHandler } from "@trpc/server/adapters/next";
-import { env } from "yaya/env.mjs";
+import { env } from "process";
 import { appRouter, createTRPCContext } from "yaya/server";
 
-// export API handler
+// Exportar el API handler
 export default createNextApiHandler({
   router: appRouter,
   createContext: createTRPCContext,

@@ -13,6 +13,7 @@ import { type Session } from "next-auth";
 import superjson from "superjson";
 import { ValidationError } from "yup";
 
+import { PERMISSIONS } from "yaya/shared";
 import { getServerAuthSession } from "../../auth";
 import { prisma } from "../../db";
 
@@ -131,3 +132,9 @@ const enforceUserIsAuthed = (roles: string[]) =>
  */
 export const protectedProcedure = (roles: string[]) =>
   t.procedure.use(enforceUserIsAuthed(roles));
+
+export const superAdminProcedure = protectedProcedure(PERMISSIONS.SUPER);
+
+export const adminProcedure = protectedProcedure(PERMISSIONS.ADMINS);
+
+export const allRolesProcedure = protectedProcedure(PERMISSIONS.ALL_ROLES);

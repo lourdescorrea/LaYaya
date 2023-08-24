@@ -7,6 +7,8 @@ export const useBrandTable = () => {
     initialData: [],
   });
 
+  // TODO: Add delete fn
+
   return {
     columns,
     data,

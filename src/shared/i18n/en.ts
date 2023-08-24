@@ -4,7 +4,7 @@ export const en = {
     loading: "Cargando...",
     wait: "Por favor, espere...",
     logout: "Cierre de sesión",
-    close: "Cerrado",
+    close: "Cerrar",
     cancel: "Cancelar",
     confirm: "Confirmar",
     save: "Guardar",
@@ -50,14 +50,17 @@ export const en = {
   pagination: {
     legend: "Mostrar página {currentPage} de {totalCount}",
     legend_temp: (currentPage: number, totalCount: number) =>
-      `Showing page ${currentPage} of ${totalCount}`,
+      `Pagina ${currentPage} de ${totalCount}`,
   },
   navigation: {
+    // TODO: ELIMINAR LO QUE NO SE USA
     example: "Control de stock",
     secrets: "Secretos",
     projects: "Proyectos",
+    brands: "Marcas",
   },
   admin: {
+    // TODO: ELIMINAR LO QUE NO SE USA
     secrets: {
       create: {
         title: "Crear secreto",
@@ -101,6 +104,7 @@ export const en = {
         },
       },
     },
+    // TODO: ELIMINAR LO QUE NO SE USA
     projects: {
       create: {
         title: "Crear proyecto",

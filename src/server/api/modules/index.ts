@@ -4,7 +4,7 @@ import { exampleRouter } from "./example";
 
 // This is the primary router for your server.
 export const appRouter = createTRPCRouter({
-  example: exampleRouter,
+  example: exampleRouter, // TODO: REMOVE EXAMPLE
   brands: brandRouter,
 });
 

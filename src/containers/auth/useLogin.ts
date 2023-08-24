@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "next/router";
-import { paths, useSubmitPromise } from "yaya/core";
+import { defaultRoute, useSubmitPromise } from "yaya/core";
 import { en, loginSchema } from "yaya/shared";
 
 interface FormProps {
@@ -32,7 +32,7 @@ export const useLoginForm = () => {
     }
 
     if (result?.ok && !result?.error) {
-      push(paths.example.root);
+      push(defaultRoute);
       return;
     }
   };

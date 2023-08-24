@@ -1,1 +1,1 @@
-export { BrandPage } from "./BrandPage";
+export { BrandPage } from "./page/BrandPage";

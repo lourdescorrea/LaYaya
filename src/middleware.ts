@@ -1,7 +1,7 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
-import { authPaths, paths, routes } from "yaya/core";
+import { authPaths, defaultRoute, paths, routes } from "yaya/core";
 import { env } from "yaya/env.mjs";
 
 const corsHeaders = {
@@ -27,12 +27,12 @@ export default withAuth(
 
     // Redirect / to page
     if (pathname === "/" || pathname === "/admin") {
-      return NextResponse.redirect(new URL(paths.example.root, req.url));
+      return NextResponse.redirect(new URL(defaultRoute, req.url));
     }
 
     // Redirect login to dashboard if user is already logged in
     if (token && isAuth) {
-      return NextResponse.redirect(new URL(paths.example.root, req.url));
+      return NextResponse.redirect(new URL(defaultRoute, req.url));
     }
 
     // Return 401 for API routes if user is not logged in

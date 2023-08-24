@@ -9,6 +9,7 @@ export interface Route {
 }
 
 export const paths = {
+  // TODO: REMOVE EXAMPLE
   example: {
     root: "/admin/example",
   },
@@ -27,15 +28,19 @@ export const authPaths = {
 
 export const routes: Route[] = [
   {
+    // TODO: REMOVE EXAMPLE
     name: en.navigation.example,
     path: paths.example.root,
     icon: <RxDashboard className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.SUPER,
   },
   {
+    // TODO: Add traducciones
     name: "Brand",
     path: paths.brand.root,
     icon: <RxDashboard className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.SUPER,
   },
 ];
+
+export const defaultRoute = paths.brand.root;

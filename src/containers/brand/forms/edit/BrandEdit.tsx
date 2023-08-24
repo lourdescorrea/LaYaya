@@ -13,7 +13,7 @@ import {
   api,
   useSubmitTrpc,
 } from "yaya/core";
-import { brandUpdateSchema, type Brand, type BrandEdit } from "yaya/shared";
+import { brandUpdateSchema, en, type Brand, type BrandEdit } from "yaya/shared";
 
 interface BrandEditFormProps {
   open: boolean;
@@ -29,13 +29,9 @@ export const BrandEditForm = ({ open, onToggle, data }: BrandEditFormProps) => {
 
   const { onSubmit, isLoading } = useSubmitTrpc({
     trpc: api.brands.edit,
-    errorMsg: "Algo salio mal", // TODO: Move this to the text file
-    successMsg: "Todo bien", // TODO: Move this to the text file
+    errorMsg: `${en.admin.brand.create.messages.error}`,
+    successMsg: `${en.admin.brand.create.messages.success}`,
     onSuccess: (data, vars) => {
-      // TODO: REMOVE THIS
-      console.log("esta funcion se ejecuta si todo sale bien");
-      console.log("tiene la data que devuelve el backend: ", data);
-      console.log("tiene las vars que se mandaron al backend: ", vars);
       onToggle(false);
     },
   });

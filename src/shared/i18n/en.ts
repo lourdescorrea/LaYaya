@@ -53,76 +53,31 @@ export const en = {
       `Pagina ${currentPage} de ${totalCount}`,
   },
   navigation: {
-    // TODO: ELIMINAR LO QUE NO SE USA
-    example: "Control de stock",
-    secrets: "Secretos",
-    projects: "Proyectos",
     brands: "Marcas",
   },
   admin: {
-    // TODO: ELIMINAR LO QUE NO SE USA
-    secrets: {
+    brand: {
       create: {
-        title: "Crear secreto",
-        sub_title: "Introduzca sus datos secretos para crear!",
+        title: "Crear una marca",
+        sub_title: "Introduzca su marca",
         messages: {
-          success: "Secreto creado con éxito",
-          error: "Error al crear el secreto",
+          success: "Marca creada con éxito",
+          error: "Error al crear marca",
         },
       },
       edit: {
-        title: "Editar secreto",
-        sub_title: "Introduce tus datos secretos para editar!",
+        title: "Editar marca",
+        sub_title: "Introduzca su marca para editar!",
         messages: {
-          success: "Secreto editado con éxito",
-          error: "Error al editar el secreto",
+          success: "Marca editada con éxito",
+          error: "Error al editar marca",
         },
       },
       delete: {
-        title: "¿Seguro que quieres borrar este secreto?",
+        title: "¿Seguro que quieres borrar esta marca?",
         messages: {
-          success: "Secreto borrado con éxito",
-          error: "Error al borrar el secreto",
-        },
-      },
-      fields: {
-        app: {
-          label: "App",
-          placeholder: "Seleccione una app",
-        },
-        name: {
-          label: "Nombre",
-          placeholder: "Enter secret name",
-        },
-        value: {
-          label: "Valor",
-          placeholder: "Introduzca el valor secreto",
-        },
-        auto: {
-          label: "Generación automática del valor secreto",
-          placeholder: "Generación automática del valor secreto",
-        },
-      },
-    },
-    // TODO: ELIMINAR LO QUE NO SE USA
-    projects: {
-      create: {
-        title: "Crear proyecto",
-        sub_title: "Introduzca los detalles de su proyecto para crear!",
-        messages: {
-          success: "Proyecto creado con éxito",
-          retry: "¿Desea volver a intentarlo?",
-          error: "Error al crear el proyecto",
-        },
-      },
-      fields: {
-        name: {
-          label: "Nombre",
-          placeholder: "Enter project repo name",
-        },
-        domain: {
-          label: "Domain",
-          placeholder: "example.com",
+          success: "Marca borrada con éxito",
+          error: "Error al borrar marca",
         },
       },
     },

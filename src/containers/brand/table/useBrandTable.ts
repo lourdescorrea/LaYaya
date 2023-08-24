@@ -12,8 +12,8 @@ export const useBrandTable = () => {
 
   const onDelete = useActionToast({
     trpc: api.brands.delete,
-    errorMsg: "Algo salio mal", // TODO: Move this to the text file
-    successMsg: "Todo bien", // TODO: Move this to the text file
+    errorMsg: "Operación invalida", // TODO: Move this to the text file
+    successMsg: "Operación exitosa", // TODO: Move this to the text file
     alertMsg: "Estas seguro de que deseas eliminar esta marca?",
   });
 

@@ -10,7 +10,7 @@ interface BrandTableProps {
 export const BrandTable = (props: BrandTableProps) => {
   const { openCreate, openEdit } = props;
 
-  const { columns, data, isLoading } = useBrandTable();
+  const { columns, data, isLoading, deleteFn } = useBrandTable();
 
   return (
     <Table
@@ -20,6 +20,7 @@ export const BrandTable = (props: BrandTableProps) => {
       actions={{
         createFn: openCreate,
         editFn: openEdit,
+        deleteFn: deleteFn,
       }}
     />
   );

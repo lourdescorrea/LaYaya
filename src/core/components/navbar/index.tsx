@@ -9,7 +9,7 @@ import { en } from "yaya/shared";
 import { routes } from "../../configs";
 import { useSidebarContext } from "../../hooks";
 import { Dropdown } from "../dropdown";
-import Avatar from "/public/img/avatars/avatar_thunder.png";
+import Avatar from "/public/img/avatars/logo.png";
 
 export const Navbar = () => {
   const { pathname } = useRouter();
@@ -33,7 +33,7 @@ export const Navbar = () => {
   }, [getActiveRoute, pathname]);
 
   return (
-    <nav className="bg-navbar sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl p-2 backdrop-blur-xl">
+    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-navbar p-2 backdrop-blur-xl">
       <div className="ml-[6px]">
         <p className="shrink text-[33px] capitalize">
           <Link href={currentRoute.path} className="font-bold capitalize">
@@ -42,7 +42,7 @@ export const Navbar = () => {
         </p>
       </div>
 
-      <div className="shadow-shadow-500 relative mt-[3px] flex h-[61px] w-[200px] items-center justify-around gap-2 rounded-full bg-card px-2 py-2 shadow-xl dark:shadow-none md:w-[200px] md:flex-grow-0 md:gap-1 xl:w-[150px] xl:gap-2">
+      <div className="relative mt-[3px] flex h-[61px] w-[200px] items-center justify-around gap-2 rounded-full bg-card px-2 py-2 shadow-xl shadow-shadow-500 dark:shadow-none md:w-[200px] md:flex-grow-0 md:gap-1 xl:w-[150px] xl:gap-2">
         <span
           className="flex cursor-pointer text-xl xl:hidden"
           onClick={() => setOpenSidebar(true)}
@@ -60,11 +60,11 @@ export const Navbar = () => {
           }
           className="-left-[180px] top-8 w-max py-2"
         >
-          <div className="shadow-shadow-500 flex w-56 flex-col justify-start rounded-[20px] bg-popover bg-cover bg-no-repeat shadow-xl dark:shadow-none">
+          <div className="flex w-56 flex-col justify-start rounded-[20px] bg-popover bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:shadow-none">
             <div className="p-4">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold">
-                  👋 <span className="ml-1">Hey, Admin</span>
+                  👋 <span className="ml-1">{currentRoute.allowedRoles}</span>
                 </p>
               </div>
             </div>

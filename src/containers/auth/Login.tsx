@@ -6,7 +6,7 @@ export const AuthPage = () => {
   const { isLoading, methods, onSubmit } = useLoginForm();
 
   return (
-    <div className="mb-16 mt-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+    <div className=" mb-16 mt-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       <div className="mt-0 w-full max-w-full flex-col items-center md:mt-[10vh] md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <Typography variant="h1" className="mb-2.5 lg:text-4xl">
           {en.auth.login.title}

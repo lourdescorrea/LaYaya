@@ -2,7 +2,7 @@ import { HiX } from "react-icons/hi";
 
 import { useMobileView, useSidebarContext } from "../../hooks";
 import { cn } from "../../utils";
-import { Links, Title, VersionCard } from "./components";
+import { Links, Title } from "./components";
 
 export const Sidebar = () => {
   const { isMobile } = useMobileView();
@@ -31,9 +31,12 @@ export const Sidebar = () => {
 
         <Title />
 
-        <Links onClickRoute={isMobile ? closeSidebar : undefined} />
+        <Links
+          className=""
+          onClickRoute={isMobile ? closeSidebar : undefined}
+        />
 
-        <VersionCard />
+        {/* <VersionCard /> */}
       </div>
     </>
   );

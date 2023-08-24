@@ -17,7 +17,7 @@ export function DashboardLayout({ children }: PropsWithChildren) {
             <div className="h-full">
               <Navbar />
 
-              <div className="mx-auto mb-auto h-full min-h-[82vh] p-2 pt-5 md:pr-2">
+              <div className=" jutify-center mx-auto mb-auto flex flex h-full min-h-[82vh] flex-col items-center p-2 pt-5 md:pr-2">
                 {children}
               </div>
 

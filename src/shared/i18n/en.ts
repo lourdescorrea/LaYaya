@@ -1,118 +1,119 @@
 export const en = {
   common: {
-    app_name: "TODO_APP_NAME",
-    loading: "Loading...",
-    wait: "Please wait...",
-    logout: "Logout",
-    close: "Close",
-    cancel: "Cancel",
-    confirm: "Confirm",
-    save: "Save",
-    delete: "Delete",
-    edit: "Edit",
-    create: "Create",
-    search: "Search",
-    actions: "Actions",
-    success: "Success",
+    app_name: "La Yaya",
+    loading: "Cargando...",
+    wait: "Por favor, espere...",
+    logout: "Cierre de sesión",
+    close: "Cerrado",
+    cancel: "Cancelar",
+    confirm: "Confirmar",
+    save: "Guardar",
+    delete: "Eliminar",
+    edit: "Editar",
+    create: "Crear",
+    search: "Buscar",
+    actions: "Acciones",
+    success: "Éxito",
     error: "Error",
-    empty: "There's nothing here",
+    empty: "No se encontraron resultados",
   },
   auth: {
     login: {
-      cta: "Sign in",
-      title: "Sign in to TODO_APP_NAME",
-      sub_title: "Enter your email and password to sign in!",
+      cta: "Iniciar sesión",
+      title: "Inicia sesión en La Yaya",
+      sub_title:
+        "Introduzca su correo electrónico y contraseña para iniciar sesión!",
       messages: {
-        success: "Logged in successfully",
+        success: "Inicio de sesión correcto",
         errors: {
-          default: "Oops! Something went wrong!",
-          CredentialsSignin: "Invalid credentials",
+          default: "Oops!Algo salió mal!",
+          CredentialsSignin: "Credenciales inválidas",
         },
       },
       fields: {
         email: {
           label: "Email",
-          placeholder: "Enter your email",
+          placeholder: "Introduzca su dirección de correo electrónico",
         },
         password: {
-          label: "Password",
-          placeholder: "Enter your password",
+          label: "Contraseña",
+          placeholder: "Introducir contraseña",
         },
       },
     },
   },
   footer: {
-    copy_right: "© {year} TODO_APP_NAME. All Rights Reserved.",
+    copy_right: "© {year} Forrajería La Yaya. Derechos reservados.",
     copy_right_temp: (year: number) =>
-      `© ${year} TODO_APP_NAME. All Rights Reserved.`,
+      `© ${year} Forrajería La Yaya! Derechos reservados.`,
   },
   pagination: {
-    legend: "Showing page {currentPage} of {totalCount}",
+    legend: "Mostrar página {currentPage} de {totalCount}",
     legend_temp: (currentPage: number, totalCount: number) =>
       `Showing page ${currentPage} of ${totalCount}`,
   },
   navigation: {
-    example: "Example",
-    secrets: "Secrets",
-    projects: "Projects",
+    example: "Control de stock",
+    secrets: "Secretos",
+    projects: "Proyectos",
   },
   admin: {
     secrets: {
       create: {
-        title: "Create secret",
-        sub_title: "Enter your secret details to create!",
+        title: "Crear secreto",
+        sub_title: "Introduzca sus datos secretos para crear!",
         messages: {
-          success: "Secret created successfully",
-          error: "Error creating secret",
+          success: "Secreto creado con éxito",
+          error: "Error al crear el secreto",
         },
       },
       edit: {
-        title: "Edit secret",
-        sub_title: "Enter your secret details to edit!",
+        title: "Editar secreto",
+        sub_title: "Introduce tus datos secretos para editar!",
         messages: {
-          success: "Secret edited successfully",
-          error: "Error editing secret",
+          success: "Secreto editado con éxito",
+          error: "Error al editar el secreto",
         },
       },
       delete: {
-        title: "Are you sure you want to delete this secret?",
+        title: "¿Seguro que quieres borrar este secreto?",
         messages: {
-          success: "Secret deleted successfully",
-          error: "Error deleting secret",
+          success: "Secreto borrado con éxito",
+          error: "Error al borrar el secreto",
         },
       },
       fields: {
         app: {
           label: "App",
-          placeholder: "Select an app",
+          placeholder: "Seleccione una app",
         },
         name: {
-          label: "Name",
+          label: "Nombre",
           placeholder: "Enter secret name",
         },
         value: {
-          label: "Value",
-          placeholder: "Enter secret value",
+          label: "Valor",
+          placeholder: "Introduzca el valor secreto",
         },
         auto: {
-          label: "Auto generate secret value",
-          placeholder: "Auto generate secret value",
+          label: "Generación automática del valor secreto",
+          placeholder: "Generación automática del valor secreto",
         },
       },
     },
     projects: {
       create: {
-        title: "Create project",
-        sub_title: "Enter your project details to create!",
+        title: "Crear proyecto",
+        sub_title: "Introduzca los detalles de su proyecto para crear!",
         messages: {
-          success: "Project created successfully",
-          retry: "Do you want to retry?",
-          error: "Error creating project",
+          success: "Proyecto creado con éxito",
+          retry: "¿Desea volver a intentarlo?",
+          error: "Error al crear el proyecto",
         },
       },
       fields: {
         name: {
-          label: "Name",
+          label: "Nombre",
           placeholder: "Enter project repo name",
         },
         domain: {
@@ -124,8 +125,8 @@ export const en = {
   },
   boundaries: {
     error: {
-      title: "Oops! Something went wrong!",
-      cta: "Try again",
+      title: "Oops! Algo ha salido mal!",
+      cta: "Inténtalo de nuevo",
     },
   },
 };

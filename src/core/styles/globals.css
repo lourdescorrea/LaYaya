@@ -14,19 +14,21 @@
   }
 
   :root {
-    --background: 227, 67%, 13%;
-    --foreground: 210 40% 98%;
+    --background: 0.3, 76%, 100%;
+    --foreground: 230, 5.8%, 20.4%; /*textos*/
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --popover: 228, 47%, 20%;
+    --popover: 210 40% 98%; /*login*/
     --popover-foreground: 210 40% 98%;
 
-    --card: 227, 60%, 17%;
-    --card-foreground: 210 40% 98%;
+    --card: 0.3, 88%, 40%;
+    --card-foreground: 0.3, 88%, 40%;
 
-    --border: 217.2 32.6% 17.5%;
+    /* 0.3, 89%, 35%; */
+
+    --border: 0.3, 76%, 100%;
     --input: 217.2 32.6% 17.5%;
 
     --primary: 210 40% 98%;
@@ -43,7 +45,7 @@
 
     --ring: 217.2 32.6% 17.5%;
 
-    --navbar: #0b14374d;
+    /* --navbar: #0b14374d; */
 
     --radius: 0.5rem;
   }

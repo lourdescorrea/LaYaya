@@ -13,7 +13,7 @@ export const Table = <T,>(props: TableProps<T>) => {
 
   return (
     <Card
-      className="h-full w-full p-4 pb-10"
+      className="h-full w-full bg-slate-200 p-4 pb-10"
       title={title}
       topAction={topAction}
       topComponent={<TableFilter {...filterProps} />}

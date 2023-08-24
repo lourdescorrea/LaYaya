@@ -27,7 +27,12 @@ export function Links({ onClickRoute }: LinksProps) {
         if (!route.allowedRoles.includes(data?.user?.role ?? "")) return null;
 
         return (
-          <Link key={index} href={route.path} onClick={onClickRoute}>
+          <Link
+            className="text-white"
+            key={index}
+            href={route.path}
+            onClick={onClickRoute}
+          >
             <div className="relative mb-3 flex hover:cursor-pointer">
               <li
                 className="my-[3px] flex cursor-pointer items-center px-8"

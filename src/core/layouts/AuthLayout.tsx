@@ -13,7 +13,7 @@ export function AuthLayout({ children }: PropsWithChildren) {
                 {children}
 
                 <div className="absolute right-0 hidden h-full min-h-screen md:block lg:w-[49vw] 2xl:w-[44vw]">
-                  <div className="absolute flex h-full w-full items-end justify-center bg-[url('/img/auth/perros.jpg')] bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[180px]" />
+                  <div className="absolute flex h-full w-full items-end justify-center bg-[url('/img/auth/imgLoading.webp')] bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[180px]" />
                   <h4
                     style={{
                       textShadow:

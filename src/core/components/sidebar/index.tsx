@@ -31,10 +31,7 @@ export const Sidebar = () => {
 
         <Title />
 
-        <Links
-          className=""
-          onClickRoute={isMobile ? closeSidebar : undefined}
-        />
+        <Links onClickRoute={isMobile ? closeSidebar : undefined} />
 
         {/* <VersionCard /> */}
       </div>

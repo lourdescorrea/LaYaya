@@ -41,8 +41,8 @@ export const BrandEditForm = ({ open, onToggle, data }: BrandEditFormProps) => {
       <SheetContent>
         <RhfForm methods={methods} onSubmit={onSubmit}>
           <SheetHeader>
-            <SheetTitle>Editar Marca</SheetTitle>
-            <SheetDescription>Editar</SheetDescription>
+            <SheetTitle>{en.admin.brand.edit.title}</SheetTitle>
+            <SheetDescription>{en.admin.brand.edit.sub_title}</SheetDescription>
           </SheetHeader>
           <RHFTextField
             name="name"
@@ -52,7 +52,7 @@ export const BrandEditForm = ({ open, onToggle, data }: BrandEditFormProps) => {
           />
           <SheetFooter>
             <LoadingButton loading={isLoading} type="submit">
-              Guardar Edición
+              {en.common.save}
             </LoadingButton>
           </SheetFooter>
         </RhfForm>

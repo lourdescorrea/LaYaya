@@ -42,7 +42,7 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
       <SheetContent>
         <RhfForm methods={methods} onSubmit={onSubmit}>
           <SheetHeader>
-            <SheetTitle></SheetTitle>
+            <SheetTitle> {en.admin.brand.create.title}</SheetTitle>
             <SheetDescription>
               {en.admin.brand.create.sub_title}
             </SheetDescription>

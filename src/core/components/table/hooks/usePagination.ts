@@ -11,13 +11,13 @@ export const usePagination = <T>(table: Table<T>) => {
   } = table;
 
   const canPrevious = getCanPreviousPage();
-  // const canNext = getCanNextPage();
+  const canNext = getCanNextPage();
   const currentPage = getState().pagination.pageIndex + 1;
   const totalCount = getPageCount();
 
   return {
     canPrevious,
-    // canNext,
+    canNext,
     currentPage,
     totalCount,
     previousPage,

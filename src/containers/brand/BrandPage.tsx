@@ -1,14 +1,22 @@
 import { BrandCreateForm } from "./forms";
+import { BrandEditForm } from "./forms/edit";
 import { BrandTable } from "./table";
-import { useBrandPage } from "./useBrandPage";
+import { useCreateSheet, useEditSheet } from "./useBrandPage";
 
 export const BrandPage = () => {
-  const { isOpen, onOpen, onToggle } = useBrandPage();
-
+  const create = useCreateSheet();
+  const edit = useEditSheet();
   return (
     <div className="h-full w-full">
-      <BrandTable openCreate={onOpen} />
-      <BrandCreateForm open={isOpen} onToggle={onToggle} />
+      <BrandTable openCreate={create.onOpen} openEdit={edit.onOpen} />
+      <BrandCreateForm open={create.isOpen} onToggle={create.onToggle} />
+      {edit.isOpen && (
+        <BrandEditForm
+          open={edit.isOpen}
+          onToggle={edit.onToggle}
+          data={edit.data}
+        />
+      )}
     </div>
   );
 };

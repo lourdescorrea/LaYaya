@@ -3,10 +3,12 @@ import { useBrandTable } from "./useBrandTable";
 
 interface BrandTableProps {
   openCreate: () => void;
+  // TODO: Define type
+  openEdit: (data: any) => void;
 }
 
 export const BrandTable = (props: BrandTableProps) => {
-  const { openCreate } = props;
+  const { openCreate, openEdit } = props;
 
   const { columns, data, isLoading } = useBrandTable();
 
@@ -17,6 +19,7 @@ export const BrandTable = (props: BrandTableProps) => {
       loading={isLoading}
       actions={{
         createFn: openCreate,
+        editFn: openEdit,
       }}
     />
   );

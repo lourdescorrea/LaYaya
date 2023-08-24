@@ -1,5 +1,4 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   LoadingButton,
@@ -14,24 +13,22 @@ import {
   api,
   useSubmitTrpc,
 } from "yaya/core";
-import { brandCreateSchema } from "yaya/shared";
+import { brandUpdateSchema } from "yaya/shared";
 
 interface BrandEditFormProps {
   open: boolean;
+  data: any; // todo define type from approuter output maybe?;
   onToggle: (v: boolean) => void;
 }
 
-export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
+export const BrandEditForm = ({ open, onToggle, data }: BrandEditFormProps) => {
   const methods = useForm({
-    defaultValues: {
-      name: "",
-    },
-    resolver: yupResolver(brandCreateSchema),
+    defaultValues: data,
+    resolver: yupResolver(brandUpdateSchema),
   });
-  const [data, setData] = useState<BrandEditFormProps | null>(null);
 
-  const { onSubmit, isLoading: createLoading } = useSubmitTrpc({
-    trpc: api.brands.create,
+  const { onSubmit, isLoading } = useSubmitTrpc({
+    trpc: api.brands.edit,
     errorMsg: "Algo salio mal",
     successMsg: "Todo bien",
     onSuccess: (data, vars) => {
@@ -42,23 +39,31 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
     },
   });
 
+  // todo define type
+  const submit = ({ name }: any) => {
+    onSubmit({
+      id: data.id,
+      name,
+    });
+  };
+
   return (
     <Sheet onOpenChange={onToggle} open={open}>
       <SheetContent>
-        <RhfForm methods={methods} onSubmit={onSubmit}>
+        <RhfForm methods={methods} onSubmit={submit}>
           <SheetHeader>
-            <SheetTitle>Titulo</SheetTitle>
-            <SheetDescription>Sub titulo</SheetDescription>
+            <SheetTitle>Editar Marca </SheetTitle>
+            <SheetDescription>Editar</SheetDescription>
           </SheetHeader>
           <RHFTextField
             name="name"
-            description="Esto es una description"
-            label="Label"
-            placeholder="Placeholder"
+            description=" "
+            label=""
+            placeholder="escribe una Marca"
           />
           <SheetFooter>
-            <LoadingButton loading={createLoading} type="submit">
-              Guardar
+            <LoadingButton loading={isLoading} type="submit">
+              Guardar Edición
             </LoadingButton>
           </SheetFooter>
         </RhfForm>

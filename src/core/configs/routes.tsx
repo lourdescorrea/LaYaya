@@ -24,8 +24,7 @@ export const authPaths = {
 
 export const routes: Route[] = [
   {
-    // TODO: Add traducciones
-    name: "Brand",
+    name: "Marcas",
     path: paths.brand.root,
     icon: <RxDashboard className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.SUPER,

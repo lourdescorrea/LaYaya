@@ -30,13 +30,9 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
 
   const { onSubmit, isLoading: createLoading } = useSubmitTrpc({
     trpc: api.brands.create,
-    errorMsg: "Algo salio mal", // TODO: Move this to the text file
-    successMsg: "Todo bien", // TODO: Move this to the text file
+    errorMsg: `${en.admin.brand.create.messages.error}`,
+    successMsg: `${en.admin.brand.create.messages.success}`,
     onSuccess: (data, vars) => {
-      // TODO: REMOVE THIS
-      console.log("esta funcion se ejecuta si todo sale bien");
-      console.log("tiene la data que devuelve el backend: ", data);
-      console.log("tiene las vars que se mandaron al backend: ", vars);
       onToggle(false);
     },
   });
@@ -46,8 +42,10 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
       <SheetContent>
         <RhfForm methods={methods} onSubmit={onSubmit}>
           <SheetHeader>
-            <SheetTitle>{en.admin.secrets.create.title}</SheetTitle>
-            <SheetDescription>Sub titulo</SheetDescription>
+            <SheetTitle></SheetTitle>
+            <SheetDescription>
+              {en.admin.brand.create.sub_title}
+            </SheetDescription>
           </SheetHeader>
           <RHFTextField
             name="name"
@@ -57,7 +55,7 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
           />
           <SheetFooter>
             <LoadingButton loading={createLoading} type="submit">
-              Guardar
+              {en.common.save}
             </LoadingButton>
           </SheetFooter>
         </RhfForm>

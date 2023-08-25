@@ -1,3 +1,4 @@
+import "@uploadthing/react/styles.css";
 import { BrandCreateForm } from "../forms";
 import { BrandEditForm } from "../forms/edit/BrandEdit";
 import { BrandTable } from "../table/BrandTable";

@@ -28,7 +28,7 @@ export function Links({ onClickRoute }: LinksProps) {
 
         return (
           <Link
-            className="text-white"
+            className=" text-white"
             key={index}
             href={route.path}
             onClick={onClickRoute}

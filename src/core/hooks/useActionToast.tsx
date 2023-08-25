@@ -29,13 +29,15 @@ export const useActionToast = <In, Out>(args: IActionToast<In, Out>) => {
               t.visible ? "animate-enter" : "animate-leave"
             )}
           >
-            <div className="w-0 flex-1 p-4">
+            <div className="w-0 flex-1 bg-white p-4">
               <Typography variant="large">{args.alertMsg}</Typography>
               <div className="mt-4 flex w-full justify-end space-x-4">
-                <Button variant="outline" className="bg-card" onClick={dismiss}>
+                <Button variant="default" className="" onClick={dismiss}>
                   {en.common.cancel}
                 </Button>
-                <Button onClick={confirm}> {en.common.confirm}</Button>
+                <Button variant="default" className="" onClick={confirm}>
+                  {en.common.confirm}
+                </Button>
               </div>
             </div>
           </div>

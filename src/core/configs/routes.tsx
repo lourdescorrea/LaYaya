@@ -1,4 +1,4 @@
-import { RxDashboard } from "react-icons/rx";
+import { RxOverline } from "react-icons/rx";
 import { PERMISSIONS } from "yaya/shared";
 
 export interface Route {
@@ -26,7 +26,7 @@ export const routes: Route[] = [
   {
     name: "Marcas",
     path: paths.brand.root,
-    icon: <RxDashboard className="h-6 w-6" />,
+    icon: <RxOverline className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.SUPER,
   },
 ];

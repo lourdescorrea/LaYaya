@@ -1,9 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { v2 as cloudinary } from "cloudinary";
 
-// todo: export the schema from yaya/shared
 import { env } from "yaya/env.mjs";
-import { imageCreateSchema } from "yaya/shared/schemas/cloudinary";
+import { imageCreateSchema } from "yaya/shared";
 import { adminProcedure } from "../../configs";
 
 export const fileUpload = adminProcedure

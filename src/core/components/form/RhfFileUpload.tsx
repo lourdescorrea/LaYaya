@@ -1,26 +1,40 @@
 import {
-    FormControl
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "./components/Form";
-import { Input } from "./components/fields/Input";
+import { FileUpload } from "./components/fields/FileUpload";
 
-interface RHFFileUpload{
-    onChange: (url: string) => void;
+interface RHFFileUpload {
+  name: string;
+  label?: string;
+  // placeholder?: string;
+  disabled?: boolean;
+  description?: string;
 }
 
-export const RHFTextField = (props:  RHFFileUpload) => {
-  const { onChange } = props;
-  return (
+export const RHFileUpload = (props: RHFFileUpload) => {
+  const { label, disabled, name, description } = props;
 
+  return (
+    <FormField
+      name={name}
+      render={({ field, formState: { isSubmitting } }) => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
-             
-              disabled={}
-              type={}
-              onChange={}
-         
+            <FileUpload
+              label={label}
+              disabled={disabled || isSubmitting}
+              {...field}
             />
           </FormControl>
-      
+          <FormDescription>{description}</FormDescription>
+          <FormMessage />
+        </FormItem>
       )}
     />
   );

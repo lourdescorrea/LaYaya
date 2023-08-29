@@ -76,8 +76,33 @@ export const en = {
       delete: {
         title: "¿Seguro que quieres borrar esta marca?",
         messages: {
-          success: "Marca borrada con éxito",
-          error: "Error al borrar marca",
+          success: "Marca eliminada con éxito",
+          error: "Error al eliminar marca",
+        },
+      },
+    },
+    product: {
+      create: {
+        title: "Crear un producto",
+        sub_title: "Introduzca su producto",
+        messages: {
+          success: "producto creado con éxito",
+          error: "Error al crear producto",
+        },
+      },
+      edit: {
+        title: "Editar producto",
+        sub_title: "Introduzca su producto para editar!",
+        messages: {
+          success: "Producto editado con éxito",
+          error: "Error al editar producto",
+        },
+      },
+      delete: {
+        title: "¿Seguro que quieres borrar este producto?",
+        messages: {
+          success: "Producto eliminado con éxito",
+          error: "Error al eliminar producto",
         },
       },
     },

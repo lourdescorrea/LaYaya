@@ -1,5 +1,5 @@
 import { api, useActionToast } from "yaya/core";
-import { Brand } from "yaya/shared";
+import { Brand, en } from "yaya/shared";
 
 export const useBrandTable = () => {
   const { isLoading, data } = api.brands.getAll.useQuery(undefined, {
@@ -8,13 +8,11 @@ export const useBrandTable = () => {
 
   const columns = [{ accessorKey: "name" }];
 
-  // TODO: Add delete fn
-
   const onDelete = useActionToast({
     trpc: api.brands.delete,
-    errorMsg: "Operación invalida", // TODO: Move this to the text file
-    successMsg: "Operación exitosa", // TODO: Move this to the text file
-    alertMsg: "Estas seguro de que deseas eliminar esta marca?",
+    errorMsg: `${en.admin.brand.delete.messages.error}`,
+    successMsg: `${en.admin.brand.delete.messages.success}`,
+    alertMsg: `${en.admin.brand.delete.title}`,
   });
 
   const deleteFn = (brand: Brand) => onDelete({ id: brand.id });

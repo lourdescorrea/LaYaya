@@ -27,7 +27,7 @@ export const RHFileUpload = (props: RHFFileUpload) => {
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <FileUpload
-              label={label}
+              // label={label}
               disabled={disabled || isSubmitting}
               {...field}
             />

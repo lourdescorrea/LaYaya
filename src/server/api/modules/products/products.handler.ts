@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { adminProcedure } from "../../configs";
+import { superAdminProcedure } from "../../configs";
 
 import { idSchema } from "yaya/shared";
 import {
@@ -7,7 +7,7 @@ import {
   productUpdateSchema,
 } from "yaya/shared/schemas/products";
 
-export const createProduct = adminProcedure
+export const createProduct = superAdminProcedure
   .input(productCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
@@ -29,11 +29,11 @@ export const createProduct = adminProcedure
     }
   });
 
-export const getAllProduct = adminProcedure.query(({ ctx }) => {
+export const getAllProduct = superAdminProcedure.query(({ ctx }) => {
   return ctx.prisma.product.findMany();
 });
 
-export const getByIdProduct = adminProcedure
+export const getByIdProduct = superAdminProcedure
   .input(idSchema)
   .query(({ ctx, input }) => {
     const { id } = input;
@@ -42,7 +42,7 @@ export const getByIdProduct = adminProcedure
     });
   });
 
-export const deleteProduct = adminProcedure
+export const deleteProduct = superAdminProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {
     const { id } = input;
@@ -59,7 +59,7 @@ export const deleteProduct = adminProcedure
     }
   });
 
-export const editProduct = adminProcedure
+export const editProduct = superAdminProcedure
   .input(productUpdateSchema)
   .mutation(async ({ ctx, input }) => {
     const { id, name } = input;

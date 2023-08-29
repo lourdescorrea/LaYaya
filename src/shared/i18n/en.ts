@@ -54,6 +54,7 @@ export const en = {
   },
   navigation: {
     brands: "Marcas",
+    products: "Productos",
   },
   admin: {
     brand: {

@@ -1,4 +1,4 @@
-import { ProductPage } from "yaya/containers/product/page/ProductPage";
+import { ProductPage } from "yaya/containers";
 
 export default function Page() {
   return <ProductPage />;

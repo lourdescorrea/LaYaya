@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { superAdminProcedure } from "../../configs";
+import { adminProcedure, superAdminProcedure } from "../../configs";
 
 import { idSchema } from "yaya/shared";
 import {
@@ -7,7 +7,7 @@ import {
   productUpdateSchema,
 } from "yaya/shared/schemas/products";
 
-export const createProduct = superAdminProcedure
+export const createProduct = adminProcedure
   .input(productCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {

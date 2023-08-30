@@ -1,7 +1,7 @@
 import "@uploadthing/react/styles.css";
-import { BrandCreateForm } from "../forms";
-import { BrandEditForm } from "../forms/edit/BrandEdit";
-import { BrandTable } from "../table/BrandTable";
+import { BrandCreateForm } from "./forms";
+import { BrandEditForm } from "./forms/BrandEdit";
+import { BrandTable } from "./table/BrandTable";
 import { useCreateSheet, useEditSheet } from "./useBrandPage";
 
 export const BrandPage = () => {

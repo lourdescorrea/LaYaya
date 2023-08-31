@@ -1,11 +1,5 @@
-import { ProductEditForm } from "yaya/containers/product/forms";
+import { ProductEditPage } from "yaya/containers";
 
 export default function Page() {
-  return <ProductEditForm />;
+  return <ProductEditPage />;
 }
-
-// Page.Layout = DashboardLayout;
-Page.LayoutProps = {
-  headTitle: "Productos",
-  headSubtitle: "Editar Productos",
-};

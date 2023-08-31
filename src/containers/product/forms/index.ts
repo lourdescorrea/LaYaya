@@ -1,2 +1,1 @@
-export * from "./ProductCreate";
-export * from "./ProductEdit";
+export { ProductFields } from "./ProductFields";

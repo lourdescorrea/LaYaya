@@ -1,3 +1,3 @@
-export { AuthPage } from "./auth/Login";
+export { AuthPage } from "./auth";
 export { BrandPage } from "./brand";
-export { ProductPage } from "./product";
+export { ProductCreatePage, ProductEditPage, ProductListPage } from "./product";

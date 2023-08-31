@@ -1,5 +1,5 @@
-import { ProductPage } from "yaya/containers";
+import { ProductListPage } from "yaya/containers";
 
 export default function Page() {
-  return <ProductPage />;
+  return <ProductListPage />;
 }

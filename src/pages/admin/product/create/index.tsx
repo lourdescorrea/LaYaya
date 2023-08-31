@@ -1,7 +1,7 @@
-import { ProductCreateForm } from "yaya/containers/product/forms/fields/ProductCreate";
+import { ProductCreateForm } from "yaya/containers/product/forms/fields/FormProducts";
 
 export default function Page() {
-  return <ProductCreateForm columnsData={[]} data={[]} />;
+  return <ProductCreateForm />;
 }
 
 // Page.Layout = DashboardLayout;

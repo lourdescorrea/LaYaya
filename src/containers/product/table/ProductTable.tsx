@@ -1,14 +1,21 @@
-import { Table } from "yaya/core";
+import { useRouter } from "next/router";
+import { Table, paths } from "yaya/core";
 import { useProductTable } from "./useProductTable";
 
 interface ProductTableProps {
   openCreate: () => void;
-  // openEdit: (data Product ) => void;
 }
 
 export const ProductTable = (props: ProductTableProps) => {
   const { openCreate } = props;
-  const { columns, data, isLoading, deleteFn } = useProductTable();
+  const router = useRouter(); // Obtén el enrutador
+
+  const { columns, data, isLoading, deleteFn, editFn, createFn } =
+    useProductTable();
+
+  const navigateToProducts = () => {
+    router.push(paths.product.edit);
+  };
 
   return (
     <Table
@@ -17,6 +24,7 @@ export const ProductTable = (props: ProductTableProps) => {
       loading={isLoading}
       actions={{
         createFn: openCreate,
+        editFn: navigateToProducts,
         deleteFn: deleteFn,
       }}
     />

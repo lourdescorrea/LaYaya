@@ -12,7 +12,7 @@ model Brand {
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     name      String
-    product   Product[]
+    product   Product[] //one to many
 }
 
 model Product {
@@ -21,9 +21,33 @@ model Product {
     updatedAt DateTime @updatedAt
     name      String
     price     Int
-    stock     Int
-    code      Int
+    stock     Int //TODO: actualizar tema stock
+    code      Int //TODO: tipo string // renombrar codeBar
     weight    Int
 
-    brand Brand[]
+    brand Brand[] //TODO:many to one @relation to product //
+    //TODO:brand tipo ID
+    sale  Sale[] //TODO:productonsale
 }
+
+model Sale {
+    id        String    @id @default(cuid())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    amount    Int
+    payment   String //TODO:crear enum y  definir metodos de pago // cambiar a paymentMethod
+    product   Product[] //TODO:productonsale
+}
+
+//TODO:
+// 1 ver modelo de producto
+// 2 amount  BORRAR
+// 3 local en que se hizo la venta
+// 4 userId string
+// 5 productOnSale -> modelo nuevo, datos del producto que necesito mantener: nombre, precio, id. 
+// 6 campo estado, que sea un enum, activo o cancelado. 
+
+//REPORTES - reportes de Stock
+//que producto tengo poco?
+// A poco lo debe definir el usuario
+// Te devuelvo todos los productos que tengan menos que la cantidad ingresada por el usuario

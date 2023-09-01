@@ -1,33 +1,11 @@
 import { TRPCError } from "@trpc/server";
 import { superAdminProcedure } from "../../configs";
 
-import { idSchema } from "yaya/shared";
 import {
+  idSchema,
   productCreateSchema,
   productUpdateSchema,
-} from "yaya/shared/schemas/products";
-
-export const createProduct = superAdminProcedure
-  .input(productCreateSchema)
-  .mutation(async ({ ctx, input }) => {
-    try {
-      return await ctx.prisma.product.create({
-        data: {
-          name: input.name,
-          price: input.price,
-          stock: input.stock,
-          code: input.code,
-          weight: input.weight,
-        },
-      });
-    } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: (error as any).message,
-        cause: error,
-      });
-    }
-  });
+} from "yaya/shared";
 
 export const getAllProduct = superAdminProcedure.query(({ ctx }) => {
   return ctx.prisma.product.findMany();
@@ -40,6 +18,22 @@ export const getByIdProduct = superAdminProcedure
     return ctx.prisma.product.findUnique({
       where: { id },
     });
+  });
+
+export const createProduct = superAdminProcedure
+  .input(productCreateSchema)
+  .mutation(async ({ ctx, input }) => {
+    try {
+      return await ctx.prisma.product.create({
+        data: input, //TODO: fixear brandId en yup tipo string
+      });
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: (error as any).message,
+        cause: error,
+      });
+    }
   });
 
 export const deleteProduct = superAdminProcedure

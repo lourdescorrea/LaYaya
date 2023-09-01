@@ -25,7 +25,7 @@ export const createProduct = superAdminProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.product.create({
-        data: input, //TODO: fixear brandId en yup tipo string
+        data: input,
       });
     } catch (error) {
       throw new TRPCError({
@@ -60,13 +60,7 @@ export const editProduct = superAdminProcedure
     try {
       return await ctx.prisma.product.update({
         where: { id },
-        data: {
-          name: name,
-          price: input.price,
-          stock: input.stock,
-          code: input.code,
-          weight: input.weight,
-        },
+        data: input,
       });
     } catch (error) {
       throw new TRPCError({

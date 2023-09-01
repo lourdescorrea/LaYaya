@@ -18,7 +18,7 @@ export const paths = {
   product: {
     root: "/admin/product",
     create: "/admin/product/create",
-    edit: (id: string) => `/admin/product/${id}`,
+    edit: (id: string) => `/admin/product/edit/${id}`,
   },
 };
 

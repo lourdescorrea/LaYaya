@@ -12,34 +12,44 @@ model Brand {
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     name      String
-    product   Product[] //one to many
+    product   Product[]
 }
 
 model Product {
+    id            String   @id @default(cuid())
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    name          String
+    price         Int
+    stockDuarte   Int
+    stockColon    Int
+    stockDeposito Int
+    codeBar       String
+    weight        Int
+    image         String
+
+    brand   Brand? @relation(fields: [brandId], references: [id])
+    brandId String
+}
+
+model ProductOnSale {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     name      String
     price     Int
-    stock     Int //TODO: actualizar tema stock
-    code      Int //TODO: tipo string // renombrar codeBar
-    weight    Int
-
-    brand Brand[] //TODO:many to one @relation to product //
-    //TODO:brand tipo ID
-    sale  Sale[] //TODO:productonsale
 }
 
 model Sale {
-    id        String    @id @default(cuid())
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
     amount    Int
     payment   String //TODO:crear enum y  definir metodos de pago // cambiar a paymentMethod
-    product   Product[] //TODO:productonsale
+    // product   Product[] //TODO:productonsale
 }
 
-//TODO:
+//TODO: sale
 // 1 ver modelo de producto
 // 2 amount  BORRAR
 // 3 local en que se hizo la venta

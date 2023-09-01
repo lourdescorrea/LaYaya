@@ -7,6 +7,7 @@ export const productCreateSchema = yup.object().shape({
   stock: yup.number().required(),
   code: yup.number().required(),
   weight: yup.number().required(),
+  image: yup.string().required(),
 });
 
 export const productUpdateSchema = yup.object().shape({
@@ -17,4 +18,5 @@ export const productUpdateSchema = yup.object().shape({
   code: yup.number().required(),
   weight: yup.number().required(),
   id: yup.string().required(),
+  image: yup.string().required(),
 });

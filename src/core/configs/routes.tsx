@@ -17,6 +17,8 @@ export const paths = {
   },
   product: {
     root: "/admin/product",
+    create: "/admin/product/create",
+    edit: (id: string) => `/admin/product/edit/${id}`,
   },
 };
 
@@ -36,7 +38,7 @@ export const routes: Route[] = [
     name: "Productos",
     path: paths.product.root,
     icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.SUPER,
+    allowedRoles: PERMISSIONS.ADMINS,
   },
 ];
 

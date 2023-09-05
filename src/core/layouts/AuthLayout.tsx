@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from "react";
 
 import { FooterAuth } from "../components";
-import { APP_NAME } from "../configs";
 
 export function AuthLayout({ children }: PropsWithChildren) {
   return (
@@ -15,7 +14,7 @@ export function AuthLayout({ children }: PropsWithChildren) {
 
                 <div className="absolute right-0 hidden h-full min-h-screen md:block lg:w-[49vw] 2xl:w-[44vw]">
                   <div className="absolute flex h-full w-full items-end justify-center bg-[url('/img/auth/login.jpg')] bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[200px]" />
-                  <h4
+                  {/* <h4
                     style={{
                       textShadow:
                         "0px 0px 20px #3fa9fe, 0px 0px 15px #627ff8, 0px 0px 5px #7f7cff",
@@ -23,7 +22,7 @@ export function AuthLayout({ children }: PropsWithChildren) {
                     className="absolute left-1/2 top-20 mb-60 hidden -translate-x-1/2 self-center text-6xl font-bold text-[#f8fff2] lg:block"
                   >
                     {APP_NAME}
-                  </h4>
+                  </h4> */}
                 </div>
               </div>
               <FooterAuth />

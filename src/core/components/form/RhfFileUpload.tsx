@@ -6,12 +6,11 @@ import {
   FormLabel,
   FormMessage,
 } from "./components/Form";
-import { FileUpload } from "./components/fields/FileUpload";
+import { FileUpload } from "./components/fields/fileUpload";
 
 interface RHFFileUpload {
   name: string;
   label?: string;
-  // placeholder?: string;
   disabled?: boolean;
   description?: string;
 }
@@ -26,11 +25,7 @@ export const RHFileUpload = (props: RHFFileUpload) => {
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <FileUpload
-              label={label}
-              disabled={disabled || isSubmitting}
-              {...field}
-            />
+            <FileUpload disabled={disabled || isSubmitting} {...field} />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />

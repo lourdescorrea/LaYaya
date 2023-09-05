@@ -1,7 +1,10 @@
-import { api, useActionToast } from "yaya/core";
-import { Product, en } from "yaya/shared";
+import { Product } from "@prisma/client";
+import { useRouter } from "next/router";
+import { api, paths, useActionToast } from "yaya/core";
+import { en } from "yaya/shared";
 
 export const useProductTable = () => {
+  const { push } = useRouter();
   const { isLoading, data } = api.products.getAll.useQuery(undefined, {
     initialData: [],
   });
@@ -15,12 +18,16 @@ export const useProductTable = () => {
     alertMsg: `${en.admin.product.delete.title}`,
   });
 
-  const deleteFn = (product: Product) => onDelete({ id: product.id });
+  const deleteFn = (data: Product) => onDelete({ id: data.id });
+  const editFn = (data: Product) => push(paths.product.edit(data.id));
+  const createFn = () => push(paths.product.create);
 
   return {
     columns,
     data,
+    editFn,
     deleteFn,
+    createFn,
     isLoading,
   };
 };

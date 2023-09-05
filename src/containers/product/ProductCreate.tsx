@@ -17,11 +17,14 @@ export const ProductCreatePage = () => {
 
   const methods = useForm<ProductCreate>({
     defaultValues: {
-      brand: "",
-      code: 0,
+      brandId: "",
+      image: "",
+      codeBar: "",
       name: "",
       price: 0,
-      stock: 0,
+      stockDuarte: 0,
+      stockColon: 0,
+      stockDeposito: 0,
       weight: 0,
     },
     resolver: yupResolver(productCreateSchema),
@@ -31,7 +34,10 @@ export const ProductCreatePage = () => {
     trpc: api.products.create,
     errorMsg: `${en.admin.product.create.messages.error}`,
     successMsg: `${en.admin.product.create.messages.success}`,
-    onSuccess: () => push(paths.product.root),
+    onSuccess: () => {
+      console.log("Producto con error ", onSubmit);
+      push(paths.product.root);
+    },
   });
 
   return (

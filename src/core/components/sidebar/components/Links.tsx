@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { MouseEvent } from "react";
 
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { routes } from "../../../configs";
 import { cn } from "../../../utils";
 import { DashIcon } from "../../icons/DashIcon";
@@ -12,7 +12,7 @@ interface LinksProps {
 }
 
 export function Links({ onClickRoute }: LinksProps) {
-  const pathname = usePathname();
+  const { pathname } = useRouter();
   const { data } = useSession();
 
   const activeRoute = (routeName: string) => {

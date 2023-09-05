@@ -6,13 +6,16 @@ interface FileUploadProps {
   onChange: (url: string) => void;
   name: string;
   disabled?: boolean;
+  value?: string;
 }
 
 export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
-  ({ onChange, disabled, name }, ref) => {
+  ({ onChange, disabled, name, value }, ref) => {
     const { mutateAsync } = api.cloudinary.create.useMutation();
 
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(
+      value ?? null
+    );
 
     function handleRemoveImage() {
       setSelectedImage(null);
@@ -108,7 +111,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
               </svg>
             </button>
             <img
-              src={selectedImage}
+              src={selectedImage || value}
               alt="Selected"
               className=" h-56 w-56 object-cover"
             />

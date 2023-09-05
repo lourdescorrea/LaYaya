@@ -9,13 +9,7 @@ export const useProductTable = () => {
     initialData: [],
   });
 
-  const columns = [
-    { accessorKey: "name" },
-    { accessorKey: "marca" },
-    { accessorKey: "stock" },
-    { accessorKey: "precio" },
-    { accessorKey: "kilos" },
-  ];
+  const columns = [{ accessorKey: "name" }];
 
   const onDelete = useActionToast({
     trpc: api.products.delete,

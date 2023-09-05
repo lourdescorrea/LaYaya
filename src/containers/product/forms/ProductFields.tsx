@@ -11,41 +11,48 @@ export const ProductFields = () => {
   }));
 
   return (
-    <>
-      <div className="flex justify-evenly">
-        <RHFileUpload name="imagen " label="" description="" />
-
-        <div className="ml-[40px] flex flex-col ">
-          <div className="w-96">
+    <div className="flex justify-evenly">
+      <div className="flex flex-col items-center">
+        <div>
+          <RHFileUpload name="image" label="" description="" />
+        </div>
+        <div className="flex space-x-4">
+          <div className="w-24">
             <RHFTextField
-              label="Nombre del producto"
-              placeholder="Producto"
-              type="text"
-              name="name"
-            />
-          </div>
-
-          <div className="w-96">
-            <RHFTextField
-              label="Precio del producto"
-              placeholder="Precio $$"
+              label="Stock Duarte"
+              placeholder="Stock"
               type="number"
-              name="price"
+              name="stockDuarte"
             />
           </div>
-          <div className="w-96">
-            <RHFSelectField
-              name="brand"
-              label="Marca del producto"
-              placeholder="Marca"
-              options={brandOptions}
+          <div className="w-24">
+            <RHFTextField
+              label="Stock Colón"
+              placeholder="Stock"
+              type="number"
+              name="stockColon"
+            />
+          </div>
+          <div className="w-24">
+            <RHFTextField
+              label="Stock Deposito"
+              placeholder="Stock"
+              type="number"
+              name="stockDeposito"
             />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center space-x-4">
-        <div className=" w-96">
+      <div className="ml-[40px] flex w-96 flex-col ">
+        <div className="flex space-x-10">
+          <RHFTextField
+            label="Precio del producto"
+            placeholder="Precio $$"
+            type="number"
+            name="price"
+          />
+
           <RHFTextField
             label="Kilos del producto"
             placeholder="Kilos"
@@ -53,15 +60,26 @@ export const ProductFields = () => {
             name="weight"
           />
         </div>
-        <div className="w-96">
-          <RHFTextField
-            label="Stock del producto"
-            placeholder="Stock"
-            type="number"
-            name="stock"
-          />
-        </div>
+        <RHFTextField
+          label="Nombre del producto"
+          placeholder="Producto"
+          type="string"
+          name="name"
+        />
+        <RHFSelectField
+          name="brandId"
+          label="Marca del producto"
+          placeholder="Marca"
+          options={brandOptions}
+        />
+
+        <RHFTextField
+          label="Código de barra"
+          placeholder="Código"
+          type="number"
+          name="codeBar"
+        />
       </div>
-    </>
+    </div>
   );
 };

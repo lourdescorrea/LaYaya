@@ -1,8 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { allRolesProcedure } from "../../configs";
 
-import { idSchema } from "yaya/shared";
-import { saleCreateSchema, saleUpdateSchema } from "yaya/shared/schemas/sales";
+import { idSchema, saleCreateSchema, saleUpdateSchema } from "yaya/shared";
 
 //TODO: 1 ctx.prisma.transaction aqui se realizan todas las operaciones
 //luego se retornaria la venta fuera de la transaccion
@@ -24,15 +23,12 @@ export const createSale = allRolesProcedure
   .input(saleCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
-      return await ctx.prisma.sale.create({
-        data: {
-          name: input.name,
-          stock: input.stock,
-          date: input.date,
-          amount: input.amount,
-          payment: input.payment,
-        },
-      });
+      const result = await ctx.prisma.$transaction([
+        ctx.prisma.sale.create({
+          data: input,
+        }),
+      ]);
+      return result[0];
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
@@ -62,17 +58,11 @@ export const deleteSale = allRolesProcedure
 export const editSale = allRolesProcedure
   .input(saleUpdateSchema)
   .mutation(async ({ ctx, input }) => {
-    const { id, name } = input;
+    const { id } = input;
     try {
       return await ctx.prisma.sale.update({
         where: { id },
-        data: {
-          name: name,
-          stock: input.stock,
-          date: input.date,
-          amount: input.amount,
-          payment: input.payment,
-        },
+        data: input,
       });
     } catch (error) {
       throw new TRPCError({

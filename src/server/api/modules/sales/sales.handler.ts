@@ -23,9 +23,12 @@ export const createSale = allRolesProcedure
   .input(saleCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
-      return await ctx.prisma.sale.create({
-        data: input,
-      });
+      const result = await ctx.prisma.$transaction([
+        ctx.prisma.sale.create({
+          data: input,
+        }),
+      ]);
+      return result[0];
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",

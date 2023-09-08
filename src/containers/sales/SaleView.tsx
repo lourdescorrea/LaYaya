@@ -1,3 +1,3 @@
 export const SaleViewPage = () => {
-return()
+  return <h1>Hola</h1>;
 };

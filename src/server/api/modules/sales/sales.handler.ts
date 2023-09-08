@@ -55,7 +55,7 @@ export const deleteSale = allRolesProcedure
 export const editSale = allRolesProcedure
   .input(saleUpdateSchema)
   .mutation(async ({ ctx, input }) => {
-    const { id, name } = input;
+    const { id } = input;
     try {
       return await ctx.prisma.sale.update({
         where: { id },

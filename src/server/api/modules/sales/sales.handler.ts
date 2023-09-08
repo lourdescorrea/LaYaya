@@ -1,8 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { allRolesProcedure } from "../../configs";
 
-import { idSchema } from "yaya/shared";
-import { saleCreateSchema, saleUpdateSchema } from "yaya/shared/schemas/sales";
+import { idSchema, saleCreateSchema, saleUpdateSchema } from "yaya/shared";
 
 //TODO: 1 ctx.prisma.transaction aqui se realizan todas las operaciones
 //luego se retornaria la venta fuera de la transaccion
@@ -25,13 +24,7 @@ export const createSale = allRolesProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.sale.create({
-        data: {
-          name: input.name,
-          stock: input.stock,
-          date: input.date,
-          amount: input.amount,
-          payment: input.payment,
-        },
+        data: input,
       });
     } catch (error) {
       throw new TRPCError({
@@ -66,13 +59,7 @@ export const editSale = allRolesProcedure
     try {
       return await ctx.prisma.sale.update({
         where: { id },
-        data: {
-          name: name,
-          stock: input.stock,
-          date: input.date,
-          amount: input.amount,
-          payment: input.payment,
-        },
+        data: input,
       });
     } catch (error) {
       throw new TRPCError({

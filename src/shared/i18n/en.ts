@@ -107,6 +107,31 @@ export const en = {
         },
       },
     },
+    sale: {
+      create: {
+        title: "Crear una venta",
+        sub_title: "Introduzca una venta",
+        messages: {
+          success: "Venta creada con éxito",
+          error: "Error al crear la venta ",
+        },
+      },
+      edit: {
+        title: "Editar venta ",
+        sub_title: "Introduzca la venta a editar!",
+        messages: {
+          success: "Venta editada con éxito",
+          error: "Error al editar la venta ",
+        },
+      },
+      delete: {
+        title: "¿Seguro que quieres borrar esta venta?",
+        messages: {
+          success: "Venta eliminada con éxito",
+          error: "Error al eliminar la venta",
+        },
+      },
+    },
   },
   boundaries: {
     error: {

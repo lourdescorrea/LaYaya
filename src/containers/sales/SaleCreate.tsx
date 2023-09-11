@@ -1,42 +1,30 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Card,
   LoadingButton,
+  RHFTextField,
   RhfForm,
   api,
-  useSubmitTrpc
+  useSubmitTrpc,
 } from "yaya/core";
-import { ProductCreate, en, productCreateSchema } from "yaya/shared";
+import { en, saleCreateSchema } from "yaya/shared";
+import { SaleCreate } from "yaya/shared/types/sales";
 
 export const SaleCreatePage = () => {
-  const { data } = api.products.getAll.useQuery(undefined, {
-    initialData: [],
-  });
-
-
-  const methods = useForm<ProductCreate>({
-    resolver: yupResolver(productCreateSchema),
-    defaultValues: {
-   : [{ id: "", cantidad: 1 }],
-    },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    control: methods.control,
-    name: "products",
+  const methods = useForm<SaleCreate>({
+    defaultValues: {},
+    resolver: yupResolver(saleCreateSchema),
   });
 
   const { onSubmit, isLoading: createLoading } = useSubmitTrpc({
-    trpc: api.products.create,
-    errorMsg: `${en.admin.product.create.messages.error}`,
-    successMsg: `${en.admin.product.create.messages.success}`,
+    trpc: api.sales.create,
+    errorMsg: `${en.admin.sale.create.messages.error}`,
+    successMsg: `${en.admin.sale.create.messages.success}`,
     onSuccess: () => {
-      console.log("Producto con error ", onSubmit);
-  
+      console.log("venta con error ", onSubmit);
     },
   });
-
 
   return (
     <Card
@@ -44,24 +32,18 @@ export const SaleCreatePage = () => {
       title="Creación de productos "
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
-        {fields.map((field, index) => (
-          <div key={field.id}>
-            <input
-              {...methods.register(`products[${index}].id`)}
-              placeholder="ID del producto"
-            />
-            <input
-              {...methods.register(`products[${index}].cantidad`)}
-              placeholder="Cantidad"
-            />
-            <button type="button" onClick={() => remove(index)}>
-              Eliminar Producto
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={() => append({ id: "", cantidad: 1 })}>
-          Agregar Producto
-        </button>
+        {/* SE CARGA POR DEFECTO  */}
+        <RHFTextField name={"usuario"} />
+        {/* PONER LOCAL QUE SE DEBE CARGAR POR DEFECTO  */}
+        {/* DATE CALENDARIO  */}
+        <RHFTextField name={"fecha"} />
+        {/* Lo deberia decir solo en el view que este desabilitado  */}
+        <RHFTextField name={"status"} />
+        
+        <RHFTextField name={"monto"} />
+
+      {/* Va ser un select */}
+        <RHFTextField name={"metodo de pago"} />
         <div className="flex flex-col">
           <LoadingButton
             className="ml-[750px] mt-8 w-32"

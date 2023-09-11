@@ -38,20 +38,20 @@ model ProductOnSale {
     updatedAt DateTime @updatedAt
     name      String
     price     Int
-    Sale      Sale[]
+    sale      Sale?    @relation(fields: [saleId], references: [id])
+    saleId    String?
 }
 
 model Sale {
-    id            String   @id @default(cuid())
-    createdAt     DateTime @default(now())
-    updatedAt     DateTime @updatedAt
-    paymentMethod String
-
-    userId          String
-    shopId          String
-    state           String
-    productOnSale   ProductOnSale? @relation(fields: [productonSaleId], references: [id])
-    productonSaleId String
+    id             String          @id @default(cuid())
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @updatedAt
+    paymentMethod  String
+    amount         Int
+    userId         String
+    shopId         String
+    state          String
+    productsOnSale ProductOnSale[]
 }
 
 //REPORTES - reportes de Stock

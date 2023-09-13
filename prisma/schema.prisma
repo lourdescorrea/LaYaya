@@ -38,8 +38,13 @@ model ProductOnSale {
     updatedAt DateTime @updatedAt
     name      String
     price     Int
-    sale      Sale?    @relation(fields: [saleId], references: [id])
-    saleId    String?
+    quantity  Int
+    codeBar   String
+    weight    Int
+    image     String
+
+    sale   Sale?   @relation(fields: [saleId], references: [id])
+    saleId String?
 }
 
 model Sale {
@@ -49,12 +54,7 @@ model Sale {
     paymentMethod  String
     amount         Int
     userId         String
-    shopId         String
-    state          String
+    shop           String
+    state          String //crear archivo en las constantes con los diferentes estados de la venta
     productsOnSale ProductOnSale[]
 }
-
-//REPORTES - reportes de Stock
-//que producto tengo poco?
-// A poco lo debe definir el usuario
-// Te devuelvo todos los productos que tengan menos que la cantidad ingresada por el usuario

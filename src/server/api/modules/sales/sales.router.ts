@@ -4,6 +4,5 @@ export const saleRouter = createTRPCRouter({
   create: sales.createSale,
   getAll: sales.getAllSale,
   delete: sales.deleteSale,
-  edit: sales.editSale,
   getById: sales.getByIdSale,
 });

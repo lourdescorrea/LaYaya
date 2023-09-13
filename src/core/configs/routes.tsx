@@ -37,19 +37,19 @@ export const routes: Route[] = [
     name: "Marcas",
     path: paths.brand.root,
     icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.SUPER,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
   },
   {
     name: "Productos",
     path: paths.product.root,
     icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.ADMINS,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
   },
   {
     name: "Ventas",
     path: paths.sales.root,
     icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.ADMINS,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
   },
 ];
 

@@ -1,19 +1,31 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import {
   Card,
   LoadingButton,
-  RHFTextField,
   RhfForm,
   api,
-  useSubmitTrpc,
+  useSubmitTrpc
 } from "yaya/core";
 import { en, saleCreateSchema } from "yaya/shared";
 import { SaleCreate } from "yaya/shared/types/sales";
+import { SaleFields } from "./forms";
 
-export const SaleCreatePage = () => {
+
+export const SaleCreatePage  = () => {
+  const {data}= useSession()
+
+
+
   const methods = useForm<SaleCreate>({
-    defaultValues: {},
+    defaultValues: {
+      // shopId:data?.user.name || "",
+      state:"",
+      amount :0,
+      paymentMethod:"",
+      productonSaleId:"",
+    },
     resolver: yupResolver(saleCreateSchema),
   });
 
@@ -22,29 +34,18 @@ export const SaleCreatePage = () => {
     errorMsg: `${en.admin.sale.create.messages.error}`,
     successMsg: `${en.admin.sale.create.messages.success}`,
     onSuccess: () => {
-      console.log("venta con error ", onSubmit);
+      console.log(data?.user);
     },
   });
 
   return (
     <Card
       className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
-      title="Creación de productos "
+      title="Creación de ventas "
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
-        {/* SE CARGA POR DEFECTO  */}
-        <RHFTextField name={"usuario"} />
-        {/* PONER LOCAL QUE SE DEBE CARGAR POR DEFECTO  */}
-        {/* DATE CALENDARIO  */}
-        <RHFTextField name={"fecha"} />
-        {/* Lo deberia decir solo en el view que este desabilitado  */}
-        <RHFTextField name={"status"} />
-        
-        <RHFTextField name={"monto"} />
-
-      {/* Va ser un select */}
-        <RHFTextField name={"metodo de pago"} />
         <div className="flex flex-col">
+         <SaleFields />
           <LoadingButton
             className="ml-[750px] mt-8 w-32"
             loading={createLoading}

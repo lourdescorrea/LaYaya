@@ -1,4 +1,4 @@
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,7 +15,8 @@ export const Navbar = () => {
   const { pathname } = useRouter();
   const { setOpenSidebar } = useSidebarContext();
   const [currentRoute, setCurrentRoute] = useState(routes[0]!);
-
+  const { data } =useSession()
+  console.log("data",data)
   const logOut = () => signOut();
 
   const getActiveRoute = useCallback(() => {
@@ -64,7 +65,7 @@ export const Navbar = () => {
             <div className="p-4">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold">
-                  👋 <span className="ml-1">{currentRoute.allowedRoles}</span>
+                  👋 <span className="ml-1">{data?.user.name}</span>
                 </p>
               </div>
             </div>

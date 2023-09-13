@@ -3,7 +3,7 @@ import { SHOPS } from "./shops";
 
 const DUARTE_USER = {
   id: "1",
-  name: "Duarte",
+  name: " Local Duarte",
   email: "duarte@gmail.com",
   password: "123456",
   role: ROLES.SELLER,
@@ -12,7 +12,7 @@ const DUARTE_USER = {
 
 const COLON_USER = {
   id: "2",
-  name: "Colon",
+  name: " Local Colón",
   email: "colon@gmail.com",
   password: "123456",
   role: ROLES.SELLER,

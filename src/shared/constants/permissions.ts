@@ -1,4 +1,4 @@
-import { ROLES } from "./roles";
+import { ROLES } from './roles';
 
 const SUPER = [ROLES.SUPER_ADMIN];
 const ADMINS = [ROLES.SUPER_ADMIN, ROLES.ADMIN];
@@ -9,3 +9,5 @@ export const PERMISSIONS = {
   ADMINS,
   ALL_ROLES,
 };
+
+

@@ -3,9 +3,6 @@ import { RHFSelectField } from 'yaya/core';
 import { PAYMENT_OPTIONS, PERMISSIONS, SHOPS_OPTIONS } from "yaya/shared";
 import { UseFields } from './UseFields';
 
-
-
-
 export const SaleFields =() => {
    const {data}= useSession()
   return (

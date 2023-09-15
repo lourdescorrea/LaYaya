@@ -12,7 +12,7 @@ export const UseFields = () => {
   });
 
   return (
-      <>
+      <div>
         {fields.map((field, index) => (
           <div key={field.id}>
               <div className="w-36">
@@ -36,7 +36,7 @@ export const UseFields = () => {
               </div>
           </div>
         ))}
-      </>
+      </div>
   );
 };
 

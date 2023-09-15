@@ -9,6 +9,8 @@ export const saleCreateSchema = yup.object().shape({
       quantity: yup.number().required(),
     })
   ),
+  amount: yup.number().notRequired(),
+  state: yup.string().notRequired(),
 });
 
 //crear en constantes los shops y los metodos de pago y pasarlos aca

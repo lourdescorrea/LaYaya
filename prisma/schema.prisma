@@ -52,9 +52,9 @@ model Sale {
     createdAt      DateTime        @default(now())
     updatedAt      DateTime        @updatedAt
     paymentMethod  String
-    amount         Int
+    amount         Int?
     userId         String
     shop           String
-    state          String //crear archivo en las constantes con los diferentes estados de la venta
+    state          String
     productsOnSale ProductOnSale[]
 }

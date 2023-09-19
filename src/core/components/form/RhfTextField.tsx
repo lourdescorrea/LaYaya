@@ -1,4 +1,3 @@
-import { HTMLInputTypeAttribute } from "react";
 import {
   FormControl,
   FormDescription,
@@ -8,6 +7,7 @@ import {
   FormMessage,
 } from "./components/Form";
 import { Input } from "./components/fields/Input";
+import { HTMLInputTypeAttribute } from "react";
 
 interface RHFTextFieldProps {
   name: string;
@@ -16,10 +16,19 @@ interface RHFTextFieldProps {
   placeholder?: string;
   disabled?: boolean;
   description?: string;
+  defaultValue: string;
 }
 
 export const RHFTextField = (props: RHFTextFieldProps) => {
-  const { label, type, placeholder, description, disabled, name } = props;
+  const {
+    label,
+    type,
+    placeholder,
+    description,
+    disabled,
+    name,
+    defaultValue,
+  } = props;
   return (
     <FormField
       name={name}

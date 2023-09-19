@@ -1,30 +1,21 @@
+import { SaleFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import {
-  Card,
-  LoadingButton,
-  RhfForm,
-  api,
-  useSubmitTrpc
-} from "yaya/core";
+import { Card, LoadingButton, RhfForm, api, useSubmitTrpc } from "yaya/core";
 import { en, saleCreateSchema } from "yaya/shared";
 import { SaleCreate } from "yaya/shared/types/sales";
-import { SaleFields } from "./forms";
 
-
-export const SaleCreatePage  = () => {
-  const {data}= useSession()
-
-
+export const SaleCreatePage = () => {
+  const { data } = useSession();
 
   const methods = useForm<SaleCreate>({
     defaultValues: {
       // shopId:data?.user.name || "",
-      state:"",
-      amount :0,
-      paymentMethod:"",
-      productonSaleId:"",
+      state: "",
+      amount: 0,
+      paymentMethod: "",
+      productonSaleId: "",
     },
     resolver: yupResolver(saleCreateSchema),
   });
@@ -45,7 +36,7 @@ export const SaleCreatePage  = () => {
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
-         <SaleFields />
+          <SaleFields />
           <LoadingButton
             className="ml-[750px] mt-8 w-32"
             loading={createLoading}

@@ -1,31 +1,45 @@
-import { useSession } from 'next-auth/react';
-import { RHFSelectField } from 'yaya/core';
+import { ProductFieldsArray } from "./ProductFieldsArray";
+import { useSession } from "next-auth/react";
+import { RHFSelectField, RHFTextField } from "yaya/core";
 import { PAYMENT_OPTIONS, PERMISSIONS, SHOPS_OPTIONS } from "yaya/shared";
-import { UseFields } from './UseFields';
 
+export const SaleFields = () => {
+  const { data } = useSession();
 
-
-
-export const SaleFields =() => {
-   const {data}= useSession()
   return (
     <div>
+      <RHFTextField
+        label="Usuario"
+        placeholder={data?.user.name || ""}
+        type="text"
+        name="userId"
+        defaultValue=""
+      />
       <RHFSelectField
         name="shopId"
         label="Local"
-        placeholder={data?.user.name || ""}
+        placeholder={data?.user.shops || ""}
         disabled={!PERMISSIONS.ADMINS.includes(data?.user.role || "")}
         options={SHOPS_OPTIONS}
       />
-
       <div>
-        <UseFields/>
+        <RHFSelectField
+          name="paymentMethod"
+          label="Elige un metodo de pago"
+          placeholder={""}
+          options={PAYMENT_OPTIONS}
+        />
       </div>
 
       <div>
-        <RHFSelectField name="paymentMethod" label="" placeholder="" options={PAYMENT_OPTIONS}/>
+        <ProductFieldsArray />
       </div>
+      {/* <Typography variant="p">Total${totalProductPrice}</Typography> */}
+      <div></div>
     </div>
   );
 };
 
+// state: yup.string().required(),
+// amount:yup.number().required(),
+// productonSaleId: yup.string().required(),

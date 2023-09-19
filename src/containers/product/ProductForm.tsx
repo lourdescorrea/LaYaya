@@ -1,9 +1,9 @@
+import { ProductFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { LoadingButton, RhfForm, api, paths, useSubmitTrpc } from "yaya/core";
 import { ProductEdit, en, productUpdateSchema } from "yaya/shared";
-import { ProductFields } from "./forms";
 
 export const ProductForm = (props: any) => {
   const { push } = useRouter();

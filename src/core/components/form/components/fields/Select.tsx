@@ -1,8 +1,7 @@
+import { cn } from "../../../../utils";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import * as React from "react";
 import { BiCheck, BiChevronDown } from "react-icons/bi";
-
-import { cn } from "../../../../utils";
 
 const Select = SelectPrimitive.Root;
 

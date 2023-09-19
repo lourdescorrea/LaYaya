@@ -30,6 +30,8 @@ model Product {
 
     brand   Brand? @relation(fields: [brandId], references: [id])
     brandId String
+
+    productOnSale ProductOnSale[]
 }
 
 model ProductOnSale {
@@ -45,6 +47,9 @@ model ProductOnSale {
 
     sale   Sale?   @relation(fields: [saleId], references: [id])
     saleId String?
+
+    product   Product? @relation(fields: [productId], references: [id])
+    productId String
 }
 
 model Sale {

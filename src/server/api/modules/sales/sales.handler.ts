@@ -1,22 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { allRolesProcedure } from "../../configs";
 
-import { idSchema, saleCreateSchema } from "yaya/shared";
+import {
+  SHOPS_STOCK,
+  ShopStockKey,
+  idSchema,
+  saleCreateSchema,
+} from "yaya/shared";
 
-//TODO: 1 crear venta:
-
-// 1.1 validar  que el usuario tenga el mismo local que el asignado, lo saco OK
-
-// 1 calcular importe de la venta
-//(obtener productos que pertenecen a esa venta, los recorro,
-//segun su id y obtengo la cantidad y lo multiplico por el monto,
-//luego sumo el total) OK
-
-// 2 crear los productonsale se le pasa la data con lo que necesito OK
-// 3 restar el stock//
-//validar que la cantidad vendida de un producto no sea mayor
-//al stock que hay en ese local
-// 4 cuando creas la venta pasarle a el productonsale (createmany)
 // 5 pasarle el estado, local, usuario, etc.
 
 //TODO: Cancelar venta
@@ -38,100 +29,93 @@ export const getByIdSale = allRolesProcedure
 export const createSale = allRolesProcedure
   .input(saleCreateSchema)
   .mutation(async ({ ctx, input }) => {
-    const currentUser = ctx.session.user;
-
-    if (!currentUser.shops.includes(input.shop)) {
-      throw new TRPCError({
-        code: "FORBIDDEN",
-        message:
-          "El usuario no tiene permiso para realizar ventas en este local.",
-      });
-    }
-
-    let totalAmount = 0;
-
     try {
-      if (!input.productsOnSale) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "La lista de productos en venta está vacía.",
-        });
+      const currentUser = ctx.session.user;
+
+      if (!currentUser.shops.includes(input.shop)) {
+        throw new Error(
+          "El usuario no tiene permiso para realizar ventas en este local."
+        );
       }
 
-      // Validar el stock y restar el stock
-      for (const product of input.productsOnSale) {
-        if (!product) continue; // Saltar productos nulos
+      const productIds = input.productsOnSale.map((product) => product.id);
 
-        const productInDB = await ctx.prisma.product.findUnique({
-          where: {
-            id: product.id,
+      const productsDB = await ctx.prisma.product.findMany({
+        where: {
+          id: {
+            in: productIds,
           },
-        });
+        },
+      });
 
-        if (!productInDB) {
-          throw new TRPCError({
-            code: "NOT_FOUND",
-            message: `Producto con ID ${product.id} no encontrado.`,
-          });
+      let totalAmount = 0;
+
+      const shopKey = SHOPS_STOCK[input.shop] as ShopStockKey;
+
+      for (const productInput of input.productsOnSale) {
+        const productWithStock = productsDB.find(
+          (p) => p.id === productInput.id
+        );
+
+        if (
+          productWithStock &&
+          productWithStock[shopKey] < productInput.quantity
+        ) {
+          throw new Error(
+            `No hay suficiente stock disponible para el producto con ID ${productInput.id}`
+          );
         }
+      }
 
-        // Verificar si el producto está en stock en la tienda del usuario logueado
-        const stockField = `stock${currentUser.shops}`;
-        if (product.quantity > productInDB[stockField]) {
-          throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: `Cantidad vendida de ${productInDB.name} supera el stock disponible en ${currentUser.shops}.`,
-          });
-        }
+      const productsOnSale = productsDB.map((p) => {
+        const productInput = input.productsOnSale.find(
+          (pos) => p.id === pos.id
+        );
 
-        const productAmount = product.quantity * productInDB.price;
+        const productAmount = productInput!.quantity * p.price;
 
         totalAmount += productAmount;
-        // Restar la cantidad vendida del stock en la tienda Duarte
-        await ctx.prisma.product.update({
-          where: {
-            id: product.id,
-          },
+
+        return {
+          codeBar: p.codeBar,
+          image: p.image,
+          name: p.name,
+          price: p.price,
+          quantity: productInput!.quantity,
+          weight: p.weight,
+          productId: p.id,
+        };
+      });
+
+      const result = await ctx.prisma.$transaction(async (prisma) => {
+        for (const p of productsOnSale) {
+          await prisma.product.update({
+            where: {
+              id: p.productId,
+            },
+            data: {
+              [shopKey]: {
+                decrement: p.quantity,
+              },
+            },
+          });
+        }
+
+        return await prisma.sale.create({
           data: {
-            stockDuarte: productInDB.stockDuarte - product.quantity,
+            userId: ctx.session.user.userId,
+            amount: totalAmount,
+            paymentMethod: input.paymentMethod,
+            shop: input.shop,
+            state: "ACTIVE",
+            productsOnSale: {
+              create: productsOnSale,
+            },
           },
         });
-      }
+      });
 
-      const result = await ctx.prisma.$transaction([
-        ctx.prisma.sale.create({
-          data: {
-            ...input,
-            userId: ctx.session.user.id,
-            amount: totalAmount,
-          },
-          productsOnSale: {
-            create: input.productsOnSale.map((product) => {
-              if (!product) return null;
-
-              const productInDB = await ctx.prisma.product.findUnique({
-                where: {
-                  id: product.id,
-                },
-              });
-
-              if (!productInDB) {
-                throw new TRPCError({
-                  code: "NOT_FOUND",
-                  message: `Producto con ID ${product.id} no encontrado.`,
-                });
-              }
-
-              return {
-                ...product,
-                amount: product.quantity * productInDB.price,
-              };
-            }),
-          },
-        }),
-      ]);
-
-      return result[0];
+      return result;
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",

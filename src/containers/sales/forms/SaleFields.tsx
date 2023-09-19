@@ -5,7 +5,6 @@ import { PAYMENT_OPTIONS, PERMISSIONS, SHOPS_OPTIONS } from "yaya/shared";
 
 export const SaleFields = () => {
   const { data } = useSession();
-
   return (
     <div>
       <RHFTextField

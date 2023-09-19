@@ -12,7 +12,6 @@ export const SaleCreatePage = () => {
   const methods = useForm<SaleCreate>({
     defaultValues: {
       // shopId:data?.user.name || "",
-      state: "",
       amount: 0,
       paymentMethod: "",
       productonSaleId: "",

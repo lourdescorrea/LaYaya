@@ -30,6 +30,8 @@ model Product {
 
     brand   Brand? @relation(fields: [brandId], references: [id])
     brandId String
+
+    productOnSale ProductOnSale[]
 }
 
 model ProductOnSale {
@@ -38,8 +40,16 @@ model ProductOnSale {
     updatedAt DateTime @updatedAt
     name      String
     price     Int
-    sale      Sale?    @relation(fields: [saleId], references: [id])
-    saleId    String?
+    quantity  Int
+    codeBar   String
+    weight    Int
+    image     String
+
+    sale   Sale?   @relation(fields: [saleId], references: [id])
+    saleId String?
+
+    product   Product? @relation(fields: [productId], references: [id])
+    productId String
 }
 
 model Sale {
@@ -47,14 +57,9 @@ model Sale {
     createdAt      DateTime        @default(now())
     updatedAt      DateTime        @updatedAt
     paymentMethod  String
-    amount         Int
+    amount         Int?
     userId         String
-    shopId         String
+    shop           String
     state          String
     productsOnSale ProductOnSale[]
 }
-
-//REPORTES - reportes de Stock
-//que producto tengo poco?
-// A poco lo debe definir el usuario
-// Te devuelvo todos los productos que tengan menos que la cantidad ingresada por el usuario

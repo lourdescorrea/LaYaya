@@ -20,6 +20,7 @@ declare module "next-auth" {
     user: DefaultSession["user"] & {
       role: string;
       shops: string[];
+      userId: string;
     };
   }
 
@@ -44,6 +45,7 @@ export const authOptions: NextAuthOptions = {
           email: user?.email,
           role: user?.role,
           shops: user?.shops,
+          userId: user?.id,
         };
       }
 

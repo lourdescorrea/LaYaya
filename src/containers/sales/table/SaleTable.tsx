@@ -1,7 +1,7 @@
 import { Table } from "yaya/core";
 import { useSaleTable } from "./useSaleTable";
 export const SaleTable = () => {
-  const { columns, data, isLoading, createFn } = useSaleTable();
+  const { columns, data, isLoading, createFn,viewFn } = useSaleTable();
 
   return (
     <Table
@@ -9,7 +9,8 @@ export const SaleTable = () => {
       data={data}
       loading={isLoading}
       actions={{
-        createFn,
+        viewFn,
+        createFn,  
       }}
     />
   );

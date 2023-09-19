@@ -1,3 +1,4 @@
+import { Sale } from "@prisma/client";
 import { useRouter } from "next/router";
 import { api, paths, useActionToast } from "yaya/core";
 import { en } from "yaya/shared";
@@ -18,12 +19,13 @@ export const useSaleTable = () => {
   });
 
   //   const deleteFn = (data: Sales) => onDelete({ id: data.id });
-  //   const viewFn = (data: Sale) => push(paths.sales.view(data.id));
+  const viewFn = (data: Sale) => push(paths.sales.view(data.id));
   const createFn = () => push(paths.sales.create);
 
   return {
     columns,
     data,
+    viewFn,
     createFn,
     isLoading,
   };

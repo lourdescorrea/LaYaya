@@ -1,5 +1,5 @@
 import { useFieldArray } from "react-hook-form";
-import { Button, RHFTextField, Typography, api } from "yaya/core";
+import { Button, RHFTextField, api } from "yaya/core";
 import {
   Select,
   SelectContent,
@@ -19,11 +19,24 @@ export const ProductFieldsArray = () => {
   }));
 
   const { fields, append, remove } = useFieldArray({
-    name: "products",
+    name: "productsOnSale",
   });
 
   const handleProductChange = (productId: string) =>
     append({ productId, quantity: 1 });
+
+  const getTotal = () => {
+    let total = 0;
+
+    fields.forEach((field: any) => {
+      const product = data.find((p) => p.id === field.productId);
+      if (product) {
+        total += product.price * field.quantity;
+      }
+    });
+
+    return total;
+  };
 
   return (
     <div className="flex flex-col  w-full ">
@@ -42,13 +55,8 @@ export const ProductFieldsArray = () => {
           </SelectContent>
         </Select>
       </div>
-      {fields.map((field, index) => {
+      {fields.map((field: any, index) => {
         const product = data.find((p) => p.id === field.productId);
-        // Obtén el precio directamente de la variable product
-        const productPrice = product ? product.price : 0;
-
-        // Calcula el precio total para el producto actual
-        const totalProductPrice = field.quantity * productPrice;
 
         return (
           <div className="flex items-center justify-center p-8" key={field.id}>
@@ -57,7 +65,7 @@ export const ProductFieldsArray = () => {
               <p>${product?.price}</p>
 
               <RHFTextField
-                name={`products[${index}].quantity`}
+                name={`productsOnSale[${index}].quantity`}
                 placeholder="Cantidad"
                 type="number"
                 defaultValue={field.quantity}
@@ -69,12 +77,14 @@ export const ProductFieldsArray = () => {
               >
                 Eliminar Producto
               </Button>
-
-              <Typography variant="p">Total${totalProductPrice}</Typography>
             </div>
           </div>
         );
       })}
+
+      <div className="p-4">
+        <p>Total de la venta: ${getTotal()}</p>
+      </div>
     </div>
   );
 };

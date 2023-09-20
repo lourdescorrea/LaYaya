@@ -1,5 +1,5 @@
-import * as yup from "yup";
 import { METHODS, SHOPS } from "../constants";
+import * as yup from "yup";
 
 export const saleCreateSchema = yup.object().shape({
   paymentMethod: yup
@@ -19,11 +19,10 @@ export const saleCreateSchema = yup.object().shape({
     .array()
     .of(
       yup.object().shape({
-        id: yup.string().required(),
+        productId: yup.string().required(),
         quantity: yup.number().required(),
       })
     )
     .min(1)
     .required(),
-  amount: yup.number().notRequired(),
 });

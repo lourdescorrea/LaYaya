@@ -1,6 +1,5 @@
-import { TRPCError } from "@trpc/server";
 import { allRolesProcedure } from "../../configs";
-
+import { TRPCError } from "@trpc/server";
 import {
   SHOPS_STOCK,
   ShopStockKey,
@@ -23,6 +22,9 @@ export const getByIdSale = allRolesProcedure
     const { id } = input;
     return ctx.prisma.sale.findUnique({
       where: { id },
+      include: {
+        productsOnSale: true,
+      },
     });
   });
 
@@ -38,7 +40,7 @@ export const createSale = allRolesProcedure
         );
       }
 
-      const productIds = input.productsOnSale.map((product) => product.id);
+      const productIds = input.productsOnSale.map((p) => p.productId);
 
       const productsDB = await ctx.prisma.product.findMany({
         where: {
@@ -54,7 +56,7 @@ export const createSale = allRolesProcedure
 
       for (const productInput of input.productsOnSale) {
         const productWithStock = productsDB.find(
-          (p) => p.id === productInput.id
+          (p) => p.id === productInput.productId
         );
 
         if (
@@ -62,14 +64,14 @@ export const createSale = allRolesProcedure
           productWithStock[shopKey] < productInput.quantity
         ) {
           throw new Error(
-            `No hay suficiente stock disponible para el producto con ID ${productInput.id}`
+            `No hay suficiente stock disponible para el producto con ID ${productInput.productId}`
           );
         }
       }
 
       const productsOnSale = productsDB.map((p) => {
         const productInput = input.productsOnSale.find(
-          (pos) => p.id === pos.id
+          (pos) => p.id === pos.productId
         );
 
         const productAmount = productInput!.quantity * p.price;

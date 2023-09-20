@@ -2,18 +2,27 @@ import { SaleFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { LoadingButton, RhfForm, api, paths, useSubmitTrpc } from "yaya/core";
+import {
+  Card,
+  LoadingButton,
+  RhfForm,
+  api,
+  paths,
+  useSubmitTrpc,
+} from "yaya/core";
 import { en, saleCreateSchema } from "yaya/shared";
 import { SaleCreate } from "yaya/shared/types/sales";
 
-export const SaleCreatePage = (props: any) => {
+export const SaleForm = () => {
   const { push } = useRouter();
 
   // const { data } = useSession();
 
   const methods = useForm<SaleCreate>({
     defaultValues: {
-      ...props.data,
+      shop: "",
+      paymentMethod: "",
+      productsOnSale: [],
     },
     resolver: yupResolver(saleCreateSchema),
   });
@@ -28,7 +37,10 @@ export const SaleCreatePage = (props: any) => {
   });
 
   return (
-    <>
+    <Card
+      className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
+      title="Creación de ventas "
+    >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
           <SaleFields />
@@ -41,6 +53,6 @@ export const SaleCreatePage = (props: any) => {
           </LoadingButton>
         </div>
       </RhfForm>
-    </>
+    </Card>
   );
 };

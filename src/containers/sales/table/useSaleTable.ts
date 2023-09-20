@@ -1,7 +1,6 @@
 import { Sale } from "@prisma/client";
 import { useRouter } from "next/router";
-import { api, paths, useActionToast } from "yaya/core";
-import { en } from "yaya/shared";
+import { api, paths } from "yaya/core";
 
 export const useSaleTable = () => {
   const { push } = useRouter();
@@ -9,22 +8,25 @@ export const useSaleTable = () => {
     initialData: [],
   });
 
-  const columns = [{ accessorKey: "name" }];
+  const columns = [
+    { accessorKey: "createdAt" },
+    { accessorKey: "shop" },
+    { accessorKey: "amount" },
+    { accessorKey: "paymentMethod" },
+    { accessorKey: "state" },
+  ];
 
-  const onDelete = useActionToast({
-    trpc: api.products.delete,
-    errorMsg: `${en.admin.product.delete.messages.error}`,
-    successMsg: `${en.admin.product.delete.messages.success}`,
-    alertMsg: `${en.admin.product.delete.title}`,
-  });
-
-  //   const deleteFn = (data: Sales) => onDelete({ id: data.id });
   const viewFn = (data: Sale) => push(paths.sales.view(data.id));
   const createFn = () => push(paths.sales.create);
 
+  const modifiedData = data.map((sale) => ({
+    ...sale,
+    createdAt: new Date(sale.createdAt).toLocaleDateString(),
+  }));
+
   return {
     columns,
-    data,
+    data: modifiedData,
     viewFn,
     createFn,
     isLoading,

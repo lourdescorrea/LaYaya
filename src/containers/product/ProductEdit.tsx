@@ -1,6 +1,6 @@
+import { ProductForm } from "./ProductForm";
 import { useRouter } from "next/router";
 import { Card, api } from "yaya/core";
-import { ProductForm } from "./ProductForm";
 
 export const ProductEditPage = () => {
   const { query } = useRouter();
@@ -21,4 +21,3 @@ export const ProductEditPage = () => {
     </Card>
   );
 };
-

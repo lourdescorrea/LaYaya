@@ -116,19 +116,37 @@ export const en = {
           error: "Error al crear la venta ",
         },
       },
-      edit: {
-        title: "Editar venta ",
-        sub_title: "Introduzca la venta a editar!",
+      view: {
+        title: "Detalle de la venta ",
+        sub_title: "Ventas!",
         messages: {
           success: "Venta editada con éxito",
           error: "Error al editar la venta ",
         },
       },
       delete: {
-        title: "¿Seguro que quieres borrar esta venta?",
+        title: "Eliminar venta",
         messages: {
           success: "Venta eliminada con éxito",
           error: "Error al eliminar la venta",
+        },
+      },
+      fields: {
+        totals: {
+          title: "Total de la venta:$",
+        },
+        quantity: {
+          title: "Cantidad:",
+        },
+        methods: {
+          title: "Método de pago:",
+        },
+        products: {
+          title: "Productos:",
+        },
+        password: {
+          label: "Contraseña",
+          placeholder: "Introducir contraseña",
         },
       },
     },

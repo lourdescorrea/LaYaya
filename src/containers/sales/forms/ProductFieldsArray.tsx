@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "yaya/core/components/form/components/fields/Select";
+import { en } from "yaya/shared";
 
 export const ProductFieldsArray = () => {
   const { data } = api.products.getAll.useQuery(undefined, {
@@ -65,7 +66,7 @@ export const ProductFieldsArray = () => {
               <p>${product?.price}</p>
 
               <RHFTextField
-                name={`productsOnSale[${index}].quantity`}
+                name={`products[${index}].quantity`}
                 placeholder="Cantidad"
                 type="number"
                 defaultValue={field.quantity}
@@ -83,7 +84,10 @@ export const ProductFieldsArray = () => {
       })}
 
       <div className="p-4">
-        <p>Total de la venta: ${getTotal()}</p>
+        <p>
+          {en.admin.sale.fields.totals.title}
+          {getTotal()}
+        </p>
       </div>
     </div>
   );

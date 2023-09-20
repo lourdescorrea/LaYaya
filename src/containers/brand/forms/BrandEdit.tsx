@@ -49,6 +49,7 @@ export const BrandEditForm = ({ open, onToggle, data }: BrandEditFormProps) => {
             description=""
             label=""
             placeholder="escribe una Marca"
+            defaultValue={""}
           />
           <SheetFooter>
             <LoadingButton loading={isLoading} type="submit">

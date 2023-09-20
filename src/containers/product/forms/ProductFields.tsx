@@ -23,6 +23,7 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockDuarte"
+              defaultValue={""}
             />
           </div>
           <div className="w-24">
@@ -31,6 +32,7 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockColon"
+              defaultValue={""}
             />
           </div>
           <div className="w-24">
@@ -39,6 +41,7 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockDeposito"
+              defaultValue={""}
             />
           </div>
         </div>

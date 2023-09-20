@@ -3,6 +3,6 @@ import * as sales from "./sales.handler";
 export const saleRouter = createTRPCRouter({
   create: sales.createSale,
   getAll: sales.getAllSale,
-  delete: sales.deleteSale,
+  cancel: sales.cancelSale,
   getById: sales.getByIdSale,
 });

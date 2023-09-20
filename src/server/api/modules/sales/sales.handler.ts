@@ -131,14 +131,65 @@ export const createSale = allRolesProcedure
     }
   });
 
-export const deleteSale = allRolesProcedure
+export const cancelSale = allRolesProcedure
   .input(idSchema)
-  .mutation(async ({ input, ctx }) => {
-    const { id } = input;
+  .mutation(async ({ ctx, input }) => {
     try {
-      return await ctx.prisma.sale.delete({
-        where: { id },
+      const currentUser = ctx.session.user;
+
+      const saleToCancel = await ctx.prisma.sale.findUnique({
+        where: {
+          id: input.id,
+        },
+        include: {
+          productsOnSale: true,
+        },
       });
+
+      if (!saleToCancel) {
+        throw new Error("No se encontró la venta especificada.");
+      }
+
+      if (!currentUser.shops.includes(saleToCancel.shop)) {
+        throw new Error(
+          "El usuario no tiene permiso para cancelar esta venta."
+        );
+      }
+
+      if (saleToCancel.state !== "ACTIVE") {
+        throw new Error("La venta no se puede cancelar en su estado actual.");
+      }
+
+      const shopKey = SHOPS_STOCK[saleToCancel.shop] as ShopStockKey;
+
+      const result = await ctx.prisma.$transaction(async (prisma) => {
+        for (const productOnSale of saleToCancel.productsOnSale) {
+          await prisma.product.update({
+            where: {
+              id: productOnSale.productId,
+            },
+            data: {
+              [shopKey]: {
+                increment: productOnSale.quantity, // Aumentar el stock al cancelar la venta
+              },
+            },
+          });
+        }
+
+        // Actualizar el estado de la venta a "CANCELLED"
+        const cancelledSale = await prisma.sale.update({
+          where: {
+            id: input.id,
+          },
+          data: {
+            state: "CANCELLED",
+          },
+        });
+
+        return cancelledSale;
+      });
+
+      return result;
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",

@@ -7,13 +7,17 @@ import {
   saleCreateSchema,
 } from "yaya/shared";
 
-// 5 pasarle el estado, local, usuario, etc.
-
 //TODO: Cancelar venta
 // 1 llamo al productonsale, para cada productonsale le hago una suma del producto que se habia vendido
 
 export const getAllSale = allRolesProcedure.query(({ ctx }) => {
-  return ctx.prisma.sale.findMany();
+  return ctx.prisma.sale.findMany({
+    where: {
+      shop: {
+        in: ctx.session.user.shops,
+      },
+    },
+  });
 });
 
 export const getByIdSale = allRolesProcedure

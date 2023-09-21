@@ -25,6 +25,9 @@ export const paths = {
     create: "/admin/sales/create",
     view: (id: string) => `/admin/sales/view/${id}`,
   },
+  report: {
+    root: "/admin/reports",
+  },
 };
 
 export const authPaths = {
@@ -48,6 +51,12 @@ export const routes: Route[] = [
   {
     name: "Ventas",
     path: paths.sales.root,
+    icon: <RxOverline className="h-6 w-6" />,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
+  },
+  {
+    name: "Reportes",
+    path: paths.report.root,
     icon: <RxOverline className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.ALL_ROLES,
   },

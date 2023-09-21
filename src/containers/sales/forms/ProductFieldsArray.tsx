@@ -69,7 +69,7 @@ export const ProductFieldsArray = () => {
                 name={`products[${index}].quantity`}
                 placeholder="Cantidad"
                 type="number"
-                defaultValue={field.quantity}
+                // defaultValue={field.quantity}
               />
               <Button
                 className="w-52"

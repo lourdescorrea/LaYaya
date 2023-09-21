@@ -23,7 +23,6 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockDuarte"
-              defaultValue={""}
             />
           </div>
           <div className="w-24">
@@ -32,7 +31,6 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockColon"
-              defaultValue={""}
             />
           </div>
           <div className="w-24">
@@ -41,7 +39,6 @@ export const ProductFields = () => {
               placeholder="Stock"
               type="number"
               name="stockDeposito"
-              defaultValue={""}
             />
           </div>
         </div>
@@ -54,7 +51,6 @@ export const ProductFields = () => {
             placeholder="Precio $$"
             type="number"
             name="price"
-            defaultValue=""
           />
 
           <RHFTextField
@@ -62,7 +58,6 @@ export const ProductFields = () => {
             placeholder="Kilos"
             type="number"
             name="weight"
-            defaultValue=""
           />
         </div>
         <RHFTextField
@@ -70,7 +65,6 @@ export const ProductFields = () => {
           placeholder="Producto"
           type="string"
           name="name"
-          defaultValue=""
         />
         <RHFSelectField
           name="brandId"
@@ -84,7 +78,6 @@ export const ProductFields = () => {
           placeholder="Código"
           type="number"
           name="codeBar"
-          defaultValue=""
         />
       </div>
     </div>

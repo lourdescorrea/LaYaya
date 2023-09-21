@@ -18,13 +18,11 @@ export const UseFields = () => {
             <RHFTextField
               name={`products[${index}].id`}
               placeholder="ID del producto"
-              defaultValue={""}
             />
             <RHFTextField
               name={`products[${index}].cantidad`}
               placeholder="Cantidad"
               type="number"
-              defaultValue={""}
             />
           </div>
           <div className="space-x-4">

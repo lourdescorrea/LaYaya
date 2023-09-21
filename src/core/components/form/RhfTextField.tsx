@@ -16,19 +16,10 @@ interface RHFTextFieldProps {
   placeholder?: string;
   disabled?: boolean;
   description?: string;
-  defaultValue: string;
 }
 
 export const RHFTextField = (props: RHFTextFieldProps) => {
-  const {
-    label,
-    type,
-    placeholder,
-    description,
-    disabled,
-    name,
-    defaultValue,
-  } = props;
+  const { label, type, placeholder, description, disabled, name } = props;
   return (
     <FormField
       name={name}

@@ -54,7 +54,6 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
             description="Esto es una description"
             label="Label"
             placeholder="Placeholder"
-            defaultValue={""}
           />
           <SheetFooter>
             <LoadingButton loading={createLoading} type="submit">

@@ -1,6 +1,6 @@
+import { useLoginForm } from "./useLogin";
 import { LoadingButton, RHFTextField, RhfForm, Typography } from "yaya/core";
 import { en } from "yaya/shared";
-import { useLoginForm } from "./useLogin";
 
 export const AuthPage = () => {
   const { isLoading, methods, onSubmit } = useLoginForm();

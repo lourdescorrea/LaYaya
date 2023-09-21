@@ -1,9 +1,8 @@
+import { allRolesProcedure, superAdminProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
-import { superAdminProcedure } from "../../configs";
-
 import { brandCreateSchema, brandUpdateSchema, idSchema } from "yaya/shared";
 
-export const getAllBrand = superAdminProcedure.query(({ ctx }) => {
+export const getAllBrand = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.brand.findMany();
 });
 

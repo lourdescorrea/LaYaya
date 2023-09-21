@@ -1,14 +1,14 @@
-import { CellContext, ColumnDef } from "@tanstack/react-table";
-
-import { en } from "yaya/shared";
 import { TableActions } from "../components";
 import { TableCell } from "../components/Cell";
+import { CellContext, ColumnDef } from "@tanstack/react-table";
+import { en } from "yaya/shared";
 
 export interface TableActions<T> {
   createFn?: () => void;
   editFn?: (row: T) => void;
   viewFn?: (row: T) => void;
   deleteFn?: (row: T) => void;
+  cancelFn?: (row: T) => void;
   customs?: [{ icon: any; onClick: (row: T) => void }];
 }
 
@@ -30,12 +30,13 @@ export const useColumns = <T,>(props: Args<T>) => {
     ),
   }));
 
-  const { deleteFn, editFn, viewFn, customs } = actions;
+  const { deleteFn, editFn, viewFn, cancelFn, customs } = actions;
 
-  const hasActions = deleteFn || editFn || viewFn || customs;
+  const hasActions = deleteFn || editFn || viewFn || cancelFn || customs;
 
   if (hasActions) {
     const removeAction = deleteFn ? { onClick: deleteFn } : undefined;
+    const cancelAction = cancelFn ? { onClick: cancelFn } : undefined;
     const viewAction = viewFn ? { onClick: viewFn } : undefined;
     const editAction = editFn ? { onClick: editFn } : undefined;
 
@@ -46,6 +47,7 @@ export const useColumns = <T,>(props: Args<T>) => {
           row={props.row.original}
           edit={editAction}
           remove={removeAction}
+          cancel={cancelAction}
           view={viewAction}
           customs={customs}
         />

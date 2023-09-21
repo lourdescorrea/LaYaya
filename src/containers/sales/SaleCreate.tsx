@@ -9,8 +9,6 @@ import { SaleCreate } from "yaya/shared/types/sales";
 export const SaleCreatePage = (props: any) => {
   const { push } = useRouter();
 
-  // const { data } = useSession();
-
   const methods = useForm<SaleCreate>({
     defaultValues: {
       ...props.data,

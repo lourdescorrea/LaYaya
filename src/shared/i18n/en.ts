@@ -124,11 +124,11 @@ export const en = {
           error: "Error al editar la venta ",
         },
       },
-      delete: {
-        title: "Eliminar venta",
+      cancel: {
+        title: "¿Seguro que quieres cancelar esta venta?",
         messages: {
-          success: "Venta eliminada con éxito",
-          error: "Error al eliminar la venta",
+          success: "Venta cancelada con éxito",
+          error: "Error al cancelar la venta",
         },
       },
       fields: {
@@ -140,6 +140,9 @@ export const en = {
         },
         methods: {
           title: "Método de pago:",
+        },
+        state: {
+          title: "Estado de la venta:",
         },
         products: {
           title: "Productos:",

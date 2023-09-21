@@ -1,6 +1,6 @@
-import { BiShow } from 'react-icons/bi';
-import { MdDeleteOutline, MdEdit } from 'react-icons/md';
-import { Button } from '../../button';
+import { Button } from "../../button";
+import { BiShow } from "react-icons/bi";
+import { MdDeleteOutline, MdEdit, MdOutlineCancel } from "react-icons/md";
 
 interface RowActionsProps<T> {
   row: T & { id: string };
@@ -9,6 +9,10 @@ interface RowActionsProps<T> {
     disabled?: boolean;
   };
   remove?: {
+    onClick: (row: T) => void;
+    disabled?: boolean;
+  };
+  cancel?: {
     onClick: (row: T) => void;
     disabled?: boolean;
   };
@@ -23,51 +27,66 @@ interface RowActionsProps<T> {
 }
 
 export const TableActions = <T,>(props: RowActionsProps<T>) => {
-  const { row, edit, remove, view, customs } = props;
+  const { row, edit, remove, view, cancel, customs } = props;
 
   // TODO: LOADING STATE?
 
-  const iconClass = 'h-fit w-fit p-2';
+  const iconClass = "h-fit w-fit p-2";
 
   return (
-    <div className='w-full flex items-center space-x-4'>
+    <div className="w-full flex items-center space-x-4">
       {view && (
         <Button
-          size='icon'
-          variant='ghost'
+          size="icon"
+          variant="ghost"
           className={iconClass}
           disabled={view.disabled}
-          onClick={() => view.onClick(row)}>
-          <BiShow className='h-4 w-4' />
+          onClick={() => view.onClick(row)}
+        >
+          <BiShow className="h-4 w-4" />
         </Button>
       )}
       {edit && (
         <Button
-          size='icon'
-          variant='ghost'
+          size="icon"
+          variant="ghost"
           className={iconClass}
           disabled={edit.disabled}
-          onClick={() => edit.onClick(row)}>
-          <MdEdit className='h-4 w-4' />
+          onClick={() => edit.onClick(row)}
+        >
+          <MdEdit className="h-4 w-4" />
         </Button>
       )}
       {remove && (
         <Button
-          size='icon'
-          variant='ghost'
+          size="icon"
+          variant="ghost"
           className={iconClass}
           disabled={remove.disabled}
-          onClick={() => remove.onClick(row)}>
-          <MdDeleteOutline className='h-4 w-4' />
+          onClick={() => remove.onClick(row)}
+        >
+          <MdDeleteOutline className="h-4 w-4" />
+        </Button>
+      )}
+      {cancel && (
+        <Button
+          size="icon"
+          variant="ghost"
+          className={iconClass}
+          disabled={cancel.disabled}
+          onClick={() => cancel.onClick(row)}
+        >
+          <MdOutlineCancel className="h-4 w-4" />
         </Button>
       )}
       {customs?.map((custom, index) => (
         <Button
           key={index}
-          size='icon'
-          variant='ghost'
+          size="icon"
+          variant="ghost"
           className={iconClass}
-          onClick={() => custom.onClick(row)}>
+          onClick={() => custom.onClick(row)}
+        >
           {custom.icon}
         </Button>
       ))}

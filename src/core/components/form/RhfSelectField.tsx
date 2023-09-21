@@ -1,11 +1,4 @@
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./components/fields/Select";
-import {
   FormControl,
   FormDescription,
   FormField,
@@ -13,18 +6,34 @@ import {
   FormLabel,
   FormMessage,
 } from "./components/Form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/fields/Select";
 
 interface RHFSelectFieldProps {
   name: string;
   label?: string;
-  placeholder?: string;
+  defaultValue?: string | [];
+  placeholder?: string | string[];
   disabled?: boolean;
   description?: string;
   options: { value: any; label: string }[];
 }
 
 export const RHFSelectField = (props: RHFSelectFieldProps) => {
-  const { label, options, placeholder, description, disabled, name } = props;
+  const {
+    label,
+    options,
+    placeholder,
+    description,
+    disabled,
+    name,
+    defaultValue,
+  } = props;
 
   return (
     <FormField
@@ -34,7 +43,7 @@ export const RHFSelectField = (props: RHFSelectFieldProps) => {
           <FormLabel>{label}</FormLabel>
           <Select
             onValueChange={field.onChange}
-            defaultValue={field.value}
+            defaultValue={defaultValue}
             disabled={disabled || isSubmitting}
           >
             <FormControl>

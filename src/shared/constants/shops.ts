@@ -6,15 +6,15 @@ export const SHOPS = {
 
 export const SHOPS_OPTIONS = [
   {
-    label: "Local Duarte",
+    label: "DUARTE",
     value: SHOPS.DUARTE,
   },
   {
-    label: "Local Colon",
+    label: "COLON",
     value: SHOPS.COLON,
   },
   {
-    label: "Deposito",
+    label: "DEPOSIT",
     value: SHOPS.DEPOSIT,
   },
 ];

@@ -21,31 +21,37 @@ export const SaleViewPage = () => {
         <Typography variant="p">Local: {data?.shop}</Typography>
 
         <div className="flex  ">
-          Estado de la venta:
+          {en.admin.sale.fields.state.title}
           <Typography
             variant="p"
-            className="ml-2 flex justify-center align-center rounded-full text-green-800 "
+            className={` font-medium ml-2 flex justify-center align-center rounded-full ${
+              data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
+            }`}
           >
             {data?.state}
           </Typography>
         </div>
       </div>
       <Typography variant="p">
-        {" "}
         {en.admin.sale.fields.methods.title}
         {data?.paymentMethod}
       </Typography>
+
       <Typography variant="p">{en.admin.sale.fields.products.title}</Typography>
+
       {data?.productsOnSale &&
         data.productsOnSale.map((product) => (
           <div key={product.id} className="flex justify-between">
             <Typography variant="p" className="mt-6">
               {product.name}
             </Typography>
+
             <Typography variant="p">${product.price}</Typography>
+
             <Typography variant="p">
               {en.admin.sale.fields.quantity.title} {product.quantity}
             </Typography>
+
             <img className="w-10 h-10 mt-4" src={product.image} />
           </div>
         ))}

@@ -113,7 +113,7 @@ export const createSale = allRolesProcedure
             amount: totalAmount,
             paymentMethod: input.paymentMethod,
             shop: input.shop,
-            state: "ACTIVE",
+            state: "Activa",
             productsOnSale: {
               create: productsOnSale,
             },
@@ -182,7 +182,7 @@ export const cancelSale = allRolesProcedure
             id: input.id,
           },
           data: {
-            state: "CANCELLED",
+            state: "Cancelada",
           },
         });
 

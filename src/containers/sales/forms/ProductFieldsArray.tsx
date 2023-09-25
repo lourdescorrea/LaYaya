@@ -1,6 +1,6 @@
 import { useFieldArray } from "react-hook-form";
 import { Button, RHFTextField, api } from "yaya/core";
-import { Select } from "yaya/core/components/form/components/fields/Select";
+import { ComboboxDemo } from "yaya/core/components/comboBox";
 import { en } from "yaya/shared";
 
 export const ProductFieldsArray = () => {
@@ -35,13 +35,7 @@ export const ProductFieldsArray = () => {
 
   return (
     <div>
-      <Select
-        value={ProductOptions}
-        onChange={() => {
-          setSelectedProduct(selectedOption);
-        }}
-        isClearable={true}
-      />
+      <ComboboxDemo />
 
       {fields.map((field: any, index) => {
         const product = data.find((p) => p.id === field.productId);

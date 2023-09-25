@@ -1,29 +1,15 @@
-import { idSchema } from "yaya/shared";
 import { allRolesProcedure } from "../../configs";
 
-export const getReports = allRolesProcedure
-  .input(idSchema)
-  .query(async ({ ctx, input }) => {
-    const { id } = input;
+export const getReports = allRolesProcedure.query(async ({ ctx }) => {
+  const products = await ctx.prisma.product.findMany();
 
-    const product = await ctx.prisma.product.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!product) {
-      return null;
-    }
-
-    const stock = {
-      stockDuarte: product.stockDuarte,
-      stockColon: product.stockColon,
-      stockDeposito: product.stockDeposito,
-    };
-
-    return {
-      product,
-      stock,
-    };
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.stockDuarte < 10 &&
+      product.stockColon < 10 &&
+      product.stockDeposito < 10
+    );
   });
+
+  return filteredProducts;
+});

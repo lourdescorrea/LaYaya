@@ -7,7 +7,6 @@ export * from "./fields/DebouncedInputField";
 export * from "./footer";
 export * from "./form";
 export * from "./navbar";
-export * from "./progressDemo";
 export * from "./sheet";
 export * from "./sidebar";
 export * from "./skeleton";

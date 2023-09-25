@@ -1,6 +1,12 @@
 import { useFieldArray } from "react-hook-form";
 import { Button, RHFTextField, api } from "yaya/core";
-import { Select } from "yaya/core/components/form/components/fields/Select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "yaya/core/components/form/components/fields/Select";
 import { en } from "yaya/shared";
 
 export const ProductFieldsArray = () => {
@@ -34,15 +40,22 @@ export const ProductFieldsArray = () => {
   };
 
   return (
-    <div>
-      <Select
-        value={ProductOptions}
-        onChange={() => {
-          setSelectedProduct(selectedOption);
-        }}
-        isClearable={true}
-      />
+    <div className="flex flex-col  w-full ">
+      <div className="flex items-center justify-center space-x-2">
+        <Select onValueChange={handleProductChange} defaultValue={"Productos"}>
+          <SelectTrigger>
+            <SelectValue placeholder={"place holder"} />
+          </SelectTrigger>
 
+          <SelectContent>
+            {ProductOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
       {fields.map((field: any, index) => {
         const product = data.find((p) => p.id === field.productId);
 

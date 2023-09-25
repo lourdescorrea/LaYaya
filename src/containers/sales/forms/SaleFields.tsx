@@ -11,7 +11,7 @@ export const SaleFields = () => {
         name="shop"
         label="Local"
         placeholder={data?.user.shops}
-        defaultValue={data?.user.shops}
+        // defaultValue={data?.user.shops}
         disabled={!PERMISSIONS.ADMINS.includes(data?.user.role || "")}
         options={SHOPS_OPTIONS}
       />

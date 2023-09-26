@@ -23,7 +23,7 @@ export const paths = {
   sales: {
     root: "/admin/sales",
     create: "/admin/sales/create",
-    view: (id: string) => `/admin/sales/view/${id}`,
+    // view: (id: string) => `/admin/sales/view/${id}`,
   },
   report: {
     root: "/admin/reports",

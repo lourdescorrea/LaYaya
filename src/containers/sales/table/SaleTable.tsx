@@ -1,9 +1,14 @@
 import { useSaleTable } from "./useSaleTable";
 import { Table } from "yaya/core";
+import { Sale } from "yaya/shared/types/sales";
 
-export const SaleTable = () => {
-  const { columns, data, isLoading, createFn, viewFn, cancelFn } =
-    useSaleTable();
+interface SaleTableProps {
+  openView: (data: Sale) => void;
+}
+
+export const SaleTable = (props: SaleTableProps) => {
+  const { openView } = props;
+  const { columns, data, isLoading, createFn, cancelFn } = useSaleTable();
 
   return (
     <Table
@@ -11,7 +16,7 @@ export const SaleTable = () => {
       data={data}
       loading={isLoading}
       actions={{
-        viewFn,
+        viewFn: openView,
         cancelFn,
         createFn,
       }}

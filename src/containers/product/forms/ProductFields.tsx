@@ -1,4 +1,5 @@
 import { RHFSelectField, RHFTextField, RHFileUpload, api } from "yaya/core";
+import { en } from "yaya/shared";
 
 export const ProductFields = () => {
   const { data } = api.brands.getAll.useQuery(undefined, {
@@ -19,24 +20,24 @@ export const ProductFields = () => {
         <div className="flex space-x-4">
           <div className="w-24">
             <RHFTextField
-              label="Stock Duarte"
-              placeholder="Stock"
+              label={en.admin.product.fields.stockDuarte.label}
+              placeholder={en.admin.product.fields.stockDuarte.placeholder}
               type="number"
               name="stockDuarte"
             />
           </div>
           <div className="w-24">
             <RHFTextField
-              label="Stock Colón"
-              placeholder="Stock"
+              label={en.admin.product.fields.stockColon.label}
+              placeholder={en.admin.product.fields.stockColon.placeholder}
               type="number"
               name="stockColon"
             />
           </div>
           <div className="w-24">
             <RHFTextField
-              label="Stock Deposito"
-              placeholder="Stock"
+              label={en.admin.product.fields.stockDeposito.label}
+              placeholder={en.admin.product.fields.stockDeposito.placeholder}
               type="number"
               name="stockDeposito"
             />
@@ -47,41 +48,37 @@ export const ProductFields = () => {
       <div className="ml-[40px] flex w-96 flex-col ">
         <div className="flex space-x-10">
           <RHFTextField
-            label="Precio del producto"
-            placeholder="Precio $$"
+            label={en.admin.product.fields.price.label}
+            placeholder={en.admin.product.fields.price.placeholder}
             type="number"
             name="price"
-            defaultValue=""
           />
 
           <RHFTextField
-            label="Kilos del producto"
-            placeholder="Kilos"
+            label={en.admin.product.fields.weight.label}
+            placeholder={en.admin.product.fields.weight.placeholder}
             type="number"
             name="weight"
-            defaultValue=""
           />
         </div>
         <RHFTextField
-          label="Nombre del producto"
-          placeholder="Producto"
+          label={en.admin.product.fields.name.label}
+          placeholder={en.admin.product.fields.name.placeholder}
           type="string"
           name="name"
-          defaultValue=""
         />
         <RHFSelectField
           name="brandId"
-          label="Marca del producto"
+          label={en.admin.product.fields.brand.placeholder}
           placeholder="Marca"
           options={brandOptions}
         />
 
         <RHFTextField
-          label="Código de barra"
-          placeholder="Código"
+          label={en.admin.product.fields.codeBar.label}
+          placeholder={en.admin.product.fields.codeBar.placeholder}
           type="number"
           name="codeBar"
-          defaultValue=""
         />
       </div>
     </div>

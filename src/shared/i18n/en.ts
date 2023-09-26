@@ -39,6 +39,9 @@ export const en = {
           label: "Contraseña",
           placeholder: "Introducir contraseña",
         },
+        button: {
+          title: "Volver al inicio",
+        },
       },
     },
   },
@@ -55,6 +58,8 @@ export const en = {
   navigation: {
     brands: "Marcas",
     products: "Productos",
+    sales: "Ventas",
+    reports: "Reportes",
   },
   admin: {
     brand: {
@@ -83,6 +88,7 @@ export const en = {
       },
     },
     product: {
+      cta: "Creación de productos ",
       create: {
         title: "Crear un producto",
         sub_title: "Introduzca su producto",
@@ -106,8 +112,42 @@ export const en = {
           error: "Error al eliminar producto",
         },
       },
+      fields: {
+        stockDuarte: {
+          label: "Stock Duarte",
+          placeholder: "Stock",
+        },
+        stockColon: {
+          label: "Stock Colon",
+          placeholder: "Stock",
+        },
+        stockDeposito: {
+          label: "Stock Deposito",
+          placeholder: "Stock",
+        },
+        price: {
+          label: "Precio del producto",
+          placeholder: "Precio $$",
+        },
+        weight: {
+          label: "Kilos del producto",
+          placeholder: "Kilos",
+        },
+        name: {
+          label: "Nombre del producto",
+          placeholder: "Nombre",
+        },
+        brand: {
+          placeholder: "Marca",
+        },
+        codeBar: {
+          label: "Código de barra",
+          placeholder: "Codigo de barra",
+        },
+      },
     },
     sale: {
+      cta: "Creación de ventas ",
       create: {
         title: "Crear una venta",
         sub_title: "Introduzca una venta",
@@ -146,6 +186,12 @@ export const en = {
         },
         products: {
           title: "Productos:",
+        },
+        shop: {
+          title: "Local:",
+        },
+        paymentMethod: {
+          title: "Elige un metodo de pago",
         },
         password: {
           label: "Contraseña",

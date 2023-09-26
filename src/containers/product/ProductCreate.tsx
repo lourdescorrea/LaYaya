@@ -43,7 +43,7 @@ export const ProductCreatePage = () => {
   return (
     <Card
       className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
-      title="Creación de productos "
+      title={en.admin.product.cta}
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">

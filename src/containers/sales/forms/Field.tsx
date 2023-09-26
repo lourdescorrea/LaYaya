@@ -40,7 +40,7 @@ export const ProductFieldsArray = () => {
   };
 
   return (
-    <div className="flex flex-col  w-full ">
+    <div className="flex w-full  flex-col ">
       <div className="flex items-center justify-center space-x-2">
         <Select onValueChange={handleProductChange} defaultValue={"Productos"}>
           <SelectTrigger>
@@ -67,16 +67,15 @@ export const ProductFieldsArray = () => {
 
               <RHFTextField
                 name={`products[${index}].quantity`}
-                placeholder="Cantidad"
+                placeholder={en.admin.sale.fields.quantity.title}
                 type="number"
-                // defaultValue={field.quantity}
               />
               <Button
                 className="w-52"
                 type="button"
                 onClick={() => remove(index)}
               >
-                Eliminar Producto
+                {en.admin.product.delete.messages.success}
               </Button>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { SaleFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { LoadingButton, RhfForm, api, paths, useSubmitTrpc } from "yaya/core";
@@ -8,10 +9,12 @@ import { SaleCreate } from "yaya/shared/types/sales";
 
 export const SaleCreatePage = (props: any) => {
   const { push } = useRouter();
+  const { data } = useSession();
 
   const methods = useForm<SaleCreate>({
     defaultValues: {
       ...props.data,
+      shop: data?.user.shops[0],
     },
     resolver: yupResolver(saleCreateSchema),
   });

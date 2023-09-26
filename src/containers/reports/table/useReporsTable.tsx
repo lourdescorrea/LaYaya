@@ -3,10 +3,11 @@ import { api } from "yaya/core";
 
 export const useReportTable = () => {
   const { push } = useRouter();
-  const { isLoading, data } = api.products.getAll.useQuery(undefined, {
+  const { isLoading, data } = api.reports.getAll.useQuery(undefined, {
     initialData: [],
   });
 
+  // TODO:Mover al back
   const dataWithTotals = data.map((item) => {
     const total = item.stockDuarte + item.stockDeposito + item.stockColon;
     return {
@@ -23,11 +24,8 @@ export const useReportTable = () => {
     { accessorKey: "Total" },
   ];
 
-  const createFn = () => push("");
-
   return {
     data: dataWithTotals,
-    createFn,
     columns,
     isLoading,
   };

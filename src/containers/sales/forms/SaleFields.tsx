@@ -10,8 +10,7 @@ export const SaleFields = () => {
       <RHFSelectField
         name="shop"
         label="Local"
-        placeholder={data?.user.shops}
-        // defaultValue={data?.user.shops}
+        placeholder="Seleccionar Local"
         disabled={!PERMISSIONS.ADMINS.includes(data?.user.role || "")}
         options={SHOPS_OPTIONS}
       />

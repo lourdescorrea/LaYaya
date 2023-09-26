@@ -26,6 +26,7 @@ export const useSaleTable = () => {
 
   const createFn = () => push(paths.sales.create);
   const cancelFn = (data: Sale) => onCancel({ id: data.id });
+
   // const viewFn = (data: Sale) => push(paths.sales.view(data.id));
 
   // const modifiedData = data.map((sale) => ({

@@ -1,23 +1,23 @@
+import { Sale } from "@prisma/client";
 import { useRouter } from "next/router";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   Typography,
   api,
 } from "yaya/core";
-import { en, type Brand } from "yaya/shared";
+import { en } from "yaya/shared";
 
 interface SalesViewFormProps {
   open: boolean;
-  data: Brand;
+  data: Sale;
   onToggle: (v: boolean) => void;
 }
 
-export const SaleViewPage = ({ open, onToggle }: SalesViewFormProps) => {
+export const SaleViewForm = ({ open, onToggle }: SalesViewFormProps) => {
   const { query } = useRouter();
   const salesId = query.id as string;
 
@@ -30,11 +30,10 @@ export const SaleViewPage = ({ open, onToggle }: SalesViewFormProps) => {
     <Sheet onOpenChange={onToggle} open={open}>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>{en.admin.brand.edit.title}</SheetTitle>
-          <SheetDescription>{en.admin.brand.edit.sub_title}</SheetDescription>
+          <SheetTitle>{en.admin.sale.view.title}</SheetTitle>
         </SheetHeader>
         <div className="flex justify-between">
-          <Typography variant="p">Local: {data?.shop}</Typography>
+          <Typography variant="p">Local {data?.shop}</Typography>
 
           <div className="flex  ">
             {en.admin.sale.fields.state.title}
@@ -60,9 +59,9 @@ export const SaleViewPage = ({ open, onToggle }: SalesViewFormProps) => {
         {data?.productsOnSale &&
           data.productsOnSale.map((product) => (
             <div key={product.id} className="flex justify-between">
-              <Typography variant="p" className="mt-6">
+              {/* <Typography variant="p" className="mt-6">
                 {product.name}
-              </Typography>
+              </Typography> */}
 
               <Typography variant="p">${product.price}</Typography>
 

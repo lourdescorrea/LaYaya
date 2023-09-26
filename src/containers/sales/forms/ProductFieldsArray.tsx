@@ -24,7 +24,7 @@ export const ProductFieldsArray = () => {
   });
 
   const handleProductChange = (productId: string) =>
-    append({ productId, quantity: 1 });
+    append({ productId, quantity: 2 });
 
   const getTotal = () => {
     let total = 0;
@@ -64,9 +64,8 @@ export const ProductFieldsArray = () => {
             {product?.name}
             <p>${product?.price}</p>
 
-<<<<<<< HEAD
             <RHFTextField
-              name={`products[${index}].quantity`}
+              name={`productOnSale[${index}].quantity`}
               placeholder="Cantidad"
               type="number"
               // defaultValue={field.quantity}
@@ -78,21 +77,6 @@ export const ProductFieldsArray = () => {
             >
               Eliminar Producto
             </Button>
-=======
-              <RHFTextField
-                name={`products[${index}].quantity`}
-                placeholder="Cantidad"
-                type="number"
-              />
-              <Button
-                className="w-52"
-                type="button"
-                onClick={() => remove(index)}
-              >
-                {en.admin.sale.fields.products.title}
-              </Button>
-            </div>
->>>>>>> 3b86e87b3d810cd620ca0d5e54dbd044c7d696af
           </div>
         );
       })}

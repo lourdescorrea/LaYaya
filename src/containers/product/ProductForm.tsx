@@ -2,7 +2,14 @@ import { ProductFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { LoadingButton, RhfForm, api, paths, useSubmitTrpc } from "yaya/core";
+import {
+  Button,
+  LoadingButton,
+  RhfForm,
+  api,
+  paths,
+  useSubmitTrpc,
+} from "yaya/core";
 import { ProductEdit, en, productUpdateSchema } from "yaya/shared";
 
 export const ProductForm = (props: any) => {
@@ -23,17 +30,26 @@ export const ProductForm = (props: any) => {
   });
 
   return (
-    <RhfForm methods={methods} onSubmit={onSubmit}>
-      <div className="flex flex-col">
-        <ProductFields />
-        <LoadingButton
-          className="ml-[750px] mt-8 w-32"
-          loading={isLoading}
-          type="submit"
-        >
-          {en.common.save}
-        </LoadingButton>
-      </div>
-    </RhfForm>
+    <>
+      <RhfForm methods={methods} onSubmit={onSubmit}>
+        <div className="flex flex-col">
+          <ProductFields />
+
+          <LoadingButton
+            className="ml-[690px] mt-8 w-32"
+            loading={isLoading}
+            type="submit"
+          >
+            {en.common.save}
+          </LoadingButton>
+        </div>
+      </RhfForm>
+      <Button
+        className="ml-[550px] mt-[-40px]  w-32"
+        onClick={() => push(paths.product.root)}
+      >
+        Volver
+      </Button>
+    </>
   );
 };

@@ -1,5 +1,5 @@
-import { SaleListPage } from "yaya/containers";
+import { SalePage } from "yaya/containers/sales/SalesPage";
 
 export default function Page() {
-  return <SaleListPage />;
+  return <SalePage />;
 }

@@ -40,7 +40,7 @@ export const ProductFieldsArray = () => {
   };
 
   return (
-    <div className="flex flex-col  w-full ">
+    <div className="flex w-full  flex-col ">
       <div className="flex items-center justify-center space-x-2">
         <Select onValueChange={handleProductChange} defaultValue={"Productos"}>
           <SelectTrigger>
@@ -64,7 +64,6 @@ export const ProductFieldsArray = () => {
             {product?.name}
             <p>${product?.price}</p>
 
-<<<<<<< HEAD
             <RHFTextField
               name={`products[${index}].quantity`}
               placeholder="Cantidad"
@@ -78,21 +77,6 @@ export const ProductFieldsArray = () => {
             >
               Eliminar Producto
             </Button>
-=======
-              <RHFTextField
-                name={`products[${index}].quantity`}
-                placeholder="Cantidad"
-                type="number"
-              />
-              <Button
-                className="w-52"
-                type="button"
-                onClick={() => remove(index)}
-              >
-                {en.admin.sale.fields.products.title}
-              </Button>
-            </div>
->>>>>>> 3b86e87b3d810cd620ca0d5e54dbd044c7d696af
           </div>
         );
       })}

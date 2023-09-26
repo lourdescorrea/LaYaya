@@ -9,13 +9,8 @@ export const SaleFields = () => {
     <div>
       <RHFSelectField
         name="shop"
-<<<<<<< HEAD
-        label="Local"
-        placeholder="Seleccionar Local"
-=======
         label={en.admin.sale.fields.shop.title}
         placeholder={data?.user.shops}
->>>>>>> 3b86e87b3d810cd620ca0d5e54dbd044c7d696af
         disabled={!PERMISSIONS.ADMINS.includes(data?.user.role || "")}
         options={SHOPS_OPTIONS}
       />

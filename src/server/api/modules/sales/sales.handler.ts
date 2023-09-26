@@ -1,4 +1,3 @@
-import { allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import {
   SHOPS_STOCK,
@@ -6,9 +5,7 @@ import {
   idSchema,
   saleCreateSchema,
 } from "yaya/shared";
-
-//TODO: Cancelar venta
-// 1 llamo al productonsale, para cada productonsale le hago una suma del producto que se habia vendido
+import { allRolesProcedure } from "../../configs";
 
 export const getAllSale = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.sale.findMany({
@@ -113,7 +110,7 @@ export const createSale = allRolesProcedure
             amount: totalAmount,
             paymentMethod: input.paymentMethod,
             shop: input.shop,
-            state: "Activa",
+            state: "ACTIVA",
             productsOnSale: {
               create: productsOnSale,
             },
@@ -156,7 +153,7 @@ export const cancelSale = allRolesProcedure
         );
       }
 
-      if (saleToCancel.state !== "ACTIVE") {
+      if (saleToCancel.state !== "ACTIVA") {
         throw new Error("La venta no se puede cancelar en su estado actual.");
       }
 
@@ -170,19 +167,18 @@ export const cancelSale = allRolesProcedure
             },
             data: {
               [shopKey]: {
-                increment: productOnSale.quantity, // Aumentar el stock al cancelar la venta
+                increment: productOnSale.quantity,
               },
             },
           });
         }
 
-        // Actualizar el estado de la venta a "CANCELLED"
         const cancelledSale = await prisma.sale.update({
           where: {
             id: input.id,
           },
           data: {
-            state: "Cancelada",
+            state: "CANCELADA",
           },
         });
 

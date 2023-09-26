@@ -1,6 +1,6 @@
-import { Button } from "../../button";
 import { BiShow } from "react-icons/bi";
 import { MdDeleteOutline, MdEdit, MdOutlineCancel } from "react-icons/md";
+import { Button } from "../../button";
 
 interface RowActionsProps<T> {
   row: T & { id: string };
@@ -32,9 +32,9 @@ export const TableActions = <T,>(props: RowActionsProps<T>) => {
   // TODO: LOADING STATE?
 
   const iconClass = "h-fit w-fit p-2";
-
+  const cancelIconClass = "h-fit w-fit p-2 text-red-700";
   return (
-    <div className="w-full flex items-center space-x-4">
+    <div className="flex w-full items-center space-x-4">
       {view && (
         <Button
           size="icon"
@@ -72,7 +72,7 @@ export const TableActions = <T,>(props: RowActionsProps<T>) => {
         <Button
           size="icon"
           variant="ghost"
-          className={iconClass}
+          className={cancelIconClass}
           disabled={cancel.disabled}
           onClick={() => cancel.onClick(row)}
         >

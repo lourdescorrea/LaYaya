@@ -23,8 +23,12 @@ export const ProductFieldsArray = () => {
     name: "productsOnSale",
   });
 
-  const handleProductChange = (productId: string) =>
-    append({ productId, quantity: 1 });
+  const handleProductChange = (
+    productId: string,
+    initialQuantity: number = 1
+  ) => {
+    append({ productId, quantity: initialQuantity });
+  };
 
   const getTotal = () => {
     let total = 0;
@@ -42,7 +46,10 @@ export const ProductFieldsArray = () => {
   return (
     <div className="flex w-full  flex-col ">
       <div className="flex items-center justify-center space-x-2">
-        <Select onValueChange={handleProductChange} defaultValue={"Productos"}>
+        <Select
+          onValueChange={(productId) => handleProductChange(productId, 1)}
+          defaultValue={"Productos"}
+        >
           <SelectTrigger>
             <SelectValue placeholder={"place holder"} />
           </SelectTrigger>
@@ -65,10 +72,13 @@ export const ProductFieldsArray = () => {
             <p>${product?.price}</p>
 
             <RHFTextField
-              name={`products[${index}].quantity`}
+              name={`productsOnSale[${index}].quantity`}
               placeholder="Cantidad"
               type="number"
-              // defaultValue={field.quantity}
+              value={field.quantity}
+              onChange={(e: { target: { value: any } }) => {
+                field.onChange(e.target.value);
+              }}
             />
             <Button
               className="w-52"

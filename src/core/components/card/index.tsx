@@ -20,7 +20,7 @@ export function Card(props: PropsWithChildren<CardProps>) {
   return (
     <div
       className={cn(
-        "!z-5 relative flex flex-col rounded-[20px] bg-card bg-clip-border shadow-3xl shadow-shadow-500 dark:shadow-none",
+        "!z-5 shadow-3xl shadow-shadow-500 relative flex flex-col rounded-[20px] bg-card bg-clip-border dark:shadow-none",
         className
       )}
     >

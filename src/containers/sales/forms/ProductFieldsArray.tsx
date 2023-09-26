@@ -50,14 +50,13 @@ export const ProductFieldsArray = () => {
                 name={`products[${index}].quantity`}
                 placeholder="Cantidad"
                 type="number"
-                // defaultValue={field.quantity}
               />
               <Button
                 className="w-52"
                 type="button"
                 onClick={() => remove(index)}
               >
-                Eliminar Producto
+                {en.admin.sale.fields.products.title}
               </Button>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import { SaleFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -12,6 +11,7 @@ import {
 } from "yaya/core";
 import { en, saleCreateSchema } from "yaya/shared";
 import { SaleCreate } from "yaya/shared/types/sales";
+import { SaleFields } from "./forms";
 
 export const SaleForm = () => {
   const { push } = useRouter();
@@ -39,7 +39,7 @@ export const SaleForm = () => {
   return (
     <Card
       className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
-      title="Creación de ventas "
+      title={en.admin.sale.cta}
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">

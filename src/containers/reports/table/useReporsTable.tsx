@@ -7,25 +7,16 @@ export const useReportTable = () => {
     initialData: [],
   });
 
-  // TODO:Mover al back
-  const dataWithTotals = data.map((item) => {
-    const total = item.stockDuarte + item.stockDeposito + item.stockColon;
-    return {
-      ...item,
-      Total: total,
-    };
-  });
-
   const columns = [
     { accessorKey: "name" },
     { accessorKey: "stockDuarte" },
     { accessorKey: "stockDeposito" },
     { accessorKey: "stockColon" },
-    { accessorKey: "Total" },
+    { accessorKey: "totalStock" },
   ];
 
   return {
-    data: dataWithTotals,
+    data,
     columns,
     isLoading,
   };

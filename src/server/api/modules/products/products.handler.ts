@@ -1,16 +1,16 @@
-import { allRolesProcedure, superAdminProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import {
   idSchema,
   productCreateSchema,
   productUpdateSchema,
 } from "yaya/shared";
+import { adminProcedure, allRolesProcedure } from "../../configs";
 
 export const getAllProduct = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.product.findMany();
 });
 
-export const getByIdProduct = superAdminProcedure
+export const getByIdProduct = adminProcedure
   .input(idSchema)
   .query(({ ctx, input }) => {
     const { id } = input;
@@ -19,7 +19,7 @@ export const getByIdProduct = superAdminProcedure
     });
   });
 
-export const createProduct = superAdminProcedure
+export const createProduct = adminProcedure
   .input(productCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
@@ -35,7 +35,7 @@ export const createProduct = superAdminProcedure
     }
   });
 
-export const deleteProduct = superAdminProcedure
+export const deleteProduct = adminProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {
     const { id } = input;
@@ -52,7 +52,7 @@ export const deleteProduct = superAdminProcedure
     }
   });
 
-export const editProduct = superAdminProcedure
+export const editProduct = adminProcedure
   .input(productUpdateSchema)
   .mutation(async ({ ctx, input }) => {
     const { id, name } = input;

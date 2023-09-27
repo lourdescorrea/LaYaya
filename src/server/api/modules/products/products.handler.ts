@@ -7,7 +7,11 @@ import {
 import { adminProcedure, allRolesProcedure } from "../../configs";
 
 export const getAllProduct = allRolesProcedure.query(({ ctx }) => {
-  return ctx.prisma.product.findMany();
+  return ctx.prisma.product.findMany({
+    where: {
+      state: "ACTIVA",
+    },
+  });
 });
 
 export const getByIdProduct = adminProcedure
@@ -24,24 +28,7 @@ export const createProduct = adminProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.product.create({
-        data: input,
-      });
-    } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: (error as any).message,
-        cause: error,
-      });
-    }
-  });
-
-export const deleteProduct = adminProcedure
-  .input(idSchema)
-  .mutation(async ({ input, ctx }) => {
-    const { id } = input;
-    try {
-      return await ctx.prisma.product.delete({
-        where: { id },
+        data: { ...input, state: "ACTIVA" },
       });
     } catch (error) {
       throw new TRPCError({
@@ -60,6 +47,25 @@ export const editProduct = adminProcedure
       return await ctx.prisma.product.update({
         where: { id },
         data: input,
+      });
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: (error as any).message,
+        cause: error,
+      });
+    }
+  });
+
+export const cancelProduct = adminProcedure
+  .input(productUpdateSchema)
+  .mutation(async ({ ctx, input }) => {
+    try {
+      return await ctx.prisma.product.update({
+        where: {
+          id: input.id,
+        },
+        data: { ...input, state: "CANCELADA" },
       });
     } catch (error) {
       throw new TRPCError({

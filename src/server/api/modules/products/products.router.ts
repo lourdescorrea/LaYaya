@@ -4,7 +4,7 @@ import * as products from "./products.handler";
 export const productRouter = createTRPCRouter({
   create: products.createProduct,
   getAll: products.getAllProduct,
-  delete: products.deleteProduct,
+  cancel: products.cancelProduct,
   edit: products.editProduct,
   getById: products.getByIdProduct,
 });

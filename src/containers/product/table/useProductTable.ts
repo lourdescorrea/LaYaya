@@ -11,14 +11,27 @@ export const useProductTable = () => {
 
   const columns = [{ accessorKey: "name" }];
 
-  const onDelete = useActionToast({
-    trpc: api.products.delete,
+  const onCancel = useActionToast({
+    trpc: api.products.cancel,
     errorMsg: `${en.admin.product.delete.messages.error}`,
     successMsg: `${en.admin.product.delete.messages.success}`,
     alertMsg: `${en.admin.product.delete.title}`,
   });
 
-  const deleteFn = (data: Product) => onDelete({ id: data.id });
+  const deleteFn = (data: Product) =>
+    onCancel({
+      id: data.id,
+      name: data.name,
+      price: data.price,
+      stockDuarte: data.stockDuarte,
+      stockColon: data.stockColon,
+      stockDeposito: data.stockDeposito,
+      codeBar: data.codeBar,
+      weight: data.weight,
+      image: data.image,
+      brandId: data.brandId,
+    });
+
   const editFn = (data: Product) => push(paths.product.edit(data.id));
   const createFn = () => push(paths.product.create);
 

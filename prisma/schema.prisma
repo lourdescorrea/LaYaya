@@ -27,9 +27,9 @@ model Product {
     codeBar       String
     weight        Int
     image         String
-
-    brand   Brand? @relation(fields: [brandId], references: [id])
-    brandId String
+    state         String
+    brand         Brand?   @relation(fields: [brandId], references: [id])
+    brandId       String
 
     productOnSale ProductOnSale[]
 }

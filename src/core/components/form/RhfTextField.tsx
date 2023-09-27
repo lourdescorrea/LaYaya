@@ -16,10 +16,14 @@ interface RHFTextFieldProps {
   placeholder?: string;
   disabled?: boolean;
   description?: string;
+  defaultValue?: any;
+  value?: any;
+  onChange?: any;
+  min?: string;
 }
 
 export const RHFTextField = (props: RHFTextFieldProps) => {
-  const { label, type, placeholder, description, disabled, name } = props;
+  const { label, type, placeholder, description, disabled, name, min } = props;
   return (
     <FormField
       name={name}
@@ -31,7 +35,9 @@ export const RHFTextField = (props: RHFTextFieldProps) => {
               placeholder={placeholder}
               disabled={disabled || isSubmitting}
               type={type}
-              {...field}
+              value={field.value || ""}
+              onChange={(e) => field.onChange(e.target.value)}
+              min={min}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>

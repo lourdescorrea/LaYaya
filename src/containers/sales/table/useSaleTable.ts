@@ -25,7 +25,15 @@ export const useSaleTable = () => {
   });
 
   const createFn = () => push(paths.sales.create);
-  const cancelFn = (data: Sale) => onCancel({ id: data.id });
+  // const cancelFn = (data: Sale) => onCancel({ id: data.id });
+
+  const cancelFn = (data: Sale) => {
+    if (data.state === "CANCELADA") {
+      alert("La venta ya fue cancelada");
+    } else {
+      onCancel({ id: data.id });
+    }
+  };
 
   // const viewFn = (data: Sale) => push(paths.sales.view(data.id));
 

@@ -179,7 +179,7 @@ export const en = {
           title: "Cantidad:",
         },
         methods: {
-          title: "Método de pago:",
+          title: "Pago:",
         },
         state: {
           title: "Estado de la venta:",

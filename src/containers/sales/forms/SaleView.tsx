@@ -1,5 +1,4 @@
 import { Sale } from "@prisma/client";
-import { useRouter } from "next/router";
 import {
   Sheet,
   SheetContent,
@@ -17,14 +16,12 @@ interface SalesViewFormProps {
   onToggle: (v: boolean) => void;
 }
 
-export const SaleViewForm = ({ open, onToggle }: SalesViewFormProps) => {
-  const { query } = useRouter();
-  const salesId = query.id as string;
-
-  const { data } = api.sales.getById.useQuery(
-    { id: salesId },
-    { enabled: !!salesId }
-  );
+export const SaleViewForm = ({
+  open,
+  onToggle,
+  data: { id },
+}: SalesViewFormProps) => {
+  const { data } = api.sales.getById.useQuery({ id: id }, { enabled: !!id });
 
   return (
     <Sheet onOpenChange={onToggle} open={open}>
@@ -32,36 +29,41 @@ export const SaleViewForm = ({ open, onToggle }: SalesViewFormProps) => {
         <SheetHeader>
           <SheetTitle>{en.admin.sale.view.title}</SheetTitle>
         </SheetHeader>
-        <div className="flex justify-between">
-          <Typography variant="p">Local {data?.shop}</Typography>
 
-          <div className="flex  ">
-            {en.admin.sale.fields.state.title}
-            <Typography
-              variant="p"
-              className={` font-medium ml-2 flex justify-center align-center rounded-full ${
-                data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
-              }`}
-            >
-              {data?.state}
-            </Typography>
-          </div>
+        <div className="flex mt-8">
+          {en.admin.sale.fields.state.title}
+          <Typography
+            variant="p"
+            className={` font-medium ml-2 flex justify-center align-center rounded-full ${
+              data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
+            }`}
+          >
+            {data?.state}
+          </Typography>
         </div>
-        <Typography variant="p">
-          {en.admin.sale.fields.methods.title}
-          {data?.paymentMethod}
-        </Typography>
+        <div className=" flex justify-between items-end">
+          <>
+            <Typography variant="large">
+              {en.admin.sale.fields.shop.title}
+            </Typography>
+            <Typography variant="p">{data?.shop}</Typography>
+          </>
 
-        <Typography variant="p">
+          <Typography variant="large">
+            {en.admin.sale.fields.methods.title}
+          </Typography>
+          {data?.paymentMethod}
+        </div>
+        <Typography className="mt-6" variant="large">
           {en.admin.sale.fields.products.title}
         </Typography>
 
         {data?.productsOnSale &&
           data.productsOnSale.map((product) => (
             <div key={product.id} className="flex justify-between">
-              {/* <Typography variant="p" className="mt-6">
+              <Typography variant="p" className="mt-6">
                 {product.name}
-              </Typography> */}
+              </Typography>
 
               <Typography variant="p">${product.price}</Typography>
 
@@ -73,7 +75,7 @@ export const SaleViewForm = ({ open, onToggle }: SalesViewFormProps) => {
             </div>
           ))}
 
-        <Typography variant="p" className="text-end">
+        <Typography variant="large" className="text-end mt-12">
           {en.admin.sale.fields.totals.title}
           {data?.amount}
         </Typography>

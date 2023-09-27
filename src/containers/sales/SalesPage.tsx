@@ -1,4 +1,5 @@
-import { SaleViewPage } from "./SaleView";
+import { SaleViewForm } from "./forms";
+import { SaleTable } from "./table";
 import { useViewSheet } from "./useSalePage";
 
 export const SalePage = () => {
@@ -6,8 +7,9 @@ export const SalePage = () => {
 
   return (
     <div className="h-full w-full">
+      <SaleTable openView={view.onOpen} />
       {view.isOpen && view.data && (
-        <SaleViewPage
+        <SaleViewForm
           open={view.isOpen}
           onToggle={view.onToggle}
           data={view.data}

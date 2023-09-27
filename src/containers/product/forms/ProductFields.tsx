@@ -24,6 +24,7 @@ export const ProductFields = () => {
               placeholder={en.admin.product.fields.stockDuarte.placeholder}
               type="number"
               name="stockDuarte"
+              min="0"
             />
           </div>
           <div className="w-24">
@@ -32,6 +33,7 @@ export const ProductFields = () => {
               placeholder={en.admin.product.fields.stockColon.placeholder}
               type="number"
               name="stockColon"
+              min="0"
             />
           </div>
           <div className="w-24">
@@ -40,6 +42,7 @@ export const ProductFields = () => {
               placeholder={en.admin.product.fields.stockDeposito.placeholder}
               type="number"
               name="stockDeposito"
+              min="0"
             />
           </div>
         </div>
@@ -52,6 +55,7 @@ export const ProductFields = () => {
             placeholder={en.admin.product.fields.price.placeholder}
             type="number"
             name="price"
+            min="0"
           />
 
           <RHFTextField
@@ -59,6 +63,7 @@ export const ProductFields = () => {
             placeholder={en.admin.product.fields.weight.placeholder}
             type="number"
             name="weight"
+            min="0"
           />
         </div>
         <RHFTextField

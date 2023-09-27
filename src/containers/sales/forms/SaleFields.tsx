@@ -1,7 +1,7 @@
+import { ProductFieldsArray } from "./ProductFieldsArray";
 import { useSession } from "next-auth/react";
 import { RHFSelectField } from "yaya/core";
 import { PAYMENT_OPTIONS, PERMISSIONS, SHOPS_OPTIONS, en } from "yaya/shared";
-import { ProductFieldsArray } from "./ProductFieldsArray";
 
 export const SaleFields = () => {
   const { data } = useSession();

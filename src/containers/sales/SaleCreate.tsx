@@ -3,7 +3,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { LoadingButton, RhfForm, api, paths, useSubmitTrpc } from "yaya/core";
+import {
+  Button,
+  LoadingButton,
+  RhfForm,
+  api,
+  paths,
+  useSubmitTrpc,
+} from "yaya/core";
 import { en, saleCreateSchema } from "yaya/shared";
 import { SaleCreate } from "yaya/shared/types/sales";
 
@@ -33,15 +40,23 @@ export const SaleCreatePage = (props: any) => {
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
           <SaleFields />
-          <LoadingButton
-            className="ml-[750px] mt-8 w-32"
-            loading={createLoading}
-            type="submit"
-          >
-            {en.common.save}
-          </LoadingButton>
+          <div className="flex flex-row-reverse ">
+            <LoadingButton
+              className="ml-[750px] mt-8 w-32"
+              loading={createLoading}
+              type="submit"
+            >
+              {en.common.save}
+            </LoadingButton>
+          </div>
         </div>
       </RhfForm>
+      <Button
+        className="ml-[470px] mt-[-40px] w-32"
+        onClick={() => push(paths.sales.root)}
+      >
+        Volver
+      </Button>
     </>
   );
 };

@@ -7,4 +7,4 @@ export {
   ProductListPage,
 } from "./product";
 
-export { SaleCreatePage, SaleListPage, SaleViewPage } from "./sales";
+export { SaleCreatePage } from "./sales";

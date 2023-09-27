@@ -75,6 +75,7 @@ export const ProductFieldsArray = () => {
               name={`productsOnSale[${index}].quantity`}
               placeholder="Cantidad"
               type="number"
+              min="0"
               value={field.quantity}
               onChange={(e: { target: { value: any } }) => {
                 field.onChange(e.target.value);

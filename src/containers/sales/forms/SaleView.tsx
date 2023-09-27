@@ -1,0 +1,86 @@
+import { Sale } from "@prisma/client";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  Typography,
+  api,
+} from "yaya/core";
+import { en } from "yaya/shared";
+
+interface SalesViewFormProps {
+  open: boolean;
+  data: Sale;
+  onToggle: (v: boolean) => void;
+}
+
+export const SaleViewForm = ({
+  open,
+  onToggle,
+  data: { id },
+}: SalesViewFormProps) => {
+  const { data } = api.sales.getById.useQuery({ id: id }, { enabled: !!id });
+
+  return (
+    <Sheet onOpenChange={onToggle} open={open}>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>{en.admin.sale.view.title}</SheetTitle>
+        </SheetHeader>
+
+        <div className="flex mt-8">
+          {en.admin.sale.fields.state.title}
+          <Typography
+            variant="p"
+            className={` font-medium ml-2 flex justify-center align-center rounded-full ${
+              data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
+            }`}
+          >
+            {data?.state}
+          </Typography>
+        </div>
+        <div className=" flex justify-between items-end">
+          <>
+            <Typography variant="large">
+              {en.admin.sale.fields.shop.title}
+            </Typography>
+            <Typography variant="p">{data?.shop}</Typography>
+          </>
+
+          <Typography variant="large">
+            {en.admin.sale.fields.methods.title}
+          </Typography>
+          {data?.paymentMethod}
+        </div>
+        <Typography className="mt-6" variant="large">
+          {en.admin.sale.fields.products.title}
+        </Typography>
+
+        {data?.productsOnSale &&
+          data.productsOnSale.map((product) => (
+            <div key={product.id} className="flex justify-between">
+              <Typography variant="p" className="mt-6">
+                {product.name}
+              </Typography>
+
+              <Typography variant="p">${product.price}</Typography>
+
+              <Typography variant="p">
+                {en.admin.sale.fields.quantity.title} {product.quantity}
+              </Typography>
+
+              <img className="w-10 h-10 mt-4" src={product.image} />
+            </div>
+          ))}
+
+        <Typography variant="large" className="text-end mt-12">
+          {en.admin.sale.fields.totals.title}
+          {data?.amount}
+        </Typography>
+        <SheetFooter></SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+};

@@ -95,7 +95,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
           <div>
             <button
               onClick={handleRemoveImage}
-              className=" fixed text-transparent hover:text-slate-500 "
+              className=" fixed  hover:text-slate-600 "
             >
               <svg
                 className="h-6 w-6"

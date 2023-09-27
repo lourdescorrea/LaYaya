@@ -1,7 +1,9 @@
+import { ProductFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import {
+  Button,
   Card,
   LoadingButton,
   RhfForm,
@@ -10,7 +12,6 @@ import {
   useSubmitTrpc,
 } from "yaya/core";
 import { ProductCreate, en, productCreateSchema } from "yaya/shared";
-import { ProductFields } from "./forms";
 
 export const ProductCreatePage = () => {
   const { push } = useRouter();
@@ -49,7 +50,7 @@ export const ProductCreatePage = () => {
         <div className="flex flex-col">
           <ProductFields />
           <LoadingButton
-            className="ml-[750px] mt-8 w-32"
+            className="ml-[700px] mt-8 w-32"
             loading={createLoading}
             type="submit"
           >
@@ -57,6 +58,12 @@ export const ProductCreatePage = () => {
           </LoadingButton>
         </div>
       </RhfForm>
+      <Button
+        className="ml-[560px] mt-[-40px]  w-32"
+        onClick={() => push(paths.product.root)}
+      >
+        Volver
+      </Button>
     </Card>
   );
 };

@@ -1,9 +1,13 @@
-import { allRolesProcedure, superAdminProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import { brandCreateSchema, brandUpdateSchema, idSchema } from "yaya/shared";
+import { allRolesProcedure, superAdminProcedure } from "../../configs";
 
 export const getAllBrand = allRolesProcedure.query(({ ctx }) => {
-  return ctx.prisma.brand.findMany();
+  return ctx.prisma.brand.findMany({
+    where: {
+      state: "ACTIVA",
+    },
+  });
 });
 
 export const getByIdBrand = superAdminProcedure
@@ -20,9 +24,7 @@ export const createBrand = superAdminProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.brand.create({
-        data: {
-          name: input.name,
-        },
+        data: { ...input, state: "ACTIVA" },
       });
     } catch (error) {
       throw new TRPCError({
@@ -33,13 +35,29 @@ export const createBrand = superAdminProcedure
     }
   });
 
-export const deleteBrand = superAdminProcedure
+export const cancelBrand = superAdminProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {
     const { id } = input;
+    const brand = await ctx.prisma.brand.findUnique({
+      where: { id },
+      include: {
+        product: {
+          where: { state: "ACTIVA" },
+        },
+      },
+    });
+
+    if (brand && brand.product.length > 0) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "No se puede cancelar  marca con productos activos.",
+      });
+    }
     try {
-      return await ctx.prisma.brand.delete({
-        where: { id },
+      return await ctx.prisma.brand.update({
+        where: { id: input.id },
+        data: { ...input, state: "CANCELADA" },
       });
     } catch (error) {
       throw new TRPCError({

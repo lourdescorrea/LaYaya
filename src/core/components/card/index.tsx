@@ -1,8 +1,7 @@
-import type { PropsWithChildren, ReactNode } from "react";
-import type { IconType } from "react-icons";
-
 import { cn } from "../../utils";
 import { Button } from "../button";
+import type { PropsWithChildren, ReactNode } from "react";
+import type { IconType } from "react-icons";
 
 interface CardProps {
   className?: string;

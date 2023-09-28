@@ -1,11 +1,18 @@
-import { useRouter } from "next/router";
+import { useState } from "react";
 import { api } from "yaya/core";
 
 export const useReportTable = () => {
-  const { push } = useRouter();
-  const { isLoading, data } = api.reports.getAll.useQuery(undefined, {
-    initialData: [],
-  });
+  const [filters, setFilters] = useState({});
+
+  console.log(">>>> filters", filters);
+  const { isLoading, data } = api.reports.getAll.useQuery(
+    {
+      ...filters,
+    },
+    {
+      initialData: [],
+    }
+  );
 
   const columns = [
     { accessorKey: "name" },
@@ -19,5 +26,6 @@ export const useReportTable = () => {
     data,
     columns,
     isLoading,
+    setFilters,
   };
 };

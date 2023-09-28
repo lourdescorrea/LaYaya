@@ -58,7 +58,7 @@ export const routes: Route[] = [
     name: "Reportes",
     path: paths.report.root,
     icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.ALL_ROLES,
+    allowedRoles: PERMISSIONS.ADMINS,
   },
 ];
 

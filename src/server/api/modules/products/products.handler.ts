@@ -42,7 +42,7 @@ export const createProduct = adminProcedure
 export const editProduct = adminProcedure
   .input(productUpdateSchema)
   .mutation(async ({ ctx, input }) => {
-    const { id, name } = input;
+    const { id } = input;
     try {
       return await ctx.prisma.product.update({
         where: { id },

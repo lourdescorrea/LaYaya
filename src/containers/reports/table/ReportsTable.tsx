@@ -6,8 +6,8 @@ export const ReportTable = () => {
   const { columns, data, isLoading, setFilters } = useReportTable();
 
   return (
-    <div className="space-y-4">
-      <Card className=" border-2 border-card bg-white p-8 pb-10">
+    <div className=" flex flex-row space-x-2 pt-8">
+      <Card className=" border-2 drop-shadow-2xl  bg-slate-200 p-8 ">
         <FilterTable setFilters={setFilters} />
       </Card>
       <Table

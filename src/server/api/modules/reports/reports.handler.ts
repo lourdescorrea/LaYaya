@@ -32,3 +32,9 @@ export const getReports = adminProcedure
       })
     );
   });
+
+// se deberia realizar una query para devolver todos los productos y completar
+//la tabla primeramente
+
+//una segunda query que devuelva filtrados, los stock por local y por minimo que
+//el usuario ingrese

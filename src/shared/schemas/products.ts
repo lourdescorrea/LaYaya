@@ -23,4 +23,5 @@ export const productUpdateSchema = yup.object().shape({
   image: yup.string().required(),
   brandId: yup.string().required(),
   id: yup.string().required(),
+  min: yup.number().notRequired(),
 });

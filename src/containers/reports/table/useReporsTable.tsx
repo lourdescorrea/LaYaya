@@ -5,14 +5,9 @@ export const useReportTable = () => {
   const [filters, setFilters] = useState({});
 
   console.log(">>>> filters", filters);
-  const { isLoading, data } = api.reports.getAll.useQuery(
-    {
-      ...filters,
-    },
-    {
-      initialData: [],
-    }
-  );
+  const { isLoading, data } = api.reports.getAll.useQuery({
+    initialData: [],
+  });
 
   const columns = [
     { accessorKey: "name" },

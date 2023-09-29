@@ -19,10 +19,18 @@ export const SHOPS_OPTIONS = [
   },
 ];
 
-export const SHOPS_STOCK = {
-  [SHOPS.DUARTE]: "stockDuarte",
-  [SHOPS.COLON]: "stockColon",
-  [SHOPS.DEPOSIT]: "stockDeposito",
-};
-
+export const SHOPS_STOCK = [
+  {
+    label: "stockDuarte",
+    value: SHOPS.DUARTE,
+  },
+  {
+    label: "stockColon",
+    value: SHOPS.COLON,
+  },
+  {
+    label: "stockDeposito",
+    value: SHOPS.DEPOSIT,
+  },
+];
 export type ShopStockKey = "stockDuarte" | "stockColon" | "stockDeposito";

@@ -30,29 +30,32 @@ export const SaleViewForm = ({
           <SheetTitle>{en.admin.sale.view.title}</SheetTitle>
         </SheetHeader>
 
-        <div className="flex mt-8">
-          {en.admin.sale.fields.state.title}
+        <div className="flex space-x-2">
+          <Typography variant="large" className="mt-6">
+            {en.admin.sale.fields.state.title}
+          </Typography>
+
           <Typography
             variant="p"
-            className={` font-medium ml-2 flex justify-center align-center rounded-full ${
+            className={`font-medium ml-2 ${
               data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
             }`}
           >
             {data?.state}
           </Typography>
         </div>
-        <div className=" flex justify-between items-end">
-          <>
-            <Typography variant="large">
-              {en.admin.sale.fields.shop.title}
-            </Typography>
-            <Typography variant="p">{data?.shop}</Typography>
-          </>
+        <div className="flex space-x-2">
+          <Typography variant="large" className="mt-6">
+            {en.admin.sale.fields.shop.title}
+          </Typography>
 
-          <Typography variant="large">
+          <Typography variant="p">{data?.shop}</Typography>
+        </div>
+        <div className="flex space-x-2">
+          <Typography variant="large" className="mt-6">
             {en.admin.sale.fields.methods.title}
           </Typography>
-          {data?.paymentMethod}
+          <Typography variant="p">{data?.paymentMethod}</Typography>
         </div>
         <Typography className="mt-6" variant="large">
           {en.admin.sale.fields.products.title}

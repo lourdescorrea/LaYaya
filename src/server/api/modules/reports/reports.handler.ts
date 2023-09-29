@@ -1,21 +1,16 @@
-import { productUpdateSchema } from "yaya/shared";
 import { adminProcedure } from "../../configs";
+import { reportsSchema } from "yaya/shared";
 
 export const getReports = adminProcedure
-  .input(productUpdateSchema)
+  .input(reportsSchema)
   .query(async ({ ctx, input }) => {
-    const { stockDuarte, stockColon, stockDeposito } = input;
-
-    const where = {
-      OR: [
-        { stockColon: { lte: stockColon } },
-        { stockDuarte: { lte: stockDuarte } },
-        { stockDeposito: { lte: stockDeposito } },
-      ],
-    };
+    // TODO: SEGUN EL SHOP ES EL STOCK QUE TIENEN QUE FILTRAR
+    const { max, min, shop } = input;
 
     const products = await ctx.prisma.product.findMany({
-      where,
+      where: {
+        OR: [{ stockColon: { lte: max } }, { stockColon: { gte: min } }],
+      },
       select: {
         name: true,
         stockColon: true,

@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { Button, RHFSelectField, RHFTextField, RhfForm } from "yaya/core";
-import { PERMISSIONS, SHOPS_STOCK, en } from "yaya/shared";
+import { PERMISSIONS, SHOPS_OPTIONS, en } from "yaya/shared";
 
 // TODO: ADD TYPES
 export const FilterTable = ({ setFilters }: any) => {
@@ -13,16 +13,6 @@ export const FilterTable = ({ setFilters }: any) => {
 
   return (
     <RhfForm methods={methods} onSubmit={(data) => setFilters(data)}>
-<<<<<<< HEAD
-      <div className="flex items-center space-x-4">
-        <RHFSelectField
-          name="stock"
-          label={en.admin.sale.fields.shop.title}
-          placeholder="Stock"
-          disabled={!PERMISSIONS.ADMINS.includes(data?.user.role || "")}
-          options={SHOPS_STOCK}
-        />
-=======
       <div className="flex flex-col   ">
         <div className="w-40 ">
           <RHFSelectField
@@ -33,7 +23,6 @@ export const FilterTable = ({ setFilters }: any) => {
             options={SHOPS_OPTIONS}
           />
         </div>
->>>>>>> FE]-Sales
 
         <div className="w-40 ">
           <RHFTextField type="number" name="min" label="min" min="0" />

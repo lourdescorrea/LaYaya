@@ -14,7 +14,7 @@ export const ProductEditPage = () => {
 
   return (
     <Card
-      className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
+      className="border-2  bg-slate-200 p-8 pb-10"
       title="Edición de productos"
     >
       {data && <ProductForm data={data} />}

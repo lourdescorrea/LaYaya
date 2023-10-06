@@ -43,14 +43,14 @@ export const ProductCreatePage = () => {
 
   return (
     <Card
-      className="h-full w-8/12 border-2 border-card bg-white p-8 pb-10"
+      className="border-2  bg-slate-200 p-8 pb-10"
       title={en.admin.product.cta}
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
           <ProductFields />
           <LoadingButton
-            className="ml-[700px] mt-8 w-32"
+            className="ml-[790px] mt-8 w-32"
             loading={createLoading}
             type="submit"
           >
@@ -59,7 +59,8 @@ export const ProductCreatePage = () => {
         </div>
       </RhfForm>
       <Button
-        className="ml-[560px] mt-[-40px]  w-32"
+        variant="destructive"
+        className="ml-[640px] mt-[-40px]  w-32"
         onClick={() => push(paths.product.root)}
       >
         Volver

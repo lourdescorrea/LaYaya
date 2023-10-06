@@ -72,13 +72,10 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
     };
 
     return (
-      <div className="flex h-64 w-64 flex-col items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-foreground px-4 py-6">
+      <div className="flex rounded-full h-28 w-28 flex-col items-center justify-center overflow-hidden  border-2 border-dashed border-foreground ">
         {!selectedImage && (
-          <label
-            htmlFor="file-upload"
-            className="rounded-lg bg-slate-100 px-4 py-2 text-foreground hover:bg-foreground hover:text-white"
-          >
-            Subir Image
+          <label htmlFor="file-upload" className="text-foreground ">
+            Subir Imagen
           </label>
         )}
         <input
@@ -95,7 +92,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
           <div>
             <button
               onClick={handleRemoveImage}
-              className=" fixed  hover:text-slate-600 "
+              className=" fixed  hover:text-white "
             >
               <svg
                 className="h-6 w-6"
@@ -113,7 +110,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
             <img
               src={selectedImage || value}
               alt="Selected"
-              className=" h-56 w-56 object-cover"
+              className="h-28 w-28"
             />
           </div>
         )}

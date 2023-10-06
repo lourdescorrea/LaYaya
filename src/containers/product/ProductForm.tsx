@@ -36,7 +36,7 @@ export const ProductForm = (props: any) => {
           <ProductFields />
 
           <LoadingButton
-            className="ml-[690px] mt-8 w-32"
+            className="ml-[790px] mt-8 w-32"
             loading={isLoading}
             type="submit"
           >
@@ -45,7 +45,8 @@ export const ProductForm = (props: any) => {
         </div>
       </RhfForm>
       <Button
-        className="ml-[550px] mt-[-40px]  w-32"
+        variant="destructive"
+        className="ml-[640px] mt-[-40px]  w-32"
         onClick={() => push(paths.product.root)}
       >
         Volver

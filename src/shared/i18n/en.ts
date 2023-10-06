@@ -126,15 +126,15 @@ export const en = {
           placeholder: "Stock",
         },
         price: {
-          label: "Precio del producto",
+          label: "Precio",
           placeholder: "Precio $$",
         },
         weight: {
-          label: "Kilos del producto",
+          label: "Kilos",
           placeholder: "Kilos",
         },
         name: {
-          label: "Nombre del producto",
+          label: "Nombre",
           placeholder: "Nombre",
         },
         brand: {

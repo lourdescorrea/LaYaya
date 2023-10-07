@@ -1,4 +1,4 @@
-import { Table } from "@tanstack/react-table";
+import type { Table } from "@tanstack/react-table";
 
 export const usePagination = <T>(table: Table<T>) => {
   const {

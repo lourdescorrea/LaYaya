@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import Image from "next/image";
 import * as React from "react";
 import { useState } from "react";
 import { api } from "yaya/core/trpc";
@@ -45,7 +47,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
       try {
         // Genera una firma de carga para Cloudinary
         const { signature, apikey, timestamp, folder, uploadUrl } =
-          await mutateAsync({ name: file.name });
+          await mutateAsync({ name: file.name } as any);
 
         // Realiza la carga de la imagen a Cloudinary
         const formData = new FormData();
@@ -110,10 +112,13 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
 
           {selectedImage && (
             <div>
-              <img
-                src={selectedImage || value}
+              <Image
+                // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+                src={selectedImage || value || ""}
                 alt="Selected"
                 className="h-28 w-28"
+                width={100}
+                height={100}
               />
             </div>
           )}

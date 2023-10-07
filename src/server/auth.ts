@@ -4,7 +4,6 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import type { DefaultJWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authPaths } from "yaya/core";
 import { USERS_ARRAY } from "yaya/shared/constants";

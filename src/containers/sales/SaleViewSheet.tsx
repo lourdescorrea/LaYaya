@@ -1,4 +1,5 @@
 import { type Sale } from "@prisma/client";
+import Image from "next/image";
 import {
   Sheet,
   SheetContent,
@@ -78,7 +79,13 @@ export const SaleViewSheet = ({
               {en.admin.sale.fields.quantity.title} {product.quantity}
             </Typography>
             {/* TODO: Next Image  */}
-            <img className="w-10 h-10 mt-4" src={product.image} />
+            <Image
+              className="w-10 h-10 mt-4"
+              src={product.image}
+              width={10}
+              height={10}
+              alt="Image"
+            />
           </div>
         ))}
 

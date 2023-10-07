@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import {
   FormControl,
   FormDescription,
@@ -17,7 +18,7 @@ import {
 interface RHFSelectFieldProps {
   name: string;
   label?: string;
-  defaultValue?: string | [];
+  defaultValue?: string;
   placeholder?: string | string[];
   disabled?: boolean;
   description?: string;

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+
 import {
   FormControl,
   FormDescription,
@@ -24,8 +26,7 @@ interface RHFTextFieldProps {
 }
 
 export const RHFCurrencyField = (props: RHFTextFieldProps) => {
-  const { label, type, placeholder, description, disabled, name, min, max } =
-    props;
+  const { label, placeholder, description, disabled, name } = props;
   return (
     <FormField
       name={name}

@@ -1,14 +1,15 @@
-import { toast } from "react-hot-toast";
-import { en } from "yaya/shared";
 import { Button, Typography } from "../components";
 import { cn } from "../utils";
 import { useSubmitTrpc, type ISubmit } from "./useSubmitTrpc";
+import { toast } from "react-hot-toast";
+import { en } from "yaya/shared";
 
 interface IActionToast<In, Out> extends ISubmit<In, Out> {
   alertMsg: string;
 }
 
 export const useActionToast = <In, Out>(args: IActionToast<In, Out>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { alertMsg, ...submitProps } = args;
 
   const { onSubmit } = useSubmitTrpc<In, Out>(submitProps);

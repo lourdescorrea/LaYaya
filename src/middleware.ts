@@ -1,7 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-
-import { authPaths, defaultRoute, paths, routes } from "yaya/core";
+import { authPaths, defaultRoute, paths, routes } from "yaya/core/configs";
 import { env } from "yaya/env.mjs";
 
 const corsHeaders = {

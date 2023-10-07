@@ -1,7 +1,8 @@
-import { BiLoaderAlt } from "react-icons/bi";
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 
-import { en } from "yaya/shared";
 import { Button, type ButtonProps } from "./Button";
+import { BiLoaderAlt } from "react-icons/bi";
+import { en } from "yaya/shared";
 
 export function LoadingButton(props: ButtonProps & { loading?: boolean }) {
   const { loading, disabled, children, ...rest } = props;

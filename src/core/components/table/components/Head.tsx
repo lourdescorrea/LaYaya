@@ -1,6 +1,6 @@
-import { HeaderGroup, SortDirection, flexRender } from "@tanstack/react-table";
-import { BiSortDown, BiSortUp } from "react-icons/bi";
 import { cn } from "../../../utils";
+import { flexRender, type HeaderGroup } from "@tanstack/react-table";
+import { BiSortDown, BiSortUp } from "react-icons/bi";
 
 interface Props<T> {
   headers: HeaderGroup<T>[];
@@ -38,7 +38,7 @@ export const TableHead = <T,>({ headers }: Props<T>) => {
                       header.column.columnDef.header,
                       header.getContext()
                     )}
-                  {sortDir && sortIcons[sortDir as SortDirection]}
+                  {sortDir && sortIcons[sortDir]}
                 </div>
               </th>
             );

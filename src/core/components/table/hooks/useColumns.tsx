@@ -1,5 +1,5 @@
 import { TableActions } from "../components";
-import { TableCell, TableCellVariant } from "../components/Cell";
+import { TableCell, type TableCellVariant } from "../components/Cell";
 import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { en } from "yaya/shared";
 

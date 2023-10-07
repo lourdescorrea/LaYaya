@@ -13,7 +13,7 @@ export const SaleTable = (props: SaleTableProps) => {
 
   return (
     <Table
-      columnsData={columns}
+      columnsData={columns as any}
       data={data}
       loading={isLoading}
       actions={{

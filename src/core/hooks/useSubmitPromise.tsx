@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import { toast } from "react-hot-toast";
 import { en } from "../../shared/i18n/en";
 import { useBoolean } from "./useBoolean";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 interface ISubmit<T, R = void> {
   apiFn: (variables: T) => Promise<R>;
@@ -39,11 +39,11 @@ export const useSubmitPromise = <T, R = void>(args: ISubmit<T, R>) => {
     }
   };
 
-  const onSubmit = async (variables: T) => {
+  const onSubmit = (variables: T) => {
     toast.promise(promiseFn(variables), {
       loading: en.common.loading,
-      success: <b>{successMsg || en.common.success}</b>,
-      error: <b>{errorMsg || en.common.error}</b>,
+      success: <b>{successMsg ?? en.common.success}</b>,
+      error: <b>{errorMsg ?? en.common.error}</b>,
     });
   };
 

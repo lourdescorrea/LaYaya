@@ -12,7 +12,7 @@ export const useProductTable = () => {
   const columns = [
     { accessorKey: "image", type: "image", header: en.table_columns.image },
     { accessorKey: "name", header: en.table_columns.name },
-    { accessorKey: "brand.name", header: en.table_columns.name },
+    { accessorKey: "brand.name", header: en.table_columns.brand },
     { accessorKey: "price", type: "currency", header: en.table_columns.price },
     { accessorKey: "stockDuarte", header: en.constants.shops.duarte },
     { accessorKey: "stockColon", header: en.constants.shops.colon },

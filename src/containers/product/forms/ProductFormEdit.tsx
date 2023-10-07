@@ -35,7 +35,7 @@ export const ProductEditForm = (props: any) => {
       <div className="flex flex-col">
         <ProductFields />
 
-        <div className="flex space-x-4 justify-end">
+        <div className="flex space-x-4 justify-end mt-4">
           <Button
             variant="outline"
             type="button"

@@ -76,7 +76,7 @@ export const ProductFields = () => {
           </div>
         </div>
         <div className="mt-20">
-          <Typography variant="large">Distribución del local</Typography>
+          <Typography variant="large">Inventario</Typography>
           <div className="flex space-x-4">
             <div className="w-54">
               <RHFTextField

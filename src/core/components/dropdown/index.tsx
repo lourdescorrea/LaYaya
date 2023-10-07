@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { cn } from "../../utils";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 function useOutsideAlerter(ref: any, setX: any) {
   useEffect(() => {
@@ -25,6 +27,7 @@ type Props = {
   button?: ReactNode;
   children?: ReactNode;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   animation?: string | any;
 };
 

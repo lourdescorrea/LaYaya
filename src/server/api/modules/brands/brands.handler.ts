@@ -1,11 +1,11 @@
+import { allRolesProcedure, superAdminProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import { brandCreateSchema, brandUpdateSchema, idSchema } from "yaya/shared";
-import { allRolesProcedure, superAdminProcedure } from "../../configs";
 
 export const getAllBrand = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.brand.findMany({
     where: {
-      state: "ACTIVA",
+      isActive: true,
     },
   });
 });
@@ -24,7 +24,7 @@ export const createBrand = superAdminProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.brand.create({
-        data: { ...input, state: "ACTIVA" },
+        data: { ...input },
       });
     } catch (error) {
       throw new TRPCError({
@@ -35,29 +35,30 @@ export const createBrand = superAdminProcedure
     }
   });
 
-export const cancelBrand = superAdminProcedure
+export const archiveBrand = superAdminProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {
-    const { id } = input;
-    const brand = await ctx.prisma.brand.findUnique({
-      where: { id },
-      include: {
-        product: {
-          where: { state: "ACTIVA" },
-        },
-      },
-    });
-
-    if (brand && brand.product.length > 0) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: "No se puede cancelar  marca con productos activos.",
-      });
-    }
     try {
+      const { id } = input;
+      const brand = await ctx.prisma.brand.findUnique({
+        where: { id },
+        include: {
+          product: {
+            where: { isActive: true },
+          },
+        },
+      });
+
+      if (brand && brand.product.length > 0) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No se puede archivar una marca con productos activos.",
+        });
+      }
+
       return await ctx.prisma.brand.update({
         where: { id: input.id },
-        data: { ...input, state: "CANCELADA" },
+        data: { isActive: false },
       });
     } catch (error) {
       throw new TRPCError({

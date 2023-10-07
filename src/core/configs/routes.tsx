@@ -1,5 +1,6 @@
-import { RxOverline } from "react-icons/rx";
-import { PERMISSIONS } from "yaya/shared";
+import { BiPieChartAlt, BiShoppingBag } from "react-icons/bi";
+import { MdOutlineShoppingCart, MdOutlineStorefront } from "react-icons/md";
+import { PERMISSIONS, en } from "yaya/shared";
 
 export interface Route {
   name: string;
@@ -23,7 +24,6 @@ export const paths = {
   sales: {
     root: "/admin/sales",
     create: "/admin/sales/create",
-    // view: (id: string) => `/admin/sales/view/${id}`,
   },
   report: {
     root: "/admin/reports",
@@ -37,29 +37,29 @@ export const authPaths = {
 
 export const routes: Route[] = [
   {
-    name: "Marcas",
+    name: en.navigation.brands,
     path: paths.brand.root,
-    icon: <RxOverline className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.SUPER,
-  },
-  {
-    name: "Productos",
-    path: paths.product.root,
-    icon: <RxOverline className="h-6 w-6" />,
+    icon: <MdOutlineStorefront className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.ADMINS,
   },
   {
-    name: "Ventas",
-    path: paths.sales.root,
-    icon: <RxOverline className="h-6 w-6" />,
+    name: en.navigation.products,
+    path: paths.product.root,
+    icon: <BiShoppingBag className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.ALL_ROLES,
   },
   {
-    name: "Reportes",
+    name: en.navigation.sales,
+    path: paths.sales.root,
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
+  },
+  {
+    name: en.navigation.reports,
     path: paths.report.root,
-    icon: <RxOverline className="h-6 w-6" />,
+    icon: <BiPieChartAlt className="h-6 w-6" />,
     allowedRoles: PERMISSIONS.ADMINS,
   },
 ];
 
-export const defaultRoute = paths.brand.root;
+export const defaultRoute = paths.sales.root;

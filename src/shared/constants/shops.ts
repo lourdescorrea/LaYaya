@@ -1,3 +1,5 @@
+import { en } from "../i18n/en";
+
 export const SHOPS = {
   DUARTE: "DUARTE",
   COLON: "COLON",
@@ -6,31 +8,23 @@ export const SHOPS = {
 
 export const SHOPS_OPTIONS = [
   {
-    label: "DUARTE",
+    label: en.constants.shops.duarte,
     value: SHOPS.DUARTE,
   },
   {
-    label: "COLON",
+    label: en.constants.shops.colon,
     value: SHOPS.COLON,
   },
   {
-    label: "DEPOSIT",
+    label: en.constants.shops.deposit,
     value: SHOPS.DEPOSIT,
   },
 ];
 
-export const SHOPS_STOCK = [
-  {
-    label: "stockDuarte",
-    value: SHOPS.DUARTE,
-  },
-  {
-    label: "stockColon",
-    value: SHOPS.COLON,
-  },
-  {
-    label: "stockDeposito",
-    value: SHOPS.DEPOSIT,
-  },
-];
 export type ShopStockKey = "stockDuarte" | "stockColon" | "stockDeposito";
+
+export const SHOPS_STOCK: Record<string, ShopStockKey> = {
+  [SHOPS.DUARTE]: "stockDuarte",
+  [SHOPS.COLON]: "stockColon",
+  [SHOPS.DEPOSIT]: "stockDeposito",
+};

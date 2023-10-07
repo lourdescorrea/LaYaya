@@ -1,6 +1,7 @@
-import { ProductForm } from "./ProductForm";
+import { ProductEditForm } from "./forms/ProductFormEdit";
 import { useRouter } from "next/router";
 import { Card, api } from "yaya/core";
+import { en } from "yaya/shared";
 
 export const ProductEditPage = () => {
   const { query } = useRouter();
@@ -14,10 +15,10 @@ export const ProductEditPage = () => {
 
   return (
     <Card
-      className="border-2  bg-slate-200 p-8 pb-10"
-      title="Edición de productos"
+      className="border-2 bg-slate-200 p-8 pb-10"
+      title={en.admin.product.edit.title}
     >
-      {data && <ProductForm data={data} />}
+      {data && <ProductEditForm data={data} />}
     </Card>
   );
 };

@@ -1,20 +1,9 @@
-import { METHODS, SHOPS } from "../constants";
+import { paymentMethodSchema, shopSchema } from "./commons";
 import * as yup from "yup";
 
 export const saleCreateSchema = yup.object().shape({
-  paymentMethod: yup
-    .string()
-    .required()
-    .oneOf([
-      METHODS.CREDITO,
-      METHODS.DEBITO,
-      METHODS.EFECTIVO,
-      METHODS.TRANSFERENCIA,
-    ]),
-  shop: yup
-    .string()
-    .required()
-    .oneOf([SHOPS.COLON, SHOPS.DEPOSIT, SHOPS.DUARTE]),
+  paymentMethod: paymentMethodSchema,
+  shop: shopSchema,
   productsOnSale: yup
     .array()
     .of(

@@ -1,6 +1,6 @@
 import { Card } from "../card";
 import { Pagination, TableBody, TableFilter, TableHead } from "./components";
-import { TableArgs, useTable } from "./hooks/useTable";
+import { useTable, type TableArgs } from "./hooks/useTable";
 
 interface TableProps<T> extends TableArgs<T> {
   title?: string;

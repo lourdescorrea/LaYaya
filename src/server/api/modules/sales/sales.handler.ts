@@ -1,11 +1,11 @@
+import { allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import {
+  SALE_STATE,
   SHOPS_STOCK,
-  ShopStockKey,
   idSchema,
   saleCreateSchema,
 } from "yaya/shared";
-import { allRolesProcedure } from "../../configs";
 
 export const getAllSale = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.sale.findMany({
@@ -41,6 +41,12 @@ export const createSale = allRolesProcedure
         );
       }
 
+      const shopKey = SHOPS_STOCK[input.shop];
+
+      if (!shopKey) {
+        throw new Error("El local no es una opcion valida.");
+      }
+
       const productIds = input.productsOnSale.map((p) => p.productId);
 
       const productsDB = await ctx.prisma.product.findMany({
@@ -53,27 +59,16 @@ export const createSale = allRolesProcedure
 
       let totalAmount = 0;
 
-      const shopKey = SHOPS_STOCK[input.shop] as ShopStockKey;
-
-      for (const productInput of input.productsOnSale) {
-        const productWithStock = productsDB.find(
-          (p) => p.id === productInput.productId
-        );
-
-        if (
-          productWithStock &&
-          productWithStock[shopKey] < productInput.quantity
-        ) {
-          throw new Error(
-            `No hay suficiente stock disponible para el producto con ID ${productInput.productId}`
-          );
-        }
-      }
-
       const productsOnSale = productsDB.map((p) => {
         const productInput = input.productsOnSale.find(
           (pos) => p.id === pos.productId
         );
+
+        if (p[shopKey] < productInput!.quantity) {
+          throw new Error(
+            `No hay suficiente stock disponible para el producto ${p.name}`
+          );
+        }
 
         const productAmount = productInput!.quantity * p.price;
 
@@ -110,7 +105,7 @@ export const createSale = allRolesProcedure
             amount: totalAmount,
             paymentMethod: input.paymentMethod,
             shop: input.shop,
-            state: "ACTIVA",
+            state: SALE_STATE.ACTIVE,
             productsOnSale: {
               create: productsOnSale,
             },
@@ -153,11 +148,15 @@ export const cancelSale = allRolesProcedure
         );
       }
 
-      if (saleToCancel.state !== "ACTIVA") {
+      if (saleToCancel.state !== SALE_STATE.ACTIVE) {
         throw new Error("La venta no se puede cancelar en su estado actual.");
       }
 
-      const shopKey = SHOPS_STOCK[saleToCancel.shop] as ShopStockKey;
+      const shopKey = SHOPS_STOCK[saleToCancel.shop];
+
+      if (!shopKey) {
+        throw new Error("El local no es una opcion valida.");
+      }
 
       const result = await ctx.prisma.$transaction(async (prisma) => {
         for (const productOnSale of saleToCancel.productsOnSale) {
@@ -178,7 +177,7 @@ export const cancelSale = allRolesProcedure
             id: input.id,
           },
           data: {
-            state: "CANCELADA",
+            state: SALE_STATE.CANCELED,
           },
         });
 

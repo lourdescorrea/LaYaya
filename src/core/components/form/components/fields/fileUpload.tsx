@@ -28,7 +28,7 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
 
       if (!file) return;
       if (file.size > MAX_IMAGE_SIZE_MB * 1024 * 1024) {
-        console.log("El tamaño de la imagen excede el tamaño máximo permitido");
+        // TODO: Max size
         return;
       }
 
@@ -61,11 +61,10 @@ export const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(
         });
 
         const data = await response.json();
-        console.log("data", data);
 
         const secureUrl = data.secure_url;
 
-        onChange(secureUrl);
+        onChange(secureUrl as string);
       } catch (error) {
         console.error("Error :", error);
       }

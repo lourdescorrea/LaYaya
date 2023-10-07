@@ -1,4 +1,4 @@
-import { Sale } from "@prisma/client";
+import { type Sale } from "@prisma/client";
 import {
   Sheet,
   SheetContent,
@@ -8,7 +8,7 @@ import {
   Typography,
   api,
 } from "yaya/core";
-import { en } from "yaya/shared";
+import { SALE_STATE, en } from "yaya/shared";
 
 interface SalesViewFormProps {
   open: boolean;
@@ -16,7 +16,7 @@ interface SalesViewFormProps {
   onToggle: (v: boolean) => void;
 }
 
-export const SaleViewForm = ({
+export const SaleViewSheet = ({
   open,
   onToggle,
   data: { id },
@@ -38,9 +38,12 @@ export const SaleViewForm = ({
           <Typography
             variant="p"
             className={`font-medium ml-2 ${
-              data?.state === "ACTIVE" ? "text-green-800" : "text-red-800"
+              data?.state === SALE_STATE.ACTIVE
+                ? "text-green-800"
+                : "text-red-800"
             }`}
           >
+            {/* TODO: Translate  */}
             {data?.state}
           </Typography>
         </div>
@@ -48,35 +51,36 @@ export const SaleViewForm = ({
           <Typography variant="large" className="mt-6">
             {en.admin.sale.fields.shop.title}
           </Typography>
-
+          {/* TODO: Translate  */}
           <Typography variant="p">{data?.shop}</Typography>
         </div>
         <div className="flex space-x-2">
           <Typography variant="large" className="mt-6">
             {en.admin.sale.fields.methods.title}
           </Typography>
+          {/* TODO: Translate  */}
           <Typography variant="p">{data?.paymentMethod}</Typography>
         </div>
         <Typography className="mt-6" variant="large">
           {en.admin.sale.fields.products.title}
         </Typography>
 
-        {data?.productsOnSale &&
-          data.productsOnSale.map((product) => (
-            <div key={product.id} className="flex justify-between">
-              <Typography variant="p" className="mt-6">
-                {product.name}
-              </Typography>
+        {/* TODO: Table?  */}
+        {data?.productsOnSale?.map((product) => (
+          <div key={product.id} className="flex justify-between">
+            <Typography variant="p" className="mt-6">
+              {product.name}
+            </Typography>
 
-              <Typography variant="p">${product.price}</Typography>
+            <Typography variant="p">${product.price}</Typography>
 
-              <Typography variant="p">
-                {en.admin.sale.fields.quantity.title} {product.quantity}
-              </Typography>
-
-              <img className="w-10 h-10 mt-4" src={product.image} />
-            </div>
-          ))}
+            <Typography variant="p">
+              {en.admin.sale.fields.quantity.title} {product.quantity}
+            </Typography>
+            {/* TODO: Next Image  */}
+            <img className="w-10 h-10 mt-4" src={product.image} />
+          </div>
+        ))}
 
         <Typography variant="large" className="text-end mt-12">
           {en.admin.sale.fields.totals.title}

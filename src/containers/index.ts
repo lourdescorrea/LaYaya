@@ -6,5 +6,4 @@ export {
   ProductForm,
   ProductListPage,
 } from "./product";
-
-export { SaleCreatePage } from "./sales";
+export { SaleCreatePage, SalesPage } from "./sales";

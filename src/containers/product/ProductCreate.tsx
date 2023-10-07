@@ -11,7 +11,7 @@ import {
   paths,
   useSubmitTrpc,
 } from "yaya/core";
-import { ProductCreate, en, productCreateSchema } from "yaya/shared";
+import { en, productCreateSchema, type ProductCreate } from "yaya/shared";
 
 export const ProductCreatePage = () => {
   const { push } = useRouter();
@@ -35,36 +35,36 @@ export const ProductCreatePage = () => {
     trpc: api.products.create,
     errorMsg: `${en.admin.product.create.messages.error}`,
     successMsg: `${en.admin.product.create.messages.success}`,
-    onSuccess: () => {
-      console.log("Producto con error ", onSubmit);
-      push(paths.product.root);
-    },
+    backPath: paths.product.root,
   });
 
   return (
     <Card
-      className="border-2  bg-slate-200 p-8 pb-10"
-      title={en.admin.product.cta}
+      className="border-2 bg-slate-200 p-8 pb-10"
+      title={en.admin.product.create.title}
     >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
           <ProductFields />
-          <LoadingButton
-            className="ml-[790px] mt-8 w-32"
-            loading={createLoading}
-            type="submit"
-          >
-            {en.common.save}
-          </LoadingButton>
+          <div className="flex space-x-4 justify-end">
+            <Button
+              variant="outline"
+              type="button"
+              className="w-32"
+              onClick={() => push(paths.product.root)}
+            >
+              {en.common.go_back}
+            </Button>
+            <LoadingButton
+              className="w-32"
+              loading={createLoading}
+              type="submit"
+            >
+              {en.common.save}
+            </LoadingButton>
+          </div>
         </div>
       </RhfForm>
-      <Button
-        variant="destructive"
-        className="ml-[640px] mt-[-40px]  w-32"
-        onClick={() => push(paths.product.root)}
-      >
-        Volver
-      </Button>
     </Card>
   );
 };

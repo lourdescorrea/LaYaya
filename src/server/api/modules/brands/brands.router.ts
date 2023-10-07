@@ -4,7 +4,7 @@ import * as brands from "./brands.handler";
 export const brandRouter = createTRPCRouter({
   create: brands.createBrand,
   getAll: brands.getAllBrand,
-  delete: brands.cancelBrand,
+  archive: brands.archiveBrand,
   edit: brands.editBrand,
   getById: brands.getByIdBrand,
 });

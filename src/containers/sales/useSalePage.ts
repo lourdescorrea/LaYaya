@@ -1,4 +1,4 @@
-import { Sale } from "@prisma/client";
+import { type Sale } from "@prisma/client";
 import { useState } from "react";
 
 export const useViewSheet = () => {

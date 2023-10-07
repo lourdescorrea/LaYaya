@@ -1,27 +1,28 @@
 import { SaleFields } from "./forms";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import {
   Button,
+  Card,
   LoadingButton,
   RhfForm,
   api,
   paths,
   useSubmitTrpc,
 } from "yaya/core";
-import { en, saleCreateSchema } from "yaya/shared";
-import { SaleCreate } from "yaya/shared/types/sales";
+import { en, saleCreateSchema, type SaleCreate } from "yaya/shared";
 
-export const SaleCreatePage = (props: any) => {
+interface Props {
+  shop: string;
+}
+
+export const SaleCreatePage = (props: Props) => {
   const { push } = useRouter();
-  const { data } = useSession();
 
   const methods = useForm<SaleCreate>({
     defaultValues: {
-      ...props.data,
-      shop: data?.user.shops[0],
+      shop: props.shop,
     },
     resolver: yupResolver(saleCreateSchema),
   });
@@ -30,19 +31,28 @@ export const SaleCreatePage = (props: any) => {
     trpc: api.sales.create,
     errorMsg: `${en.admin.sale.create.messages.error}`,
     successMsg: `${en.admin.sale.create.messages.success}`,
-    onSuccess: () => {
-      push(paths.sales.root);
-    },
+    backPath: paths.sales.root,
   });
 
   return (
-    <>
+    <Card
+      className="h-full w-8/12 border-2 bg-slate-200 p-8 pb-10"
+      title={en.admin.sale.create.title}
+    >
       <RhfForm methods={methods} onSubmit={onSubmit}>
         <div className="flex flex-col">
           <SaleFields />
-          <div className="flex flex-row-reverse ">
+
+          <div className="flex space-x-4 justify-end mt-12">
+            <Button
+              variant="outline"
+              className="w-32"
+              onClick={() => push(paths.sales.root)}
+            >
+              {en.common.go_back}
+            </Button>
             <LoadingButton
-              className="ml-[750px] mt-8 w-32"
+              className="w-32"
               loading={createLoading}
               type="submit"
             >
@@ -51,12 +61,6 @@ export const SaleCreatePage = (props: any) => {
           </div>
         </div>
       </RhfForm>
-      <Button
-        className="ml-[470px] mt-[-40px] w-32"
-        onClick={() => push(paths.sales.root)}
-      >
-        Volver
-      </Button>
-    </>
+    </Card>
   );
 };

@@ -32,9 +32,7 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
     trpc: api.brands.create,
     errorMsg: `${en.admin.brand.create.messages.error}`,
     successMsg: `${en.admin.brand.create.messages.success}`,
-    onSuccess: (data, vars) => {
-      onToggle(false);
-    },
+    onSuccess: () => onToggle(false),
   });
 
   return (
@@ -46,14 +44,12 @@ export const BrandCreateForm = ({ open, onToggle }: BrandEditFormProps) => {
             <SheetDescription>
               {en.admin.brand.create.sub_title}
             </SheetDescription>
-            <SheetTitle>{en.admin.brand.create.sub_title}</SheetTitle>
-            <SheetDescription></SheetDescription>
           </SheetHeader>
           <RHFTextField
             name="name"
-            description="Esto es una description"
-            label="Label"
-            placeholder="Placeholder"
+            description={en.admin.brand.fields.name.description}
+            label={en.admin.brand.fields.name.label}
+            placeholder={en.admin.brand.fields.name.placeholder}
           />
           <SheetFooter>
             <LoadingButton loading={createLoading} type="submit">

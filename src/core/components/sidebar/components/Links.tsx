@@ -1,11 +1,10 @@
-import Link from "next/link";
-import { MouseEvent } from "react";
-
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { routes } from "../../../configs";
 import { cn } from "../../../utils";
 import { DashIcon } from "../../icons/DashIcon";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 
 interface LinksProps {
   onClickRoute?: (e: MouseEvent<HTMLElement>) => any;
@@ -51,7 +50,7 @@ export function Links({ onClickRoute }: LinksProps) {
                 </p>
               </li>
               {isActive && (
-                <div className="absolute right-0 top-px h-9 w-1 rounded-lg bg-[#7551FF]" />
+                <div className="absolute right-0 top-px h-9 w-1 rounded-lg bg-white" />
               )}
             </div>
           </Link>

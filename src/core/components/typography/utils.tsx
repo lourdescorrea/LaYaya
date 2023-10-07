@@ -12,7 +12,7 @@ export const typography = cva("", {
       lead: "text-xl text-muted-foreground",
       small: "text-sm font-medium leading-none md:text-base",
       large: "text-lg font-semibold",
-      muted: "text-sm text-muted-foreground md:text-base",
+      muted: "text-sm text-slate-500 md:text-base",
     },
   },
   defaultVariants: {

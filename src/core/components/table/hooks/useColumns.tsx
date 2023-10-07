@@ -1,6 +1,6 @@
 import { TableActions } from "../components";
-import { TableCell } from "../components/Cell";
-import { CellContext, ColumnDef } from "@tanstack/react-table";
+import { TableCell, TableCellVariant } from "../components/Cell";
+import { type CellContext, type ColumnDef } from "@tanstack/react-table";
 import { en } from "yaya/shared";
 
 export interface TableActions<T> {
@@ -8,15 +8,19 @@ export interface TableActions<T> {
   editFn?: (row: T) => void;
   viewFn?: (row: T) => void;
   deleteFn?: (row: T) => void;
-  cancelFn?: (row: T) => void;
-  customs?: [{ icon: any; onClick: (row: T) => void }];
+  customs?: [
+    { icon: any; onClick: (row: T) => void; isDisabled?: (row: T) => boolean }
+  ];
+}
+
+export interface TableColumnData {
+  accessorKey: string;
+  header?: string;
+  type?: TableCellVariant;
 }
 
 interface Args<T> {
-  columnsData: {
-    accessorKey: string;
-    type?: "link";
-  }[];
+  columnsData: TableColumnData[];
   actions?: TableActions<T>;
 }
 
@@ -25,18 +29,18 @@ export const useColumns = <T,>(props: Args<T>) => {
 
   const columns: ColumnDef<T, any>[] = columnsData.map((column) => ({
     ...column,
+
     cell: (info: CellContext<T, string | number>) => (
       <TableCell value={info.getValue()} type={column.type} />
     ),
   }));
 
-  const { deleteFn, editFn, viewFn, cancelFn, customs } = actions;
+  const { deleteFn, editFn, viewFn, customs } = actions;
 
-  const hasActions = deleteFn || editFn || viewFn || cancelFn || customs;
+  const hasActions = deleteFn ?? editFn ?? viewFn ?? customs;
 
   if (hasActions) {
     const removeAction = deleteFn ? { onClick: deleteFn } : undefined;
-    const cancelAction = cancelFn ? { onClick: cancelFn } : undefined;
     const viewAction = viewFn ? { onClick: viewFn } : undefined;
     const editAction = editFn ? { onClick: editFn } : undefined;
 
@@ -47,7 +51,6 @@ export const useColumns = <T,>(props: Args<T>) => {
           row={props.row.original}
           edit={editAction}
           remove={removeAction}
-          cancel={cancelAction}
           view={viewAction}
           customs={customs}
         />

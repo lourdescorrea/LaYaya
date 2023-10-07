@@ -1,4 +1,4 @@
-import { ProductFields } from "./forms";
+import { ProductFields } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -10,9 +10,10 @@ import {
   paths,
   useSubmitTrpc,
 } from "yaya/core";
-import { ProductEdit, en, productUpdateSchema } from "yaya/shared";
+import { en, productUpdateSchema, type ProductEdit } from "yaya/shared";
 
-export const ProductForm = (props: any) => {
+//TODO: Type props
+export const ProductEditForm = (props: any) => {
   const { push } = useRouter();
 
   const methods = useForm<ProductEdit>({
@@ -30,27 +31,24 @@ export const ProductForm = (props: any) => {
   });
 
   return (
-    <>
-      <RhfForm methods={methods} onSubmit={onSubmit}>
-        <div className="flex flex-col">
-          <ProductFields />
+    <RhfForm methods={methods} onSubmit={onSubmit}>
+      <div className="flex flex-col">
+        <ProductFields />
 
-          <LoadingButton
-            className="ml-[790px] mt-8 w-32"
-            loading={isLoading}
-            type="submit"
+        <div className="flex space-x-4 justify-end">
+          <Button
+            variant="outline"
+            type="button"
+            className="w-32"
+            onClick={() => push(paths.product.root)}
           >
+            {en.common.go_back}
+          </Button>
+          <LoadingButton className="w-32" loading={isLoading} type="submit">
             {en.common.save}
           </LoadingButton>
         </div>
-      </RhfForm>
-      <Button
-        variant="destructive"
-        className="ml-[640px] mt-[-40px]  w-32"
-        onClick={() => push(paths.product.root)}
-      >
-        Volver
-      </Button>
-    </>
+      </div>
+    </RhfForm>
   );
 };

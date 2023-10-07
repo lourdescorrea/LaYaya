@@ -1,15 +1,18 @@
+import { adminProcedure, allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import {
   idSchema,
   productCreateSchema,
   productUpdateSchema,
 } from "yaya/shared";
-import { adminProcedure, allRolesProcedure } from "../../configs";
 
 export const getAllProduct = allRolesProcedure.query(({ ctx }) => {
   return ctx.prisma.product.findMany({
     where: {
-      state: "ACTIVA",
+      isActive: true,
+    },
+    include: {
+      brand: true,
     },
   });
 });
@@ -28,7 +31,7 @@ export const createProduct = adminProcedure
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.product.create({
-        data: { ...input, state: "ACTIVA" },
+        data: { ...input },
       });
     } catch (error) {
       throw new TRPCError({
@@ -57,15 +60,15 @@ export const editProduct = adminProcedure
     }
   });
 
-export const cancelProduct = adminProcedure
-  .input(productUpdateSchema)
+export const archiveProduct = adminProcedure
+  .input(idSchema)
   .mutation(async ({ ctx, input }) => {
     try {
       return await ctx.prisma.product.update({
         where: {
           id: input.id,
         },
-        data: { ...input, state: "CANCELADA" },
+        data: { isActive: false },
       });
     } catch (error) {
       throw new TRPCError({

@@ -1,15 +1,15 @@
-import { SaleViewForm } from "./forms";
+import { SaleViewSheet } from "./SaleViewSheet";
 import { SaleTable } from "./table";
 import { useViewSheet } from "./useSalePage";
 
-export const SalePage = () => {
+export const SalesPage = () => {
   const view = useViewSheet();
 
   return (
     <div className="h-full w-full">
       <SaleTable openView={view.onOpen} />
       {view.isOpen && view.data && (
-        <SaleViewForm
+        <SaleViewSheet
           open={view.isOpen}
           onToggle={view.onToggle}
           data={view.data}

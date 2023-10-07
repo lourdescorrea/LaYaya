@@ -16,6 +16,7 @@ export const en = {
     success: "Éxito",
     error: "Error",
     empty: "No se encontraron resultados",
+    go_back: "Volver",
   },
   auth: {
     login: {
@@ -61,11 +62,21 @@ export const en = {
     sales: "Ventas",
     reports: "Reportes",
   },
+  table_columns: {
+    name: "Nombre",
+    brand: "Marca",
+    price: "Precio",
+    image: "Imagen",
+    shop: "Local",
+    payment_method: "Forma de pago",
+    state: "Estado",
+    total: "Total",
+  },
   admin: {
     brand: {
       create: {
         title: "Crear una marca",
-        sub_title: "Introduzca su marca",
+        sub_title: "Esta marca sera utilizada por los productos.",
         messages: {
           success: "Marca creada con éxito",
           error: "Error al crear marca",
@@ -73,7 +84,7 @@ export const en = {
       },
       edit: {
         title: "Editar marca",
-        sub_title: "Introduzca su marca para editar!",
+        sub_title: "Esta marca sera utilizada por los productos.",
         messages: {
           success: "Marca editada con éxito",
           error: "Error al editar marca",
@@ -84,6 +95,13 @@ export const en = {
         messages: {
           success: "Marca eliminada con éxito",
           error: "Error al eliminar marca",
+        },
+      },
+      fields: {
+        name: {
+          description: "",
+          label: "Nombre de la marca",
+          placeholder: "Royal Canin",
         },
       },
     },
@@ -188,10 +206,10 @@ export const en = {
           title: "Productos:",
         },
         shop: {
-          title: "Local:",
+          title: "Local",
         },
         paymentMethod: {
-          title: "Elige un metodo de pago",
+          title: "Metodo de pago",
         },
         password: {
           label: "Contraseña",
@@ -204,6 +222,19 @@ export const en = {
     error: {
       title: "Oops! Algo ha salido mal!",
       cta: "Inténtalo de nuevo",
+    },
+  },
+  constants: {
+    payment_method: {
+      credit: "Tarjeta de credito",
+      cash: "Efectivo",
+      transfer: "Transferencia",
+      debit: "Debito",
+    },
+    shops: {
+      duarte: "Duarte Quiroz",
+      colon: "Av Colon",
+      deposit: "Deposito",
     },
   },
 };

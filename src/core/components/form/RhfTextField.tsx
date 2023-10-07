@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "./components/Form";
 import { Input } from "./components/fields/Input";
-import { HTMLInputTypeAttribute } from "react";
+import { type HTMLInputTypeAttribute } from "react";
 
 interface RHFTextFieldProps {
   name: string;
@@ -20,10 +20,12 @@ interface RHFTextFieldProps {
   value?: any;
   onChange?: any;
   min?: string;
+  max?: string;
 }
 
 export const RHFTextField = (props: RHFTextFieldProps) => {
-  const { label, type, placeholder, description, disabled, name, min } = props;
+  const { label, type, placeholder, description, disabled, name, min, max } =
+    props;
   return (
     <FormField
       name={name}
@@ -38,6 +40,7 @@ export const RHFTextField = (props: RHFTextFieldProps) => {
               value={field.value || ""}
               onChange={(e) => field.onChange(e.target.value)}
               min={min}
+              max={max}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>

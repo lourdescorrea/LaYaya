@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
-import { UseFormReturn } from "react-hook-form";
 import { Form } from "./components/Form";
+import { type PropsWithChildren } from "react";
+import { type UseFormReturn } from "react-hook-form";
 
 type ExtractFormData<M> = M extends UseFormReturn<infer T, any, undefined>
   ? T

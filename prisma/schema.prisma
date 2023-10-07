@@ -12,7 +12,7 @@ model Brand {
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     name      String
-    state     String
+    isActive  Boolean   @default(true)
     product   Product[]
 }
 
@@ -28,7 +28,7 @@ model Product {
     codeBar       String
     weight        Int
     image         String
-    state         String
+    isActive      Boolean  @default(true)
     brand         Brand?   @relation(fields: [brandId], references: [id])
     brandId       String
 

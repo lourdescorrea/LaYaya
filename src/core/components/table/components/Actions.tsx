@@ -1,38 +1,30 @@
 import { Button } from "../../button";
 import { BiShow } from "react-icons/bi";
-import { MdDeleteOutline, MdEdit, MdOutlineCancel } from "react-icons/md";
+import { MdDeleteOutline, MdEdit } from "react-icons/md";
+
+export interface RowAction<T> {
+  onClick: (row: T) => void;
+  disabled?: boolean;
+}
 
 interface RowActionsProps<T> {
   row: T & { id: string };
-  edit?: {
-    onClick: (row: T) => void;
-    disabled?: boolean;
-  };
-  remove?: {
-    onClick: (row: T) => void;
-    disabled?: boolean;
-  };
-  cancel?: {
-    onClick: (row: T) => void;
-    disabled?: boolean;
-  };
-  view?: {
-    onClick: (row: T) => void;
-    disabled?: boolean;
-  };
+  edit?: RowAction<T>;
+  remove?: RowAction<T>;
+  view?: RowAction<T>;
   customs?: Array<{
     icon: any;
     onClick: (row: T) => void;
+    isDisabled?: (row: T) => boolean;
   }>;
 }
 
 export const TableActions = <T,>(props: RowActionsProps<T>) => {
-  const { row, edit, remove, view, cancel, customs } = props;
+  const { row, edit, remove, view, customs } = props;
 
   // TODO: LOADING STATE?
 
   const iconClass = "h-fit w-fit p-2";
-  const cancelIconClass = "h-fit w-fit p-2 text-red-700";
   return (
     <div className="flex w-full items-center space-x-4">
       {view && (
@@ -68,23 +60,13 @@ export const TableActions = <T,>(props: RowActionsProps<T>) => {
           <MdDeleteOutline className="h-4 w-4" />
         </Button>
       )}
-      {cancel && (
-        <Button
-          size="icon"
-          variant="ghost"
-          className={cancelIconClass}
-          disabled={cancel.disabled}
-          onClick={() => cancel.onClick(row)}
-        >
-          <MdOutlineCancel className="h-4 w-4" />
-        </Button>
-      )}
       {customs?.map((custom, index) => (
         <Button
           key={index}
           size="icon"
           variant="ghost"
           className={iconClass}
+          disabled={custom.isDisabled?.(row)}
           onClick={() => custom.onClick(row)}
         >
           {custom.icon}

@@ -1,22 +1,21 @@
+import { routes } from "../../configs";
+import { useSidebarContext } from "../../hooks";
+import { Dropdown } from "../dropdown";
+import Avatar from "/public/img/avatars/logo.png";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { FiAlignJustify } from "react-icons/fi";
-
 import { en } from "yaya/shared";
-import { routes } from "../../configs";
-import { useSidebarContext } from "../../hooks";
-import { Dropdown } from "../dropdown";
-import Avatar from "/public/img/avatars/logo.png";
 
 export const Navbar = () => {
   const { pathname } = useRouter();
   const { setOpenSidebar } = useSidebarContext();
   const [currentRoute, setCurrentRoute] = useState(routes[0]!);
-  const { data } =useSession()
-  console.log("data",data)
+  const { data } = useSession();
+
   const logOut = () => signOut();
 
   const getActiveRoute = useCallback(() => {
@@ -73,7 +72,6 @@ export const Navbar = () => {
 
             <div className="flex flex-col p-4">
               <button
-                // todo test this
                 onClick={() => void logOut()}
                 className="text-sm font-medium text-destructive"
               >

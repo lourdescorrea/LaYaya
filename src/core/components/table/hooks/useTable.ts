@@ -1,30 +1,31 @@
 import {
-  FilterFn,
-  SortingState,
+  useColumns,
+  type TableActions,
+  type TableColumnData,
+} from "./useColumns";
+import { usePagination } from "./usePagination";
+import { rankItem } from "@tanstack/match-sorter-utils";
+import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import { useState } from 'react';
-import { MdAdd } from 'react-icons/md';
-
-import { rankItem } from '@tanstack/match-sorter-utils';
-import { TableActions, useColumns } from './useColumns';
-import { usePagination } from './usePagination';
+  type FilterFn,
+  type SortingState,
+} from "@tanstack/react-table";
+import { useState } from "react";
+import { MdAdd } from "react-icons/md";
 
 export interface TableArgs<T> {
-  columnsData: {
-    accessorKey: string;
-  }[];
+  columnsData: TableColumnData[];
   data: T[];
   actions?: TableActions<T>;
 }
 
 export const useTable = <T>(args: TableArgs<T>) => {
   const { columnsData, data, actions } = args;
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const columns = useColumns<T>({ columnsData, actions });
@@ -67,7 +68,7 @@ export const useTable = <T>(args: TableArgs<T>) => {
 
 const globalFilterFn: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value);
+  const itemRank = rankItem(row.getValue(columnId), value as string);
 
   // Store the itemRank info
   addMeta({ itemRank });

@@ -13,6 +13,7 @@ export const productCreateSchema = yup.object().shape({
 });
 
 export const productUpdateSchema = yup.object().shape({
+  id: yup.string().required(),
   name: yup.string().required(),
   price: yup.number().required(),
   stockDuarte: yup.number().required(),
@@ -22,6 +23,4 @@ export const productUpdateSchema = yup.object().shape({
   weight: yup.number().required(),
   image: yup.string().required(),
   brandId: yup.string().required(),
-  id: yup.string().required(),
-  min: yup.number().notRequired(),
 });

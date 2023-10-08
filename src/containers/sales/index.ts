@@ -1,2 +1,2 @@
 export { SaleCreatePage } from "./SaleCreate";
-export { SalesPage } from "./SalesPage";
+export { SalesPage } from "./SalesList";

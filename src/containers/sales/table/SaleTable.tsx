@@ -17,7 +17,6 @@ export const SaleTable = (props: SaleTableProps) => {
       data={data}
       loading={isLoading}
       actions={{
-        viewFn: openView,
         customs: [
           {
             icon: <MdOutlineCancel className="h-4 w-4 text-red-700" />,
@@ -26,6 +25,7 @@ export const SaleTable = (props: SaleTableProps) => {
           },
         ],
         createFn,
+        viewFn,
       }}
     />
   );

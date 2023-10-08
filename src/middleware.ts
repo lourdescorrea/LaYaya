@@ -1,11 +1,9 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-
-import { authPaths, defaultRoute, paths, routes } from "yaya/core";
-import { env } from "yaya/env.mjs";
+import { authPaths, defaultRoute, paths, routes } from "yaya/core/configs";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": env.NEXT_PUBLIC_BASE_URL,
+  "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };

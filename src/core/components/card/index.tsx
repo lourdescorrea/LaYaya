@@ -23,7 +23,7 @@ export function Card(props: PropsWithChildren<CardProps>) {
         className
       )}
     >
-      {(title || topAction) && (
+      {(title ?? topAction) && (
         <header className="relative flex items-center justify-between">
           {title && <div className="pb-4 text-xl font-bold ">{title}</div>}
 

@@ -17,3 +17,10 @@ export const shopSchema = yup
   .string()
   .required()
   .oneOf([SHOPS.COLON, SHOPS.DEPOSIT, SHOPS.DUARTE]);
+
+export const currencySchema = yup
+  .number()
+  .transform((_value, originalValue: string) => {
+    return Number(`${originalValue}`.replace(/,/, "."));
+  })
+  .required();

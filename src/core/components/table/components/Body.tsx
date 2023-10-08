@@ -1,7 +1,6 @@
-import { Row, flexRender } from "@tanstack/react-table";
-
-import { en } from "yaya/shared";
 import { Typography } from "../../typography";
+import { flexRender, type Row } from "@tanstack/react-table";
+import { en } from "yaya/shared";
 
 interface Props<T> {
   rows: Row<T>[];

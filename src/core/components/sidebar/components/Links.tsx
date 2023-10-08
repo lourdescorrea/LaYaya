@@ -4,7 +4,7 @@ import { DashIcon } from "../../icons/DashIcon";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 interface LinksProps {
   onClickRoute?: (e: MouseEvent<HTMLElement>) => any;

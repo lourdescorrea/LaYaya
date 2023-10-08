@@ -1,4 +1,5 @@
 import {
+  RHFCurrencyField,
   RHFSelectField,
   RHFTextField,
   RHFileUpload,
@@ -48,7 +49,7 @@ export const ProductFields = () => {
           </Typography>
           <div className="flex space-x-4">
             <div className="w-54">
-              <RHFTextField
+              <RHFCurrencyField
                 label={en.admin.product.fields.price.label}
                 placeholder={en.admin.product.fields.price.placeholder}
                 type="number"

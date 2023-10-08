@@ -2,8 +2,8 @@ export { AuthPage } from "./auth";
 export { BrandPage } from "./brand";
 export {
   ProductCreatePage,
+  ProductEditForm,
   ProductEditPage,
-  ProductForm,
   ProductListPage,
 } from "./product";
 export { SaleCreatePage, SalesPage } from "./sales";

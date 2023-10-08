@@ -1,8 +1,9 @@
+import { currencySchema } from "./commons";
 import * as yup from "yup";
 
 export const productCreateSchema = yup.object().shape({
   name: yup.string().required(),
-  price: yup.number().required(),
+  price: currencySchema,
   stockDuarte: yup.number().required(),
   stockColon: yup.number().required(),
   stockDeposito: yup.number().required(),
@@ -15,7 +16,7 @@ export const productCreateSchema = yup.object().shape({
 export const productUpdateSchema = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
-  price: yup.number().required(),
+  price: currencySchema,
   stockDuarte: yup.number().required(),
   stockColon: yup.number().required(),
   stockDeposito: yup.number().required(),

@@ -4,8 +4,8 @@ import { SHOPS } from "./shops";
 const DUARTE_USER = {
   id: "1",
   name: " Local Duarte",
-  email: "duarte@gmail.com",
-  password: "123456",
+  email: "duarte@yaya.com",
+  password: "vdx3ehu@mvd_gak2RKE",
   role: ROLES.SELLER,
   shops: [SHOPS.DUARTE],
 };
@@ -13,8 +13,8 @@ const DUARTE_USER = {
 const COLON_USER = {
   id: "2",
   name: " Local Colón",
-  email: "colon@gmail.com",
-  password: "123456",
+  email: "colon@yaya.com",
+  password: "pyf!QWV@ubm8wqc*cma",
   role: ROLES.SELLER,
   shops: [SHOPS.COLON],
 };
@@ -22,8 +22,8 @@ const COLON_USER = {
 const ADMIN_USER = {
   id: "3",
   name: "Admin",
-  email: "admin@gmail.com",
-  password: "123456",
+  email: "admin@yaya.com",
+  password: "mbd@qfg3afa7YRC4mrq",
   role: ROLES.ADMIN,
   shops: [SHOPS.DUARTE, SHOPS.COLON, SHOPS.DEPOSIT],
 };
@@ -31,8 +31,8 @@ const ADMIN_USER = {
 const SUPER_ADMIN_USER = {
   id: "4",
   name: "Super Admin",
-  email: "superadmin@gmail.com",
-  password: "123456",
+  email: "superadmin@yaya.com",
+  password: "WFA8dxz-nfg-hja5yfk",
   role: ROLES.SUPER_ADMIN,
   shops: [SHOPS.DUARTE, SHOPS.COLON, SHOPS.DEPOSIT],
 };

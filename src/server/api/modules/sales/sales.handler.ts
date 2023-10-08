@@ -24,7 +24,13 @@ export const getByIdSale = allRolesProcedure
     return ctx.prisma.sale.findUnique({
       where: { id },
       include: {
-        productsOnSale: true,
+        productsOnSale: {
+          include: {
+            product: {
+              include: { brand: true },
+            },
+          },
+        },
       },
     });
   });

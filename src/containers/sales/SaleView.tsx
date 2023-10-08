@@ -1,21 +1,22 @@
 import { SaleViewForm } from "./forms";
-import { type Sale } from "@prisma/client";
 import { useRouter } from "next/router";
 import { Card, api } from "yaya/core";
 
-interface SalesViewFormProps {
-  open: boolean;
-  data: Sale;
-  onToggle: (v: boolean) => void;
-}
-
-export const SaleView = ({ data: { id } }: SalesViewFormProps) => {
+export const SaleView = () => {
   const { query } = useRouter();
 
-  const { data } = api.sales.getById.useQuery({ id: id }, { enabled: !!id });
+  const saleId = query.id as string;
+
+  const { data } = api.sales.getById.useQuery(
+    { id: saleId },
+    { enabled: !!saleId }
+  );
 
   return (
-    <Card className="border-2 bg-slate-200 ">
+    <Card
+      className="h-full w-8/12 border-2 bg-slate-200 p-8 pb-10"
+      title={"Detalle de venta"}
+    >
       {data && <SaleViewForm data={data} />}
     </Card>
   );

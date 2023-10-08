@@ -25,13 +25,13 @@ export const useSaleTable = () => {
   });
 
   const createFn = () => push(paths.sales.create);
-  const viewFn = (data: Sale) => push(paths.sale.view(data.id));
+  const viewFn = (data: Sale) => push(paths.sales.view(data.id));
   const cancelFn = (data: Sale) => onCancel({ id: data.id });
 
   return {
     columns,
     data,
-    viewfn,
+    viewFn,
     createFn,
     cancelFn,
     isLoading,

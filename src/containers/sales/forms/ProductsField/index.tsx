@@ -7,13 +7,19 @@ interface Props {
   fields: Record<"id", string>[];
   remove: UseFieldArrayRemove;
   selectedShop: any;
+  isView?: boolean;
 }
 
-export const ProductsField = ({ fields, remove, selectedShop }: Props) => {
+export const ProductsField = ({
+  fields,
+  remove,
+  selectedShop,
+  isView,
+}: Props) => {
   return (
     <div className="flex flex-col h-full w-full items-center justify-center">
       <SimpleTable.Table>
-        <TableHeader />
+        <TableHeader isView={isView} />
         <SimpleTable.TableBody>
           {fields.map((field: any, idx) => {
             const stock = field[SHOPS_STOCK[selectedShop] as string];
@@ -23,26 +29,37 @@ export const ProductsField = ({ fields, remove, selectedShop }: Props) => {
                   {field.name}
                 </SimpleTable.TableCell>
                 <SimpleTable.TableCell>
-                  {field.brand?.name}
+                  {isView ? field.product?.brand?.name : field.brand?.name}
                 </SimpleTable.TableCell>
-                <SimpleTable.TableCell>{stock}</SimpleTable.TableCell>
+
+                {!isView && (
+                  <SimpleTable.TableCell>{stock}</SimpleTable.TableCell>
+                )}
+
                 <SimpleTable.TableCell>
                   {formatCurrency((field.price as number) ?? 0)}
                 </SimpleTable.TableCell>
                 <SimpleTable.TableCell className="max-w-[100px]">
-                  <RHFTextField
-                    name={`productsOnSale[${idx}].quantity`}
-                    placeholder="Cantidad"
-                    type="number"
-                    min="1"
-                    max={`${stock ?? 0}`}
-                  />
+                  {isView ? (
+                    field.quantity
+                  ) : (
+                    <RHFTextField
+                      name={`productsOnSale[${idx}].quantity`}
+                      placeholder="Cantidad"
+                      type="number"
+                      min="1"
+                      disabled={isView}
+                      max={`${stock ?? 0}`}
+                    />
+                  )}
                 </SimpleTable.TableCell>
-                <SimpleTable.TableCell>
-                  <Button variant="ghost" onClick={() => remove(idx)}>
-                    <BiTrash className="h-4 w-4 text-red-500" />
-                  </Button>
-                </SimpleTable.TableCell>
+                {!isView && (
+                  <SimpleTable.TableCell>
+                    <Button variant="ghost" onClick={() => remove(idx)}>
+                      <BiTrash className="h-4 w-4 text-red-500" />
+                    </Button>
+                  </SimpleTable.TableCell>
+                )}
               </SimpleTable.TableRow>
             );
           })}
@@ -52,13 +69,13 @@ export const ProductsField = ({ fields, remove, selectedShop }: Props) => {
   );
 };
 
-const TableHeader = () => {
+const TableHeader = ({ isView }: { isView?: boolean }) => {
   return (
     <SimpleTable.TableHeader>
       <SimpleTable.TableRow>
         <SimpleTable.TableHead>Nombre</SimpleTable.TableHead>
         <SimpleTable.TableHead>Marca</SimpleTable.TableHead>
-        <SimpleTable.TableHead>Stock</SimpleTable.TableHead>
+        {!isView && <SimpleTable.TableHead>Stock</SimpleTable.TableHead>}
         <SimpleTable.TableHead>Precio</SimpleTable.TableHead>
         <SimpleTable.TableHead className="max-w-[100px]">
           Cantidad

@@ -13,6 +13,7 @@ interface Props {
   append: UseFieldArrayAppend<FieldValues, "productsOnSale">;
   fields: any[];
   remove: UseFieldArrayRemove;
+  isView?: boolean;
 }
 
 export const useProductModal = (a: Props) => {
@@ -37,6 +38,8 @@ export const useProductModal = (a: Props) => {
   };
 
   const onScann = (codebar: string) => {
+    if (a.isView) return;
+
     const product = data.find((p) => p.codeBar === codebar);
 
     if (product) {

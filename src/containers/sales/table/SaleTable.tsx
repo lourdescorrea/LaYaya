@@ -1,15 +1,11 @@
 import { useSaleTable } from "./useSaleTable";
 import { MdOutlineCancel } from "react-icons/md";
 import { Table } from "yaya/core";
-import { SALE_STATE, type Sale } from "yaya/shared";
+import { SALE_STATE } from "yaya/shared";
 
-interface SaleTableProps {
-  openView: (data: Sale) => void;
-}
-
-export const SaleTable = (props: SaleTableProps) => {
-  const { openView } = props;
-  const { columns, data, isLoading, createFn, cancelFn } = useSaleTable();
+export const SaleTable = () => {
+  const { columns, data, isLoading, createFn, cancelFn, viewFn } =
+    useSaleTable();
 
   return (
     <Table

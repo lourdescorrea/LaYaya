@@ -25,6 +25,7 @@ interface Props {
   append: UseFieldArrayAppend<FieldValues, "productsOnSale">;
   fields: any;
   remove: UseFieldArrayRemove;
+  isView?: boolean;
 }
 
 export const ProductModal = (props: Props) => {

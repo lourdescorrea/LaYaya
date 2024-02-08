@@ -8,7 +8,9 @@ export const ProductTable = () => {
     useProductTable();
 
   const session = useSession();
-  const hasActions = PERMISSIONS.ADMINS.includes(session.data?.user.role ?? "");
+  const hasActions = PERMISSIONS.ALL_ROLES.includes(
+    session.data?.user.role ?? ""
+  );
 
   return (
     <Table

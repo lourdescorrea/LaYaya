@@ -1,4 +1,4 @@
-import { adminProcedure, allRolesProcedure } from "../../configs";
+import { allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import {
   idSchema,
@@ -17,7 +17,7 @@ export const getAllProduct = allRolesProcedure.query(({ ctx }) => {
   });
 });
 
-export const getByIdProduct = adminProcedure
+export const getByIdProduct = allRolesProcedure
   .input(idSchema)
   .query(({ ctx, input }) => {
     const { id } = input;
@@ -26,7 +26,7 @@ export const getByIdProduct = adminProcedure
     });
   });
 
-export const createProduct = adminProcedure
+export const createProduct = allRolesProcedure
   .input(productCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
@@ -42,7 +42,7 @@ export const createProduct = adminProcedure
     }
   });
 
-export const editProduct = adminProcedure
+export const editProduct = allRolesProcedure
   .input(productUpdateSchema)
   .mutation(async ({ ctx, input }) => {
     const { id } = input;
@@ -60,7 +60,7 @@ export const editProduct = adminProcedure
     }
   });
 
-export const archiveProduct = adminProcedure
+export const archiveProduct = allRolesProcedure
   .input(idSchema)
   .mutation(async ({ ctx, input }) => {
     try {

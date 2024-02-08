@@ -5,7 +5,7 @@ const DUARTE_USER = {
   id: "1",
   name: " Local Duarte",
   email: "duarte@yaya.com",
-  password: "vdx3ehu@mvd_gak2RKE",
+  password: "duarte2024",
   role: ROLES.SELLER,
   shops: [SHOPS.DUARTE],
 };
@@ -14,7 +14,7 @@ const COLON_USER = {
   id: "2",
   name: " Local Colón",
   email: "colon@yaya.com",
-  password: "pyf!QWV@ubm8wqc*cma",
+  password: "colon2024",
   role: ROLES.SELLER,
   shops: [SHOPS.COLON],
 };
@@ -23,7 +23,7 @@ const ADMIN_USER = {
   id: "3",
   name: "Admin",
   email: "admin@yaya.com",
-  password: "mbd@qfg3afa7YRC4mrq",
+  password: "yaya!2024",
   role: ROLES.ADMIN,
   shops: [SHOPS.DUARTE, SHOPS.COLON, SHOPS.DEPOSIT],
 };

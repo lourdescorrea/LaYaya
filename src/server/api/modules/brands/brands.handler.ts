@@ -1,4 +1,4 @@
-import { allRolesProcedure, superAdminProcedure } from "../../configs";
+import { allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import { brandCreateSchema, brandUpdateSchema, idSchema } from "yaya/shared";
 
@@ -10,7 +10,7 @@ export const getAllBrand = allRolesProcedure.query(({ ctx }) => {
   });
 });
 
-export const getByIdBrand = superAdminProcedure
+export const getByIdBrand = allRolesProcedure
   .input(idSchema)
   .query(({ ctx, input }) => {
     const { id } = input;
@@ -19,7 +19,7 @@ export const getByIdBrand = superAdminProcedure
     });
   });
 
-export const createBrand = superAdminProcedure
+export const createBrand = allRolesProcedure
   .input(brandCreateSchema)
   .mutation(async ({ ctx, input }) => {
     try {
@@ -35,7 +35,7 @@ export const createBrand = superAdminProcedure
     }
   });
 
-export const archiveBrand = superAdminProcedure
+export const archiveBrand = allRolesProcedure
   .input(idSchema)
   .mutation(async ({ input, ctx }) => {
     try {
@@ -69,7 +69,7 @@ export const archiveBrand = superAdminProcedure
     }
   });
 
-export const editBrand = superAdminProcedure
+export const editBrand = allRolesProcedure
   .input(brandUpdateSchema)
   .mutation(async ({ ctx, input }) => {
     const { id, name } = input;

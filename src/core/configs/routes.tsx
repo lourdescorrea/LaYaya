@@ -41,7 +41,7 @@ export const routes: Route[] = [
     name: en.navigation.brands,
     path: paths.brand.root,
     icon: <MdOutlineStorefront className="h-6 w-6" />,
-    allowedRoles: PERMISSIONS.ADMINS,
+    allowedRoles: PERMISSIONS.ALL_ROLES,
   },
   {
     name: en.navigation.products,

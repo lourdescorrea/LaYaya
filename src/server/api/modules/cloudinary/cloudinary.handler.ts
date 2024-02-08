@@ -1,9 +1,9 @@
-import { adminProcedure } from "../../configs";
+import { allRolesProcedure } from "../../configs";
 import { TRPCError } from "@trpc/server";
 import { v2 as cloudinary } from "cloudinary";
 import { env } from "yaya/env.mjs";
 
-export const fileUpload = adminProcedure.mutation(() => {
+export const fileUpload = allRolesProcedure.mutation(() => {
   try {
     const timestamp = Math.round(new Date().getTime() / 1000);
 
